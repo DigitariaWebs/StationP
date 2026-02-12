@@ -4,17 +4,19 @@ import Image from 'next/image';
 
 export default function AboutPage() {
   return (
-    <main id="a-propos" className="min-h-screen bg-black text-white px-6 py-20 overflow-hidden">
-      <div className="max-w-7xl mx-auto relative">
-        
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-          <svg width="100%" height="100%" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M-100 400 C 200 100, 600 600, 1100 200" stroke="#00F5A0" strokeWidth="1" />
-            <path d="M-100 420 C 200 120, 600 620, 1100 220" stroke="#00F5A0" strokeWidth="0.5" />
-          </svg>
-        </div>
+    <main id="a-propos" className="min-h-screen bg-[#1B1F24] text-white px-6 py-20 overflow-hidden relative">
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20 relative z-10">
+      {/* SVG sorti du max-w-7xl pour couvrir toute la largeur */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+        <svg width="100%" height="100%" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 400 C 200 100, 600 600, 1000 200" stroke="#00F5A0" strokeWidth="1" />
+          <path d="M0 420 C 200 120, 600 620, 1000 220" stroke="#00F5A0" strokeWidth="0.5" />
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-20">
           <div className="lg:col-span-8">
             <h1 className="text-6xl md:text-[85px] font-bold leading-[0.9] tracking-tight">
               Pourquoi choisir <br /> 
@@ -33,7 +35,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
           
           {/* Bloc Gauche : Carte et Texte */}
           <div className="lg:col-span-5 space-y-12">
@@ -66,7 +68,6 @@ export default function AboutPage() {
                 priority
               />
             </div>
-
 
           </div>
         </div>

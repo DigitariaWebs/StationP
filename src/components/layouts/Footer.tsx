@@ -7,7 +7,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black text-white border-t border-[#00F5A0]/30 pt-16 pb-8">
+    <footer id="footer" className="bg-[#1B1F24] text-white border-t border-[#00F5A0]/30 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           
@@ -47,7 +47,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social */}
           <div>
             <h4 className="font-black text-[#00F5A0] mb-6 text-sm uppercase">Suivez-nous</h4>
             <div className="flex gap-4">
@@ -61,7 +60,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">
             © {currentYear} StationP Belgium.
           </p>

@@ -10,7 +10,6 @@ export default function HeroWithNavbar() {
 
   return (
     <section className="relative w-full h-screen min-h-[700px] overflow-hidden">
-      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/2.png"
@@ -19,8 +18,8 @@ export default function HeroWithNavbar() {
           priority
           className="object-cover"
         />
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
+        {/* Dark Overlay (custom dark color) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#1B1F24]/80 via-[#1B1F24]/60 to-[#1B1F24]/30" />
       </div>
 
       {/* Navbar */}
@@ -53,13 +52,13 @@ export default function HeroWithNavbar() {
                 Trouver une borne
               </Link>
               <Link 
-                href="/a-propos" 
+                href="/#a-propos" 
                 className="text-sm font-medium text-white/90 hover:text-[#00F5A0] transition-colors"
               >
                 À propos
               </Link>
               <Link 
-                href="/contact" 
+                href="/#howitworks"
                 className="text-sm font-medium text-white/90 hover:text-[#00F5A0] transition-colors"
               >
                 Contact
@@ -68,12 +67,7 @@ export default function HeroWithNavbar() {
 
             {/* CTA Button */}
             <div className="hidden md:flex">
-              <Link 
-                href="#trouver" 
-                className="bg-white hover:bg-[#00F5A0] text-black hover:text-white text-sm font-bold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0"
-              >
-                Trouver une borne
-              </Link>
+              <Link href="/#howitworks" className="bg-white hover:bg-[#00875e] text-black hover:text-white text-sm font-bold py-3 px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0">Nous rejoindre</Link>
             </div>
 
             {/* Mobile Menu Button */}
@@ -90,7 +84,7 @@ export default function HeroWithNavbar() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-black/95 backdrop-blur-lg border-t border-white/10 absolute w-full shadow-xl animate-fade-in">
+            <div className="md:hidden bg-[#1B1F24]/95 backdrop-blur-lg border-t border-white/10 absolute w-full shadow-xl animate-fade-in">
             <div className="px-4 pt-4 pb-6 space-y-4 flex flex-col">
               <Link 
                 href="/" 
@@ -107,25 +101,25 @@ export default function HeroWithNavbar() {
                 Trouver une borne
               </Link>
               <Link 
-                href="/a-propos" 
+                href="/#a-propos" 
                 className="font-medium text-white/90 hover:text-[#00F5A0] py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 À propos
               </Link>
               <Link 
-                href="/contact" 
+                href="/#howitworks" 
                 className="font-medium text-white/90 hover:text-[#00F5A0] py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
               <Link 
-                href="#trouver" 
+                href="/#howitworks" 
                 className="bg-white text-black text-center font-bold py-3 rounded-full mt-2 block hover:bg-[#00F5A0] hover:text-white transition-all duration-300"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Trouver une borne
+                Nous rejoindre
               </Link>
             </div>
           </div>
@@ -133,7 +127,7 @@ export default function HeroWithNavbar() {
       </header>
 
       <div className="relative z-10 h-full max-w-7xl mx-auto px-8 lg:px-16 flex items-center">
-          <div className="max-w-2xl animate-fade-in-up">
+        <div className="max-w-2xl animate-fade-in-up">
           {/* Title */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
             Mobilité électrique<br />
@@ -146,9 +140,13 @@ export default function HeroWithNavbar() {
           </p>
 
           {/* CTA Button */}
-          <button className="group bg-white hover:bg-[#00F5A0] text-black hover:text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0">
+          <Link
+            href="/#footer"
+            className="group bg-white hover:bg-[#00875e] text-black hover:text-white font-semibold px-8 py-5 rounded-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 inline-block text-center"
+          >
             En savoir plus
-          </button>
+          </Link>
+
         </div>
       </div>
     </section>

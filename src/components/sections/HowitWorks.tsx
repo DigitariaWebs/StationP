@@ -13,10 +13,11 @@ export default function AccessPage() {
   };
 
   return (
-    <main id="howitworks" className="min-h-screen bg-black text-white px-6 py-20 overflow-hidden relative">
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-        <svg width="100%" height="100%" viewBox="0 0 1000 800" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M-100 400 C 200 100, 600 600, 1100 200" stroke="#00F5A0" strokeWidth="1" strokeOpacity="0.12" strokeDasharray="5 5" />
+    <main id="howitworks" className="min-h-screen bg-[#1B1F24] text-white px-6 py-20 overflow-hidden relative">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <svg width="100%" height="100%" viewBox="0 0 1440 1000" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M-100 0 C 400 300, 900 600, 1600 900" stroke="#00F5A0" strokeWidth="1.5" strokeOpacity="0.18" strokeDasharray="5 5" />
+          <path d="M-100 100 C 350 400, 850 650, 1600 1000" stroke="#00F5A0" strokeWidth="1" strokeOpacity="0.10" strokeDasharray="5 5" />
         </svg>
       </div>
 
@@ -28,7 +29,7 @@ export default function AccessPage() {
               <Sparkles size={14} className="text-[#00F5A0]" /> Accès Prioritaire
             </span>
             
-            <h1 className="text-5xl md:text-7xl font-black leading-[1.1] tracking-tight text-white">
+              <h1 className="text-5xl md:text-7xl font-black leading-[1.1] tracking-tight text-white">
               Prêt à rejoindre <br />
               le réseau <span className="text-[#00F5A0] font-black">StationP ?</span>
             </h1>
@@ -51,7 +52,7 @@ export default function AccessPage() {
 
           {/* --- FORMULAIRE DROITE --- */}
           <div className="lg:col-span-6">
-            <div className="bg-black border-4 border-white p-8 md:p-10 rounded-[2.5rem] shadow-[10px_10px_0px_0px_rgba(255,255,255,0.06)]">
+              <div className="bg-[#1B1F24] border-4 border-white p-8 md:p-10 rounded-[2.5rem] shadow-[10px_10px_0px_0px_rgba(255,255,255,0.06)]">
               {submitted ? (
                   <div className="py-12 text-center animate-in fade-in zoom-in duration-500">
                   <div className="w-20 h-20 bg-white border-2 border-white rounded-2xl flex items-center justify-center mx-auto mb-6 rotate-3">
@@ -81,24 +82,24 @@ export default function AccessPage() {
                     </div>
 
                   <div className="space-y-4">
-                    <input 
-                      required
-                      type="text" 
-                      placeholder="Nom complet"
-                      className="w-full bg-black border-2 border-white rounded-xl px-5 py-4 outline-none focus:bg-white/10 transition-all text-white font-bold"
-                    />
-                    <input 
-                      required
-                      type="email" 
-                      placeholder="Adresse email"
-                      className="w-full bg-black border-2 border-white rounded-xl px-5 py-4 outline-none focus:bg-white/10 transition-all text-white font-bold"
-                    />
-                    <input 
-                      required
-                      type="text" 
-                      placeholder="Ville (ex: Bruxelles)"
-                      className="w-full bg-black border-2 border-white rounded-xl px-5 py-4 outline-none focus:bg-white/10 transition-all text-white font-bold"
-                    />
+                      <input 
+                        required
+                        type="text" 
+                        placeholder="Nom complet"
+                        className="w-full bg-[#1B1F24] border-2 border-white rounded-xl px-5 py-4 outline-none focus:bg-white/10 transition-all text-white font-bold"
+                      />
+                      <input 
+                        required
+                        type="email" 
+                        placeholder="Adresse email"
+                        className="w-full bg-[#1B1F24] border-2 border-white rounded-xl px-5 py-4 outline-none focus:bg-white/10 transition-all text-white font-bold"
+                      />
+                      <input 
+                        required
+                        type="text" 
+                        placeholder="Ville (ex: Bruxelles)"
+                        className="w-full bg-[#1B1F24] border-2 border-white rounded-xl px-5 py-4 outline-none focus:bg-white/10 transition-all text-white font-bold"
+                      />
                   </div>
 
                   <button 
