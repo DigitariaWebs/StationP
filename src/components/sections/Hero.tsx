@@ -27,7 +27,7 @@ export default function HeroWithNavbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-24 sm:h-28 md:h-32">
             
-            {/* Logo - ÉNORME (700) */}
+            {/* Logo */}
             <Link href="/" className="flex items-center group">
               <Image 
                 src="/4.png" 
@@ -54,23 +54,23 @@ export default function HeroWithNavbar() {
                 Trouver une borne
               </Link>
               <Link 
-                href="/#a-propos" 
+                href="#a-propos" 
                 className="text-xs lg:text-sm font-medium text-white/90 hover:text-[#00F5A0] transition-colors"
               >
                 À propos
               </Link>
               <Link 
-                href="/#howitworks"
+                href="#howitworks"
                 className="text-xs lg:text-sm font-medium text-white/90 hover:text-[#00F5A0] transition-colors"
               >
                 Contact
               </Link>
             </nav>
 
-            {/* CTA Button Header */}
+            {/* CTA Button Header - CORRIGÉ */}
             <div className="hidden md:flex">
               <Link 
-                href="/#howitworks" 
+                href="#howitworks" 
                 className="bg-white hover:bg-[#00F5A0] text-[#1B1F24] hover:text-white text-xs lg:text-sm font-bold py-2 lg:py-3 px-4 lg:px-6 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2"
               >
                 <Zap size={16} />
@@ -91,7 +91,7 @@ export default function HeroWithNavbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - CORRIGÉ */}
         {isMenuOpen && (
           <div className="md:hidden bg-[#1B1F24]/95 backdrop-blur-lg border-t border-white/10 absolute w-full shadow-xl">
             <div className="px-4 pt-4 pb-6 space-y-4 flex flex-col">
@@ -110,21 +110,21 @@ export default function HeroWithNavbar() {
                 Trouver une borne
               </Link>
               <Link 
-                href="/#a-propos" 
+                href="#a-propos" 
                 className="font-medium text-white/90 hover:text-[#00F5A0] py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 À propos
               </Link>
               <Link 
-                href="/#howitworks" 
+                href="#howitworks" 
                 className="font-medium text-white/90 hover:text-[#00F5A0] py-2 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact
               </Link>
               <Link 
-                href="/#howitworks" 
+                href="#howitworks" 
                 className="bg-white hover:bg-[#00F5A0] text-[#1B1F24] hover:text-white text-center font-bold py-3 rounded-full mt-2 block transition-all duration-300 flex items-center justify-center gap-2"
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -150,9 +150,9 @@ export default function HeroWithNavbar() {
             Découvrez les véhicules et solutions de recharge pour Bruxelles. Des bornes fiables et accessibles pour faciliter vos trajets.
           </p>
 
-          {/* CTA Button Hero */}
+          {/* CTA Button Hero - CORRIGÉ */}
           <Link
-            href="/#footer"
+            href="#howitworks"
             className="group bg-[#00F5A0] hover:bg-[#00875e] text-[#1B1F24] hover:text-white font-semibold px-6 sm:px-8 py-4 sm:py-5 rounded-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 inline-flex items-center gap-2 text-sm sm:text-base"
           >
             <Zap size={20} />
