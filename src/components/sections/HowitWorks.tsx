@@ -1,15 +1,46 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle2, ArrowRight, Sparkles, Zap, Users, Home, MapPin, Mail, Phone } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Sparkles, Zap, Users, Shield, MapPin, Mail, Phone, Loader2 } from 'lucide-react';
 
 export default function AccessPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false); // État pour le chargement
   const [userType, setUserType] = useState('driver');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTimeout(() => setSubmitted(true), 800);
+    setLoading(true);
+
+    const formData = new FormData(e.currentTarget);
+    
+    // On ajoute le type d'utilisateur manuellement car ce n'est pas un input standard
+    formData.append("type_utilisateur", userType === 'driver' ? "Conducteur" : "Propriétaire (Hôte)");
+    
+    // Configuration pour FormSubmit (pour rediriger vers votre email sans backend)
+    // _subject: Le sujet du mail que vous recevrez
+    // _template: Le format (table pour la lisibilité)
+    formData.append("_subject", `Nouveau contact StreetCharge : ${userType}`);
+    formData.append("_template", "table");
+    formData.append("_captcha", "false"); // Désactive le captcha pour fluidifier (optionnel)
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/elhoudaifi.soufian@gmail.com", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Une erreur est survenue. Merci de réessayer.");
+      }
+    } catch (error) {
+      console.error("Erreur d'envoi:", error);
+      alert("Erreur de connexion.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -74,7 +105,8 @@ export default function AccessPage() {
                     <CheckCircle2 size={30} className="sm:w-10 sm:h-10 text-black" />
                   </div>
                   <h3 className="text-2xl sm:text-3xl font-black mb-2 text-white">INSCRIPTION REÇUE !</h3>
-                  <p className="text-sm sm:text-base text-gray-300 font-bold">Merci de votre intérêt !</p>
+                  <p className="text-sm sm:text-base text-gray-300 font-bold mb-6">Merci de votre intérêt !</p>
+                  <p className="text-xs text-white/40">Un email de confirmation vous sera envoyé.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
@@ -108,6 +140,7 @@ export default function AccessPage() {
                     <div className="relative">
                       <input 
                         required
+                        name="nom"
                         type="text" 
                         placeholder="Nom complet"
                         className="w-full bg-[#1B1F24] border-2 border-white rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:bg-white/10 transition-all text-white font-bold text-sm sm:text-base"
@@ -118,6 +151,7 @@ export default function AccessPage() {
                     <div className="relative">
                       <input 
                         required
+                        name="email"
                         type="email" 
                         placeholder="Adresse email"
                         className="w-full bg-[#1B1F24] border-2 border-white rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:bg-white/10 transition-all text-white font-bold text-sm sm:text-base"
@@ -129,6 +163,7 @@ export default function AccessPage() {
                     <div className="relative">
                       <input 
                         required
+                        name="telephone"
                         type="tel" 
                         placeholder="Téléphone"
                         pattern="[0-9\s\+]+"
@@ -141,6 +176,7 @@ export default function AccessPage() {
                     <div className="relative">
                       <input 
                         required
+                        name="code_postal"
                         type="text" 
                         placeholder="Code postal"
                         className="w-full bg-[#1B1F24] border-2 border-white rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:bg-white/10 transition-all text-white font-bold text-sm sm:text-base"
@@ -153,6 +189,7 @@ export default function AccessPage() {
                       <div className="relative animate-in slide-in-from-top-2 duration-300">
                         <input 
                           required
+                          name="info_borne"
                           type="text" 
                           placeholder="Type de borne / Puissance"
                           className="w-full bg-[#1B1F24] border-2 border-[#00F5A0] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:bg-white/10 transition-all text-white font-bold text-sm sm:text-base"
@@ -165,9 +202,14 @@ export default function AccessPage() {
                   {/* Bouton submit */}
                   <button 
                     type="submit"
-                    className="w-full bg-white hover:bg-[#00F5A0] text-black font-black py-4 sm:py-5 rounded-xl transition-all flex items-center justify-center gap-2 sm:gap-3 border-2 border-white active:scale-95 text-sm sm:text-base"
+                    disabled={loading}
+                    className="w-full bg-white hover:bg-[#00F5A0] text-black font-black py-4 sm:py-5 rounded-xl transition-all flex items-center justify-center gap-2 sm:gap-3 border-2 border-white active:scale-95 text-sm sm:text-base disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    {userType === 'driver' ? "REJOINDRE LA COMMUNAUTÉ" : 'PROPOSER MA BORNE'} <ArrowRight size={18} className="sm:w-5 sm:h-5" />
+                    {loading ? (
+                       <><Loader2 className="animate-spin" /> ENVOI EN COURS...</>
+                    ) : (
+                       <>{userType === 'driver' ? "REJOINDRE LA COMMUNAUTÉ" : 'PROPOSER MA BORNE'} <ArrowRight size={18} className="sm:w-5 sm:h-5" /></>
+                    )}
                   </button>
 
                   <p className="text-xs text-center text-white/50">
@@ -182,6 +224,3 @@ export default function AccessPage() {
     </main>
   );
 }
-
-// Import manquant
-import { Shield } from 'lucide-react';
