@@ -1,87 +1,140 @@
 'use client';
 
-import Image from 'next/image';
+import { Home, Zap, Users, TrendingUp, Shield, ArrowRight } from 'lucide-react';
 
 export default function AboutPage() {
   return (
-    <main id="a-propos" className="min-h-screen bg-[#1B1F24] text-white px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 overflow-hidden relative">
-
-      {/* SVG décoratif */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-10 sm:opacity-20">
-        <svg width="100%" height="100%" viewBox="0 0 1000 800" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M0 400 C 200 100, 600 600, 1000 200" stroke="#00F5A0" strokeWidth="1" />
-          <path d="M0 420 C 200 120, 600 620, 1000 220" stroke="#00F5A0" strokeWidth="0.5" />
-        </svg>
+    <main id="a-propos" className="min-h-screen bg-[#1B1F24] text-white selection:bg-[#00F5A0] selection:text-[#1B1F24]">
+      
+      {/* Background subtil pour casser l'aspect plat */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#00F5A0]/5 blur-[120px]" />
+        <div className="absolute bottom-[-5%] right-[-5%] w-[30%] h-[30%] rounded-full bg-[#00F5A0]/5 blur-[100px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto px-6 py-20 relative z-10">
         
-        {/* Section titre - DESCENDU AVEC mt-8 */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20 mt-8 sm:mt-12">
-          
-          {/* Titre principal - responsive */}
-          <div className="lg:col-span-8 text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[55px] font-bold leading-tight lg:leading-[0.9] tracking-tight">
-              Un réseau <span className="text-[#00F5A0]">pensé</span> <br className="hidden sm:block" />
-              <span className="text-white">pour l&apos;humain</span>
-            </h1>
+        {/* --- HEADER --- */}
+        <section className="mb-32">
+          <div className="inline-block px-4 py-1.5 mb-8 border border-[#00F5A0]/30 rounded-full">
+            <span className="text-[#00F5A0] text-xs font-bold uppercase tracking-[0.2em]">Notre mission</span>
           </div>
           
-          {/* Badge et description - responsive */}
-          <div className="lg:col-span-4 flex flex-col items-center lg:items-end lg:text-right self-start pt-0 lg:pt-6">
-            <span className="bg-white/5 border border-white/10 text-[#00F5A0] px-4 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6 inline-block">
-              Notre philosophie
+          <h1 className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter leading-[0.85] mb-12">
+            <span className="text-[#00F5A0]">Voisins,</span><br />
+            <span className="text-white inline-flex items-center gap-4">
+                pas algorithmes <span className="hidden md:block h-1 w-32 bg-[#00F5A0]/20 rounded-full" />
             </span>
-            <p className="text-base sm:text-lg text-white/60 leading-relaxed max-w-sm text-center lg:text-right">
-              Ici, pas d&apos;algorithme. Juste des voisins qui partagent leur borne et une équipe qui connecte les gens par téléphone.
-            </p>
-          </div>
-        </div>
+          </h1>
+        </section>
 
-        {/* Section contenu principal */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start lg:items-end">
+        {/* --- CONTENT BENTO --- */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
           
-          {/* Bloc Gauche */}
-          <div className="lg:col-span-5 space-y-8 sm:space-y-10 lg:space-y-12">
-            
-            {/* Carte verte */}
-            <div className="bg-[#00F5A0] text-black p-6 sm:p-8 lg:p-10 rounded-[30px] sm:rounded-[40px] lg:rounded-[45px] rounded-tl-none shadow-[0_20px_40px_rgba(0,245,160,0.15)]">
-              <p className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-2 sm:mb-3 lg:mb-4 tracking-tighter">100%</p>
-              <h3 className="text-base sm:text-lg lg:text-xl font-bold uppercase tracking-widest mb-2 sm:mb-3 lg:mb-4">CONNEXION HUMAINE</h3>
-              <p className="text-sm sm:text-base lg:text-lg font-medium leading-tight opacity-80">
-                Chaque conducteur est mis en relation directement avec un propriétaire de borne. Un appel, et c&apos;est réglé.
+          {/* Le Constat */}
+          <div className="md:col-span-5 bg-white/[0.03] border border-white/10 rounded-[2rem] p-10 flex flex-col justify-between">
+            <div>
+              <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center mb-8">
+                <TrendingUp className="text-[#00F5A0]" size={24} />
+              </div>
+              <h2 className="text-3xl font-bold mb-6">Le constat</h2>
+              <div className="space-y-6 text-white/70 text-lg leading-relaxed">
+                <p>
+                  <strong className="text-white">Augmentation du nombre de voitures électriques</strong><br />
+                  Mais recharger son véhicule n&apos;est pas toujours simple.
+                </p>
+                <p>
+                  Aujourd&apos;hui, de nombreuses <strong className="text-[#00F5A0] font-semibold">bornes de recharge privées</strong> restent inutilisées, alors que de plus en plus de conducteurs n&apos;ont pas accès à une solution simple.
+                </p>
+              </div>
+            </div>
+            <div className="mt-12 pt-8 border-t border-white/5">
+              <p className="text-xl font-bold">
+                Le but : <span className="text-[#00F5A0]">mettre en relation des voisins</span>.
               </p>
             </div>
-
-            {/* Texte secondaire */}
-            <div className="pl-2 sm:pl-3 lg:pl-4">
-              <h4 className="text-xl sm:text-2xl font-semibold mb-1 sm:mb-2 italic">Pas de réservation automatique</h4>
-              <p className="text-white/50 text-base sm:text-lg">Un vrai contact, une vraie solution.</p>
-            </div>
           </div>
 
-          {/* Bloc Droite - Image */}
-          <div className="lg:col-span-7 relative flex justify-center lg:justify-end">
+          {/* Notre Solution */}
+          <div className="md:col-span-7 bg-[#00F5A0] rounded-[2rem] p-10 text-[#1B1F24] relative overflow-hidden group">
+            <Zap className="absolute -right-8 -top-8 opacity-10 rotate-12 transition-transform group-hover:scale-110" size={300} />
             
-            {/* Image avec hauteur responsive */}
-            <div className="relative w-full sm:w-4/5 lg:w-[480px] h-[400px] sm:h-[500px] lg:h-[600px] rounded-[30px] sm:rounded-[40px] lg:rounded-[50px] overflow-hidden border border-white/5 shadow-2xl">
-              <Image
-                src="https://plus.unsplash.com/premium_photo-1715639312136-56a01f236440?auto=format&fit=crop&w=1200&q=80"
-                alt="Station de recharge minimaliste"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
+            <div className="relative z-10">
+              <h2 className="text-3xl font-black mb-10 flex items-center gap-3">
+                <Zap size={32} fill="currentColor" />
+                Notre solution
+              </h2>
+              
+              <p className="text-2xl font-bold mb-12 leading-tight">
+                StreetCharge permet aux particuliers :
+              </p>
+              
+              <div className="space-y-8">
+                <div className="flex items-start gap-5">
+                  <div className="mt-1 bg-[#1B1F24] p-2 rounded-lg">
+                    <Home size={20} className="text-[#00F5A0]" />
+                  </div>
+                  <div>
+                    <p className="text-xl font-bold">Mettre leur borne à disposition</p>
+                    <p className="opacity-80">Lorsqu&apos;elle n&apos;est pas utilisée</p>
+                  </div>
+                </div>
 
-            {/* Éventuel badge flottant (optionnel) */}
-            <div className="absolute -bottom-4 left-4 sm:left-8 lg:left-auto lg:-left-12 bg-[#1B1F24] border border-[#00F5A0]/30 rounded-xl px-4 py-2 shadow-xl">
-              <p className="text-xs sm:text-sm text-[#00F5A0] font-semibold">✦ Connexion directe</p>
+                <div className="flex items-start gap-5">
+                  <div className="mt-1 bg-[#1B1F24] p-2 rounded-lg">
+                    <Users size={20} className="text-[#00F5A0]" />
+                  </div>
+                  <div>
+                    <p className="text-xl font-bold">Recharger chez un voisin</p>
+                    <p className="opacity-80">De manière locale et volontaire</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-16 p-6 bg-[#1B1F24]/5 border border-[#1B1F24]/10 rounded-2xl">
+                <p className="font-semibold italic leading-snug">
+                  "Nous commençons à petite échelle afin de construire une solution humaine et de confiance."
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
+          {/* How it works - Compact Horizontal */}
+          <div className="md:col-span-12 mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Step number="01" title="S'inscrire" desc="Conducteur ou propriétaire, rejoignez-nous." />
+            <Step number="02" title="Connecter" desc="Nous facilitons la mise en relation locale." />
+            <Step number="03" title="Recharger" desc="En toute simplicité et convivialité." />
+          </div>
+
+          {/* Phase de lancement */}
+          <div className="md:col-span-12 mt-4 bg-white/[0.03] border border-white/10 rounded-[2rem] p-8 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-[#00F5A0]/10 flex items-center justify-center border border-[#00F5A0]/20">
+                    <Shield size={32} className="text-[#00F5A0]" />
+                </div>
+                <div>
+                    <h3 className="text-2xl font-bold text-[#00F5A0]">Phase de lancement</h3>
+                    <p className="text-white/60">Actuellement à Bruxelles et périphérie.</p>
+                </div>
+            </div>
+            <div className="flex items-center gap-4">
+                <span className="text-sm font-bold uppercase tracking-widest opacity-40 italic">Participation sans engagement</span>
+                <ArrowRight className="text-[#00F5A0] animate-pulse" />
+            </div>
+          </div>
+
+        </div>
       </div>
     </main>
+  );
+}
+
+function Step({ number, title, desc }: { number: string; title: string; desc: string }) {
+  return (
+    <div className="bg-white/5 border border-white/10 p-8 rounded-[2rem] group hover:border-[#00F5A0]/50 transition-colors">
+      <span className="text-[#00F5A0] font-mono text-sm mb-4 block opacity-50">{number}</span>
+      <h3 className="text-xl font-bold mb-2">{title}</h3>
+      <p className="text-white/50 text-sm leading-relaxed">{desc}</p>
+    </div>
   );
 }
