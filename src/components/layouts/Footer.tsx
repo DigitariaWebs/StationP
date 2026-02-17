@@ -18,7 +18,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center justify-center sm:justify-start mb-4 sm:mb-6 group">
               <div className="bg-white p-3 rounded-xl shadow-lg inline-block">
                 <Image 
-                  src="/4.png" 
+                  src="/w1.png" 
                   alt="StationP Logo" 
                   width={1000} 
                   height={1000} 
