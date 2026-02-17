@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle2, ArrowRight, Sparkles, Zap, ShieldCheck, Phone, Home, MapPin } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Sparkles, Zap, Users, Home, MapPin, Mail, Phone } from 'lucide-react';
 
 export default function AccessPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -43,23 +43,23 @@ export default function AccessPage() {
             
             <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-xl mx-auto lg:mx-0">
               {userType === 'driver' 
-                ? "Trouvez une borne près de chez vous et rechargez en toute simplicité. Un appel et c'est réglé."
-                : "Mettez votre borne à disposition et générez des revenus. On s'occupe de vous trouver des conducteurs sérieux."}
+                ? "Trouvez une borne près de chez vous et rechargez en toute simplicité."
+                : "Mettez votre borne à disposition et générez des revenus."}
             </p>
 
-            {/* Liste d'avantages responsive */}
+            {/* Avantages */}
             <div className="flex flex-col gap-3 sm:gap-4 pt-2 sm:pt-4 items-center lg:items-start">
               <div className="flex items-center gap-3 text-white font-bold text-sm sm:text-base">
                 <CheckCircle2 className="text-[#00F5A0] flex-shrink-0" size={20} />
-                <span>Bornes certifiées et testées</span>
+                <span>Bornes privées certifiées</span>
               </div>
               <div className="flex items-center gap-3 text-white font-bold text-sm sm:text-base">
-                <ShieldCheck className="text-[#00F5A0] flex-shrink-0" size={20} />
-                <span>Paiement sécurisé et transparent</span>
+                <Shield className="text-[#00F5A0] flex-shrink-0" size={20} />
+                <span>Mise en relation sécurisée</span>
               </div>
               <div className="flex items-center gap-3 text-white font-bold text-sm sm:text-base">
-                <Phone className="text-[#00F5A0] flex-shrink-0" size={20} />
-                <span>Mise en relation téléphonique</span>
+                <Users className="text-[#00F5A0] flex-shrink-0" size={20} />
+                <span>Recharge entre voisins</span>
               </div>
             </div>
           </div>
@@ -73,8 +73,8 @@ export default function AccessPage() {
                   <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white border-2 border-white rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 rotate-3">
                     <CheckCircle2 size={30} className="sm:w-10 sm:h-10 text-black" />
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black mb-2 text-white">DEMANDE ENVOYÉE !</h3>
-                  <p className="text-sm sm:text-base text-gray-300 font-bold">Nous vous appelons sous 24h.</p>
+                  <h3 className="text-2xl sm:text-3xl font-black mb-2 text-white">INSCRIPTION REÇUE !</h3>
+                  <p className="text-sm sm:text-base text-gray-300 font-bold">Merci de votre intérêt !</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
@@ -97,7 +97,7 @@ export default function AccessPage() {
                         userType === 'host' ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
                       }`}
                     >
-                      HÔTE
+                      PROPRIÉTAIRE
                     </button>
                   </div>
 
@@ -122,41 +122,39 @@ export default function AccessPage() {
                         placeholder="Adresse email"
                         className="w-full bg-[#1B1F24] border-2 border-white rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:bg-white/10 transition-all text-white font-bold text-sm sm:text-base"
                       />
+                      <Mail size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[#00F5A0]" />
                     </div>
                     
-                    {/* NUMÉRO DE TÉLÉPHONE - BRUXELLES */}
+                    {/* Téléphone */}
                     <div className="relative">
                       <input 
                         required
                         type="tel" 
-                        placeholder="Téléphone (ex: 0485 12 34 56)"
+                        placeholder="Téléphone"
                         pattern="[0-9\s\+]+"
-                        title="Numéro de téléphone belge"
                         className="w-full bg-[#1B1F24] border-2 border-white rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:bg-white/10 transition-all text-white font-bold text-sm sm:text-base"
                       />
-                      <span className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-xs text-[#00F5A0] font-bold bg-[#1B1F24] px-2 py-1 border border-white/20 rounded-lg">
-                        BE
-                      </span>
+                      <Phone size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[#00F5A0]" />
                     </div>
                     
-                    {/* Ville */}
+                    {/* Code postal */}
                     <div className="relative">
                       <input 
                         required
                         type="text" 
-                        placeholder="Code postal - Localité (ex: 1000 Bruxelles)"
+                        placeholder="Code postal"
                         className="w-full bg-[#1B1F24] border-2 border-white rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:bg-white/10 transition-all text-white font-bold text-sm sm:text-base"
                       />
                       <MapPin size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[#00F5A0]" />
                     </div>
                     
-                    {/* CHAMP SUPPLÉMENTAIRE POUR HÔTE */}
+                    {/* Champ supplémentaire pour propriétaire */}
                     {userType === 'host' && (
                       <div className="relative animate-in slide-in-from-top-2 duration-300">
                         <input 
                           required
                           type="text" 
-                          placeholder="Type de borne / Puissance (ex: Type 2, 22kW)"
+                          placeholder="Type de borne / Puissance"
                           className="w-full bg-[#1B1F24] border-2 border-[#00F5A0] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:bg-white/10 transition-all text-white font-bold text-sm sm:text-base"
                         />
                         <Zap size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[#00F5A0]" />
@@ -164,15 +162,17 @@ export default function AccessPage() {
                     )}
                   </div>
 
-                  {/* Bouton submit - CORRIGÉ */}
+                  {/* Bouton submit */}
                   <button 
                     type="submit"
                     className="w-full bg-white hover:bg-[#00F5A0] text-black font-black py-4 sm:py-5 rounded-xl transition-all flex items-center justify-center gap-2 sm:gap-3 border-2 border-white active:scale-95 text-sm sm:text-base"
                   >
-                    {userType === 'driver' ? "DEMANDER L'ACCÈS" : 'PROPOSER MA BORNE'} <ArrowRight size={18} className="sm:w-5 sm:h-5" />
+                    {userType === 'driver' ? "REJOINDRE LA COMMUNAUTÉ" : 'PROPOSER MA BORNE'} <ArrowRight size={18} className="sm:w-5 sm:h-5" />
                   </button>
 
-             
+                  <p className="text-xs text-center text-white/50">
+                    Participation sans engagement • Phase de lancement
+                  </p>
                 </form>
               )}
             </div>
@@ -182,3 +182,6 @@ export default function AccessPage() {
     </main>
   );
 }
+
+// Import manquant
+import { Shield } from 'lucide-react';
