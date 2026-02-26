@@ -1,165 +1,158 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, X, Users, Zap } from 'lucide-react';
+import ThemeToggle from '@/components/ThemeToggle';
+import { Menu, X, Zap } from 'lucide-react';
+import { useTheme } from '@/components/ThemeProvider';
 
 export default function HeroWithNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+      const rotateY = ((clientX / innerWidth) - 0.5) * 15;
+      const rotateX = ((clientY / innerHeight) - 0.5) * -10;
+      setRotation({ x: rotateX, y: rotateY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <section className="relative w-full h-screen min-h-[700px] overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/2.png"
-          alt="Borne de recharge privée"
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1B1F24]/90 via-[#1B1F24]/70 to-[#1B1F24]/40" />
-      </div>
-
-      {/* Navbar */}
-      <header className="absolute top-0 left-0 right-0 z-50 w-full">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-24 sm:h-28 md:h-32">
+    // h-screen + overflow-hidden pour bloquer le scroll
+    <section className="relative w-full h-screen bg-[color:var(--color-background)] overflow-hidden flex flex-col">
+      
+      {/* Navbar - Espacements réduits pour gagner de la place en hauteur */}
+      <header className="relative z-50 w-full border-b border-[color:var(--color-border)]/5 shrink-0">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-24 sm:h-32">
             
-            {/* Logo - LÉGÈREMENT REDIMENSIONNÉ */}
-            <Link href="/" className="flex items-center group">
-              <div className="flex items-center">
+            {/* Logo - BEAUCOUP PLUS GRAND + VISIBLE */}
+            <Link href="/" className="flex items-center group relative">
+              <div className="relative">
+                {theme === 'dark' && (
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-[-0.5rem] rounded-full opacity-90 blur-[40px]"
+                    style={{
+                      background:
+                        'radial-gradient(circle, rgba(0, 245, 160, 0.45), transparent 60%)',
+                      mixBlendMode: 'screen',
+                    }}
+                  />
+                )}
                 <Image 
                   src="/w1.png" 
                   alt="StreetCharge Logo" 
-                  width={500}
-                  height={500}
-                  className="h-28 sm:h-32 md:h-36 lg:h-40 w-auto transition-transform group-hover:scale-105"
+                  width={600}
+                  height={200}
+                  className="h-16 sm:h-24 md:h-32 lg:h-40 w-auto transition-transform group-hover:scale-105 filter brightness-150 contrast-125"
                   priority
                 />
               </div>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-4 lg:gap-8">
-              <Link 
-                href="/" 
-                className="text-sm lg:text-base font-medium text-white/90 hover:text-[#00F5A0] transition-colors"
-              >
-                Accueil
-              </Link>
-              <Link 
-                href="#trouver" 
-                className="text-sm lg:text-base font-medium text-white/90 hover:text-[#00F5A0] transition-colors"
-              >
-                Trouver une borne
-              </Link>
-              <Link 
-                href="#a-propos" 
-                className="text-sm lg:text-base font-medium text-white/90 hover:text-[#00F5A0] transition-colors"
-              >
-                À propos
-              </Link>
-              <Link 
-                href="#faq"
-                className="text-sm lg:text-base font-medium text-white/90 hover:text-[#00F5A0] transition-colors"
-              >
-                FAQ
-              </Link>
+            <nav className="hidden md:flex items-center gap-6 lg:gap-10 text-[color:var(--color-foreground)]/80">
+              {['Accueil', 'Trouver une borne', 'a-propos', 'FAQ'].map((item) => (
+                <Link 
+                  key={item}
+                  href={`#${item.toLowerCase().replace(/ /g, '')}`} 
+                  className="text-xs lg:text-sm font-bold uppercase tracking-widest hover:text-[color:var(--color-accent)] transition-colors"
+                >
+                  {item}
+                </Link>
+              ))}
             </nav>
 
-            {/* CTA Button Header - CHANGÉ */}
-            <div className="hidden md:flex">
-              <Link 
-                href="#howitworks" 
-                className="bg-[#00F5A0] hover:bg-white text-[#1B1F24] hover:text-[#1B1F24] text-sm lg:text-base font-bold py-3 lg:py-4 px-6 lg:px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 border-2 border-[#00F5A0] hover:border-white"
+            <div className="hidden md:flex items-center gap-4">
+              <ThemeToggle />
+              <Link
+                href="#howitworks"
+                className="bg-[color:var(--color-accent)] hover:bg-[color:var(--color-accent-hover)] text-[color:var(--color-accent-contrast)] text-xs lg:text-sm font-bold py-3 px-8 rounded-full transition-all uppercase"
               >
-                <Zap size={18} className="text-[#1B1F24]" />
                 Je rejoins
               </Link>
             </div>
 
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <button 
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-white hover:text-[#00F5A0] p-2 transition-colors"
-                aria-label="Menu"
-              >
-                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            <div className="md:hidden flex items-center gap-4">
+              <ThemeToggle />
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-[color:var(--color-foreground)]">
+                {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
               </button>
             </div>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden bg-[#1B1F24]/95 backdrop-blur-lg border-t border-white/10 absolute w-full shadow-xl">
-            <div className="px-4 pt-4 pb-6 space-y-4 flex flex-col">
-              <Link 
-                href="/" 
-                className="font-medium text-white/90 hover:text-[#00F5A0] py-2 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Accueil
-              </Link>
-              <Link 
-                href="#trouver" 
-                className="font-medium text-white/90 hover:text-[#00F5A0] py-2 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Trouver une borne
-              </Link>
-              <Link 
-                href="#a-propos" 
-                className="font-medium text-white/90 hover:text-[#00F5A0] py-2 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                À propos
-              </Link>
-              <Link 
-                href="#faq" 
-                className="font-medium text-white/90 hover:text-[#00F5A0] py-2 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                FAQ
-              </Link>
-              <Link 
-                href="#howitworks" 
-                className="bg-[#00F5A0] hover:bg-white text-[#1B1F24] font-bold py-4 rounded-full mt-2 block transition-all duration-300 flex items-center justify-center gap-2 border-2 border-[#00F5A0] hover:border-white"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <Zap size={20} />
-                Je rejoins
-              </Link>
-            </div>
-          </div>
-        )}
       </header>
 
-      {/* Hero Content */}
-      <div className="relative z-10 h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
-        <div className="max-w-3xl">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-            La recharge <br className="hidden sm:block" />
-            <span className="text-[#00F5A0]">entre particuliers</span>
-          </h1>
+      {/* Hero Content - flex-1 pour occuper tout le reste de la page sans scroll */}
+      <div className="flex-1 flex items-center overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-12 items-center h-full max-h-[85vh]">
+          
+          {/* Côté Gauche : Texte - Tailles adaptées pour le non-scroll */}
+          <div className="z-10 order-2 lg:order-1 text-center lg:text-left">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[color:var(--color-foreground)] leading-[1.1] mb-4 tracking-tighter">
+              La recharge <br />
+              <span className="text-[color:var(--color-accent)]">entre particuliers</span>
+            </h1>
 
-          <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-2xl leading-relaxed">
-            Partagez votre borne à votre meilleure convenance<br className="hidden sm:block" />
-            ou rechargez votre véhicule électrique près de chez vous.
-          </p>
+            <p className="text-base sm:text-lg lg:text-xl text-[color:var(--color-muted)] mb-6 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+              Partagez votre borne à votre meilleure convenance ou rechargez votre véhicule électrique près de chez vous.
+            </p>
 
-          <Link
-            href="#howitworks"
-            className="group bg-[#00F5A0] hover:bg-white text-[#1B1F24] font-bold px-8 sm:px-10 py-5 sm:py-6 rounded-full transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 inline-flex items-center gap-3 text-base sm:text-lg border-2 border-[#00F5A0] hover:border-white"
-          >
-            <Zap size={24} />
+            <Link
+              href="#howitworks"
+              className="group bg-[color:var(--color-accent)] text-[color:var(--color-accent-contrast)] font-black px-10 py-5 rounded-full transition-all hover:scale-105 inline-flex items-center gap-3 text-sm lg:text-base uppercase tracking-wider"
+            >
+              <Zap size={20} fill="currentColor" />
               Rejoindre la communauté
-          </Link>
+            </Link>
+          </div>
+
+          {/* Côté Droite : Image 3D - Taille maîtrisée pour tenir en une page */}
+          <div className="relative order-1 lg:order-2 flex justify-center items-center h-full max-h-[300px] sm:max-h-[450px] lg:max-h-[600px] perspective-[1500px]">
+            <div 
+              className="relative w-full h-full transition-transform duration-300 ease-out"
+              style={{
+                transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+                transformStyle: 'preserve-3d',
+              }}
+            >
+              <Image
+                src="/i.png"
+                alt="StreetCharge 3D Scene"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
+            {/* Ombre de contact au sol - Juste du noir, pas de lumière IA */}
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 w-[60%] h-4 bg-black/40 blur-2xl rounded-full -z-10" />
+          </div>
         </div>
       </div>
+
+      {/* Menu Mobile */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-[100] bg-[color:var(--color-background)] flex flex-col p-8 md:hidden">
+          <div className="flex justify-end mb-8">
+            <button onClick={() => setIsMenuOpen(false)} className="text-[color:var(--color-foreground)]"><X size={35} /></button>
+          </div>
+          <nav className="flex flex-col gap-6 text-3xl font-black text-[color:var(--color-foreground)] uppercase italic">
+            <Link href="/" onClick={() => setIsMenuOpen(false)}>Accueil</Link>
+            <Link href="#trouver" onClick={() => setIsMenuOpen(false)}>Bornes</Link>
+            <Link href="#a-propos" onClick={() => setIsMenuOpen(false)}>À propos</Link>
+            <Link href="#faq" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
+          </nav>
+        </div>
+      )}
     </section>
   );
 }

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Menu, X, Zap } from 'lucide-react';
 import Image from 'next/image';
+import ThemeToggle from '@/components/ThemeToggle';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,13 +25,15 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-      scrolled 
-        ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-slate-200' 
-        : 'bg-slate-50/80 backdrop-blur-md border-b border-slate-200/50'
-    }`}>
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? 'bg-[color:var(--color-surface)]/95 backdrop-blur-md shadow-lg border-b border-[color:var(--color-border)]'
+          : 'bg-[color:var(--color-background)]/80 backdrop-blur-md border-b border-[color:var(--color-border)]/40'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16 sm:h-20">
+          <div className="flex justify-between items-center h-16 sm:h-20 gap-4">
           
           {/* Logo - responsive sizing */}
           <Link href="/" className="flex items-center gap-2 group" onClick={handleLinkClick}>
@@ -46,40 +49,39 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 lg:gap-8">
-            <Link href="/" className="text-sm font-medium text-slate-600 hover:text-[#00F5A0] transition-colors relative group">
-              Accueil
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00F5A0] transition-all group-hover:w-full"></span>
-            </Link>
-            <Link href="/#trouver" className="text-sm font-medium text-slate-600 hover:text-[#00F5A0] transition-colors relative group">
-              Bornes de recharge
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00F5A0] transition-all group-hover:w-full"></span>
-            </Link>
-            <Link href="/#a-propos" className="text-sm font-medium text-slate-600 hover:text-[#00F5A0] transition-colors relative group">
-              À propos
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00F5A0] transition-all group-hover:w-full"></span>
-            </Link>
-            <Link href="/#howitworks" className="text-sm font-medium text-slate-600 hover:text-[#00F5A0] transition-colors relative group">
-              Contact
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00F5A0] transition-all group-hover:w-full"></span>
-            </Link>
+            {[
+              { href: '/', label: 'Accueil' },
+              { href: '/#trouver', label: 'Bornes de recharge' },
+              { href: '/#a-propos', label: 'À propos' },
+              { href: '/#howitworks', label: 'Contact' },
+            ].map((item) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                className="text-sm font-medium text-[color:var(--color-foreground)]/80 hover:text-[color:var(--color-accent)] transition-colors relative group"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[color:var(--color-accent)] transition-all group-hover:w-full"></span>
+              </Link>
+            ))}
           </nav>
 
-          {/* Desktop CTA Button */}
-          <div className="hidden md:flex">
-            <Link 
-              href="/#howitworks" 
-              className="bg-[#1B1F24] hover:bg-[#00F5A0] hover:text-[#1B1F24] text-white text-sm font-bold py-2.5 px-5 lg:py-3 lg:px-6 rounded-xl transition-all shadow-lg shadow-black/10 hover:shadow-black/20 active:scale-95 flex items-center gap-2"
+          <div className="hidden md:flex items-center gap-3">
+            <ThemeToggle />
+            <Link
+              href="/#howitworks"
+              className="bg-[color:var(--color-foreground)]/95 hover:bg-[color:var(--color-accent)] text-[color:var(--color-accent-contrast)] font-bold py-2.5 px-5 lg:py-3 lg:px-6 rounded-xl transition-all shadow-lg border-2 border-[color:var(--color-accent)] hover:text-[color:var(--color-foreground)] hover:shadow-black/20 active:scale-95 flex items-center gap-2"
             >
-              <Zap size={18} className="text-[#00F5A0] group-hover:text-[#1B1F24]" />
+              <Zap size={18} className="text-[color:var(--color-accent-contrast)]" />
               Rejoindre le réseau
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-slate-600 hover:text-slate-800 p-2 focus:outline-none"
-            aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+            className="md:hidden text-[color:var(--color-foreground)]/70 hover:text-[color:var(--color-accent)] p-2 focus:outline-none"
+            aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -87,44 +89,36 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out ${
-        isMenuOpen 
-          ? 'max-h-screen opacity-100 visible' 
-          : 'max-h-0 opacity-0 invisible'
-      } overflow-hidden`}>
-        <div className="bg-white border-t border-slate-100 shadow-xl px-4 py-6 space-y-3 flex flex-col">
-          <Link 
-            href="/" 
-            className="font-medium text-slate-600 hover:text-[#00F5A0] py-2 px-4 rounded-lg hover:bg-slate-50 transition-all"
-            onClick={handleLinkClick}
-          >
-            Accueil
-          </Link>
-          <Link 
-            href="/#trouver" 
-            className="font-medium text-slate-600 hover:text-[#00F5A0] py-2 px-4 rounded-lg hover:bg-slate-50 transition-all"
-            onClick={handleLinkClick}
-          >
-            Bornes de recharge
-          </Link>
-          <Link 
-            href="/#a-propos" 
-            className="font-medium text-slate-600 hover:text-[#00F5A0] py-2 px-4 rounded-lg hover:bg-slate-50 transition-all"
-            onClick={handleLinkClick}
-          >
-            À propos
-          </Link>
-          <Link 
-            href="/#howitworks" 
-            className="font-medium text-slate-600 hover:text-[#00F5A0] py-2 px-4 rounded-lg hover:bg-slate-50 transition-all"
-            onClick={handleLinkClick}
-          >
-            Contact
-          </Link>
-          <div className="pt-4 mt-2 border-t border-slate-100">
+      <div
+        className={`md:hidden transition-all duration-300 ease-in-out ${
+          isMenuOpen
+            ? 'max-h-screen opacity-100 visible'
+            : 'max-h-0 opacity-0 invisible'
+        } overflow-hidden`}
+      >
+        <div className="bg-[color:var(--color-surface)] border-t border-[color:var(--color-border)] shadow-xl px-4 py-6 space-y-3 flex flex-col">
+          <div className="flex justify-end">
+            <ThemeToggle />
+          </div>
+          {[
+            { href: '/', label: 'Accueil' },
+            { href: '/#trouver', label: 'Bornes de recharge' },
+            { href: '/#a-propos', label: 'À propos' },
+            { href: '/#howitworks', label: 'Contact' },
+          ].map((item) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className="font-medium text-[color:var(--color-foreground)]/80 hover:text-[color:var(--color-accent)] py-2 px-4 rounded-lg hover:bg-[color:var(--color-surface-muted)] transition-all"
+              onClick={handleLinkClick}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <div className="pt-4 mt-2 border-t border-[color:var(--color-border)]">
             <Link 
               href="/#howitworks" 
-              className="bg-[#1B1F24] hover:bg-[#00F5A0] hover:text-[#1B1F24] text-white font-bold py-3 px-4 rounded-xl block text-center transition-all shadow-lg flex items-center justify-center gap-2"
+              className="bg-[color:var(--color-foreground)]/95 hover:bg-[color:var(--color-accent)] text-[color:var(--color-accent-contrast)] font-bold py-3 px-4 rounded-xl block text-center transition-all shadow-lg flex items-center justify-center gap-2 border-2 border-[color:var(--color-accent)] hover:text-[color:var(--color-foreground)]"
               onClick={handleLinkClick}
             >
               <Zap size={18} />

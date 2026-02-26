@@ -9,24 +9,29 @@ export default function FAQ() {
   const faqs = [
     {
       question: "Comment ça fonctionne exactement ?",
-      answer: "StreetCharge met en relation des propriétaires de bornes privées avec des conducteurs cherchant à recharger. Vous vous inscrivez, nous facilitons la mise en relation selon votre quartier et vos disponibilités."
+      answer:
+        "StreetCharge met en relation des propriétaires de bornes privées avec des conducteurs cherchant à recharger. Vous vous inscrivez, nous facilitons la mise en relation selon votre quartier et vos disponibilités.",
     },
     {
       question: "Est-ce vraiment gratuit ?",
-      answer: "L'inscription est gratuite et sans engagement. Nous sommes en phase de lancement pour tester le service et construire la meilleure solution possible."
+      answer:
+        "L'inscription est gratuite et sans engagement. Nous sommes en phase de lancement pour tester le service et construire la meilleure solution possible.",
     },
     {
-      question: "Quels quartiers sont concernés ?",
-      answer: "Nous commençons dans certains quartiers de Bruxelles et de la périphérie. Si vous êtes intéressé, inscrivez-vous ! Nous élargirons selon la demande."
+      question: "Quels communes sont concernés ?",
+      answer:
+        "Nous commençons dans certaines communes de Bruxelles et de la périphérie. Si vous êtes intéressés, inscrivez-vous ! Nous élargirons selon la demande.",
     },
     {
       question: "Que se passe-t-il après mon inscription ?",
-      answer: "Nous prenons contact avec vous pour comprendre vos besoins et, si possible, vous mettre en relation avec des voisins intéressés."
+      answer:
+        "Nous prenons contact avec vous pour comprendre vos besoins et, si possible, vous mettre en relation avec des voisins intéressés.",
     },
     {
       question: "Puis-je vraiment partager ma borne privée ?",
-      answer: "Oui, c'est le principe ! Si vous avez une borne chez vous et qu'elle est parfois inutilisée, vous pouvez la partager avec vos voisins."
-    }
+      answer:
+        "Oui, c'est le principe ! Si vous avez une borne chez vous et qu'elle est parfois inutilisée, vous pouvez la partager avec vos voisins.",
+    },
   ];
 
   const toggleFAQ = (index: number) => {
@@ -34,41 +39,45 @@ export default function FAQ() {
   };
 
   return (
-    <section id="faq" className="bg-[#1B1F24] text-white px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+    <section
+      id="faq"
+      className="bg-[color:var(--color-background)] text-[color:var(--color-foreground)] px-4 sm:px-6 lg:px-8 py-16 sm:py-20"
+    >
       <div className="max-w-4xl mx-auto">
-        
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
-            <HelpCircle size={40} className="text-[#00F5A0]" />
+            <HelpCircle size={40} className="text-[color:var(--color-accent)]" />
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Foire aux <span className="text-[#00F5A0]">questions</span>
+            Foire aux <span className="text-[color:var(--color-accent)]">questions</span>
           </h2>
-          <p className="text-white/70 text-lg">
+          <p className="text-lg text-[color:var(--color-muted)]">
             Tout ce que vous devez savoir sur StreetCharge
           </p>
         </div>
 
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div 
+            <div
               key={index}
-              className="border border-white/10 rounded-xl overflow-hidden bg-white/5 backdrop-blur-sm"
+              className="border border-[color:var(--color-border)] rounded-xl overflow-hidden bg-[color:var(--color-surface)] shadow-sm"
             >
               <button
                 onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center p-6 text-left hover:bg-white/10 transition-colors"
+                className="w-full flex justify-between items-center p-6 text-left hover:bg-[color:var(--color-surface-muted)] transition-colors"
               >
-                <span className="font-semibold text-lg">{faq.question}</span>
+                <span className="font-semibold text-lg text-[color:var(--color-foreground)]">
+                  {faq.question}
+                </span>
                 {openIndex === index ? (
-                  <ChevronUp size={20} className="text-[#00F5A0] flex-shrink-0" />
+                  <ChevronUp size={20} className="text-[color:var(--color-accent)] flex-shrink-0" />
                 ) : (
-                  <ChevronDown size={20} className="text-[#00F5A0] flex-shrink-0" />
+                  <ChevronDown size={20} className="text-[color:var(--color-accent)] flex-shrink-0" />
                 )}
               </button>
-              
+
               {openIndex === index && (
-                <div className="px-6 pb-6 text-white/70 animate-in slide-in-from-top-2 duration-300">
+                <div className="px-6 pb-6 text-[color:var(--color-muted)] animate-in slide-in-from-top-2 duration-300">
                   {faq.answer}
                 </div>
               )}
@@ -77,9 +86,12 @@ export default function FAQ() {
         </div>
 
         <div className="mt-10 text-center">
-          <p className="text-white/60">
-            Vous avez d'autres questions ?{" "}
-            <a href="#howitworks" className="text-[#00F5A0] hover:underline font-semibold">
+          <p className="text-[color:var(--color-muted)]">
+            Vous avez d'autres questions ?{' '}
+            <a
+              href="#howitworks"
+              className="text-[color:var(--color-accent)] hover:underline font-semibold"
+            >
               Contactez-nous
             </a>
           </p>

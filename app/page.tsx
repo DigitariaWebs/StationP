@@ -9,8 +9,8 @@ export default function Home() {
     <>
      
       <Hero />
-      <Trouver />
       <AboutSection />
+      <Trouver />
       <Howitworks />
       <FAQ/>
       <Footer />
