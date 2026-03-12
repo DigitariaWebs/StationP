@@ -31,7 +31,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-[color:var(--color-muted)] text-xs sm:text-sm leading-relaxed text-center sm:text-left">
-              Le premier réseau de mise en relation humaine pour la recharge électrique à Bruxelles. 
+              Le premier réseau de mise en relation humaine pour la recharge électrique entre particuliers.
               Un appel suffit pour connecter conducteurs et hôtes.
             </p>
           </div>
@@ -43,8 +43,8 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm font-medium">
               <li>
-                <Link href="/bornes" className="hover:text-[color:var(--color-accent)] transition-colors inline-block py-1">
-                  Trouver une borne
+                <Link href="/#howitworks" className="hover:text-[color:var(--color-accent)] transition-colors inline-block py-1">
+                  Rejoindre la communauté
                 </Link>
               </li>
               <li>
@@ -63,7 +63,7 @@ export default function Footer() {
           {/* Support */}
           <div className="text-center sm:text-left">
             <h4 className="font-black text-[color:var(--color-accent)] mb-4 sm:mb-6 text-xs sm:text-sm uppercase tracking-wider">
-              Besoin d'aide
+              Besoin d&apos;aide
             </h4>
             <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm font-medium">
               <li>
@@ -78,7 +78,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/aide" className="hover:text-[color:var(--color-accent)] transition-colors inline-block py-1">
-                  Centre d'aide
+                  Centre d&apos;aide
                 </Link>
               </li>
             </ul>

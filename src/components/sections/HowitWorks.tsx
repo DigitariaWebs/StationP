@@ -51,7 +51,7 @@ export default function AccessPage() {
   return (
     <main
       id="howitworks"
-      className="min-h-screen bg-[color:var(--color-background)] text-[color:var(--color-foreground)] px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 overflow-hidden relative"
+      className="scroll-mt-24 bg-[color:var(--color-background)] text-[color:var(--color-foreground)] px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-14 overflow-hidden relative"
     >
       {/* SVG décoratif */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-20">
@@ -65,7 +65,7 @@ export default function AccessPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start lg:items-center">
           <div className="lg:col-span-6 space-y-6 sm:space-y-8 text-center lg:text-left">
             <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold text-[color:var(--color-muted)] bg-[color:var(--color-surface)] border border-[color:var(--color-border)] shadow">
-              <Sparkles size={14} className="text-[color:var(--color-accent)]" /> Rejoignez l'aventure
+              <Sparkles size={14} className="text-[color:var(--color-accent)]" /> Rejoignez l&apos;aventure
             </span>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight lg:leading-[1.1] tracking-tight text-[color:var(--color-foreground)]">
@@ -103,7 +103,7 @@ export default function AccessPage() {
               </div>
               <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-sm sm:text-base">
                 <Users className="text-[color:var(--color-accent)] flex-shrink-0" size={20} />
-                <span>Recharge entre voisins</span>
+                <span>Communauté locale de conducteurs et d&apos;hôtes</span>
               </div>
             </div>
           </div>
@@ -222,9 +222,7 @@ export default function AccessPage() {
                     )}
                   </button>
 
-                  <p className="text-xs text-center text-[color:var(--color-muted)]">
-                    Participation sans engagement • Phase de lancement
-                  </p>
+                
                 </form>
               )}
             </div>

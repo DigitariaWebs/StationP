@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ThemeToggle from '@/components/ThemeToggle';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X, Zap, CheckCircle2 } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
 
 export default function HeroWithNavbar() {
@@ -27,8 +27,19 @@ export default function HeroWithNavbar() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  const goToForm = () => {
+    const section = document.getElementById('howitworks');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setIsMenuOpen(false);
+      return;
+    }
+    window.location.hash = '#howitworks';
+    setIsMenuOpen(false);
+  };
+
   return (
-    <section className="relative w-full min-h-screen bg-[color:var(--color-background)] overflow-hidden flex flex-col">
+    <section className="relative w-full h-screen bg-[color:var(--color-background)] overflow-hidden flex flex-col">
 
       {/* NAVBAR */}
       <header className="relative z-50 w-full shrink-0">
@@ -53,7 +64,7 @@ export default function HeroWithNavbar() {
                   alt="StreetCharge Logo" 
                   width={600}
                   height={200}
-                  className="h-28 sm:h-32 md:h-40 lg:h-44 w-auto transition-transform group-hover:scale-105 filter brightness-150 contrast-125"
+                  className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto transition-transform group-hover:scale-105 filter brightness-150 contrast-125"
                   priority
                 />
               </div>
@@ -61,25 +72,30 @@ export default function HeroWithNavbar() {
 
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center gap-10 text-[color:var(--color-foreground)]/80">
-              {['Accueil', 'Trouver une borne', 'a-propos', 'FAQ'].map((item) => (
+              {[
+                { label: 'Accueil', href: '#accueil' },
+                { label: 'Communauté', href: '#trouveruneborne' },
+                { label: 'Inscription', href: '#howitworks' },
+              ].map((item) => (
                 <Link 
-                  key={item}
-                  href={`#${item.toLowerCase().replace(/ /g, '')}`} 
+                  key={item.label}
+                  href={`/${item.href}`}
                   className="text-sm font-bold uppercase tracking-widest hover:text-[color:var(--color-accent)] transition-colors"
                 >
-                  {item}
+                  {item.label}
                 </Link>
               ))}
             </nav>
 
             <div className="hidden lg:flex items-center gap-4">
               <ThemeToggle />
-              <Link
-                href="#howitworks"
+              <button
+                type="button"
+                onClick={goToForm}
                 className="bg-[color:var(--color-accent)] hover:bg-[color:var(--color-accent-hover)] text-[color:var(--color-accent-contrast)] text-sm font-bold py-3 px-8 rounded-full transition-all uppercase"
               >
                 Je rejoins
-              </Link>
+              </button>
             </div>
 
             {/* MOBILE */}
@@ -94,7 +110,7 @@ export default function HeroWithNavbar() {
       </header>
 
       {/* HERO */}
-      <div className="flex-1 flex items-center">
+      <div id="accueil" className="flex-1 flex items-center py-4 sm:py-6 lg:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
 
           {/* TEXTE */}
@@ -105,20 +121,30 @@ export default function HeroWithNavbar() {
             </h1>
 
             <p className="text-base sm:text-lg lg:text-xl text-[color:var(--color-muted)] mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
-              Partagez votre borne à votre meilleure convenance ou rechargez votre véhicule électrique près de chez vous.
+              Rejoignez une communauté locale de conducteurs de véhicules électriques qui partagent leurs bornes de recharge,
+              pour recharger près de chez vous à moindre coût.
             </p>
 
-            <Link
-              href="#howitworks"
-              className="group inline-flex items-center gap-3 bg-[color:var(--color-accent)] text-[color:var(--color-accent-contrast)] font-black px-8 py-4 rounded-full transition-all hover:scale-105 text-sm sm:text-base uppercase tracking-wider"
-            >
-              <Zap size={20} fill="currentColor" />
-              Rejoindre la communauté
-            </Link>
+            <div className="mb-8 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 text-xs sm:text-sm max-w-2xl mx-auto lg:mx-0">
+              <div className="flex items-start gap-2 p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
+                <CheckCircle2 size={14} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
+                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-xs">Réseau local entre conducteurs et hôtes</p>
+              </div>
+              <div className="flex items-start gap-2 p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
+                <CheckCircle2 size={14} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
+                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-xs">Inscriptions ouvertes pour la phase pilote</p>
+              </div>
+              <div className="col-span-2 sm:col-span-1 flex items-start gap-2 p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
+                <CheckCircle2 size={14} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
+                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-xs">Objectif : valider le service avec la communauté</p>
+              </div>
+            </div>
+
+   
           </div>
 
           {/* IMAGE 3D */}
-          <div className="relative order-1 lg:order-2 flex justify-center items-center h-[260px] sm:h-[360px] lg:h-[520px] perspective-[1500px]">
+          <div className="relative order-1 lg:order-2 flex justify-center items-center h-[160px] sm:h-[260px] lg:h-[420px] perspective-[1500px]">
             <div 
               className="relative w-full h-full transition-transform duration-300 ease-out"
               style={{
@@ -150,19 +176,18 @@ export default function HeroWithNavbar() {
           </div>
 
           <nav className="flex flex-col gap-8 text-3xl font-black uppercase tracking-tight">
-            <Link href="#accueil" onClick={() => setIsMenuOpen(false)}>Accueil</Link>
-            <Link href="#trouveruneborne" onClick={() => setIsMenuOpen(false)}>Bornes</Link>
-            <Link href="#a-propos" onClick={() => setIsMenuOpen(false)}>À propos</Link>
-            <Link href="#faq" onClick={() => setIsMenuOpen(false)}>FAQ</Link>
+            <Link href="/#accueil" onClick={() => setIsMenuOpen(false)}>Accueil</Link>
+            <Link href="/#trouveruneborne" onClick={() => setIsMenuOpen(false)}>Communauté</Link>
+            <Link href="/#howitworks" onClick={() => setIsMenuOpen(false)}>Inscription</Link>
           </nav>
 
-          <Link
-            href="#howitworks"
-            onClick={() => setIsMenuOpen(false)}
+          <button
+            type="button"
+            onClick={goToForm}
             className="mt-auto bg-[color:var(--color-accent)] text-[color:var(--color-accent-contrast)] py-4 rounded-full font-black text-center uppercase tracking-widest"
           >
             Je rejoins
-          </Link>
+          </button>
         </div>
       )}
 
