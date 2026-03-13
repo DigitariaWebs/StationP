@@ -42,7 +42,7 @@ export default function Navbar() {
               alt="StationP Logo" 
               width={120} 
               height={120} 
-              className="h-16 sm:h-18 md:h-20 w-auto transition-transform group-hover:scale-105" 
+              className="h-24 md:h-28 w-auto transition-transform group-hover:scale-105" 
               priority
             />
           </Link>

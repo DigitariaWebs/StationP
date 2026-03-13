@@ -39,7 +39,7 @@ export default function HeroWithNavbar() {
   };
 
   return (
-    <section className="relative w-full h-screen bg-[color:var(--color-background)] overflow-hidden flex flex-col">
+    <section className="relative w-full h-screen bg-[color:var(--color-background)] flex flex-col">
 
       {/* NAVBAR */}
       <header className="relative z-50 w-full shrink-0">
@@ -64,7 +64,7 @@ export default function HeroWithNavbar() {
                   alt="StreetCharge Logo" 
                   width={600}
                   height={200}
-                  className="h-28 sm:h-32 md:h-36 lg:h-40 w-auto transition-transform group-hover:scale-105 filter brightness-150 contrast-125"
+                  className="h-32 sm:h-36 md:h-40 lg:h-44 w-auto transition-transform group-hover:scale-105 filter brightness-150 contrast-125"
                   priority
                 />
               </div>
@@ -120,23 +120,23 @@ export default function HeroWithNavbar() {
               <span className="text-[color:var(--color-accent)]">entre particuliers</span>
             </h1>
 
-            <p className="text-base sm:text-lg lg:text-xl text-[color:var(--color-muted)] mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+            <p className="text-lg sm:text-xl lg:text-2xl text-[color:var(--color-muted)] mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
               Rejoignez une communauté locale de conducteurs de véhicules électriques qui partagent leurs bornes de recharge,
               pour recharger près de chez vous à moindre coût.
             </p>
 
-            <div className="mb-8 grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3 text-xs sm:text-sm max-w-2xl mx-auto lg:mx-0">
+            <div className="hidden md:grid mb-8 grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3 text-sm sm:text-base max-w-2xl mx-auto lg:mx-0">
               <div className="flex items-start gap-2 p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
-                <CheckCircle2 size={14} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
-                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-xs">Réseau local entre conducteurs et hôtes</p>
+                <CheckCircle2 size={16} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
+                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-sm">Réseau local entre conducteurs et hôtes</p>
               </div>
               <div className="flex items-start gap-2 p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
-                <CheckCircle2 size={14} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
-                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-xs">Inscriptions ouvertes pour la phase pilote</p>
+                <CheckCircle2 size={16} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
+                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-sm">Inscriptions ouvertes pour la phase pilote</p>
               </div>
               <div className="col-span-2 sm:col-span-1 flex items-start gap-2 p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
-                <CheckCircle2 size={14} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
-                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-xs">Objectif : valider le service avec la communauté</p>
+                <CheckCircle2 size={16} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
+                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-sm">Objectif : valider le service avec la communauté</p>
               </div>
             </div>
 
@@ -144,7 +144,7 @@ export default function HeroWithNavbar() {
           </div>
 
           {/* IMAGE 3D */}
-          <div className="relative order-1 lg:order-2 flex justify-center items-center h-[160px] sm:h-[260px] lg:h-[420px] perspective-[1500px]">
+          <div className="relative order-1 lg:order-2 flex justify-center items-center h-[240px] sm:h-[300px] lg:h-[420px] perspective-[1500px]">
             <div 
               className="relative w-full h-full transition-transform duration-300 ease-out"
               style={{
@@ -169,7 +169,7 @@ export default function HeroWithNavbar() {
       {isMenuOpen && (
         <div className="fixed inset-0 z-[100] bg-[color:var(--color-background)] flex flex-col p-8">
           <div className="flex justify-between items-center mb-12">
-            <Image src="/w1.png" alt="logo" width={220} height={80} />
+            <Image src="/w1.png" alt="logo" width={350} height={120} />
             <button onClick={() => setIsMenuOpen(false)}>
               <X size={32} />
             </button>

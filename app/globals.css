@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --color-background: #f7fffb;
+  --color-background: #ffffff;
   --color-foreground: #0b1c13;
   --color-surface: #ffffff;
-  --color-surface-muted: #eefaf4;
-  --color-surface-strong: #e2f6ec;
+  --color-surface-muted: #f8f8f8;
+  --color-surface-strong: #f0f0f0;
   --color-border: rgba(11, 28, 19, 0.14);
   --color-muted: #13422b;
   --color-accent: #00f5a0;
@@ -55,28 +55,28 @@ html {
 /* Responsive zoom adjustments */
 @media (max-width: 1024px) {
   html {
-    zoom: 75%;
-    -webkit-zoom: 75%;
-    -moz-zoom: 75%;
-    -ms-zoom: 75%;
+    zoom: 80%;
+    -webkit-zoom: 80%;
+    -moz-zoom: 80%;
+    -ms-zoom: 80%;
   }
 }
 
 @media (max-width: 768px) {
   html {
-    zoom: 70%;
-    -webkit-zoom: 70%;
-    -moz-zoom: 70%;
-    -ms-zoom: 70%;
+    zoom: 80%;
+    -webkit-zoom: 80%;
+    -moz-zoom: 80%;
+    -ms-zoom: 80%;
   }
 }
 
 @media (max-width: 480px) {
   html {
-    zoom: 65%;
-    -webkit-zoom: 65%;
-    -moz-zoom: 65%;
-    -ms-zoom: 65%;
+    zoom: 80%;
+    -webkit-zoom: 80%;
+    -moz-zoom: 80%;
+    -ms-zoom: 80%;
   }
 }
 

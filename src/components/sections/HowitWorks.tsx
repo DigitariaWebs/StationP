@@ -65,7 +65,7 @@ export default function AccessPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start lg:items-center">
           <div className="lg:col-span-6 space-y-6 sm:space-y-8 text-center lg:text-left">
             <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold text-[color:var(--color-muted)] bg-[color:var(--color-surface)] border border-[color:var(--color-border)] shadow">
-              <Sparkles size={14} className="text-[color:var(--color-accent)]" /> Rejoignez l&apos;aventure
+              <Sparkles size={14} className="text-[color:var(--color-accent)]" /> Rejoignez l'aventure
             </span>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight lg:leading-[1.1] tracking-tight text-[color:var(--color-foreground)]">
@@ -93,17 +93,17 @@ export default function AccessPage() {
             </p>
 
             <div className="flex flex-col gap-3 sm:gap-4 pt-2 sm:pt-4 items-center lg:items-start">
-              <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-sm sm:text-base">
-                <CheckCircle2 className="text-[color:var(--color-accent)] flex-shrink-0" size={20} />
+              <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-base sm:text-lg">
+                <CheckCircle2 className="text-[color:var(--color-accent)] flex-shrink-0" size={22} />
                 <span>Bornes privées certifiées</span>
               </div>
-              <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-sm sm:text-base">
-                <Shield className="text-[color:var(--color-accent)] flex-shrink-0" size={20} />
+              <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-base sm:text-lg">
+                <Shield className="text-[color:var(--color-accent)] flex-shrink-0" size={22} />
                 <span>Mise en relation sécurisée</span>
               </div>
-              <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-sm sm:text-base">
-                <Users className="text-[color:var(--color-accent)] flex-shrink-0" size={20} />
-                <span>Communauté locale de conducteurs et d&apos;hôtes</span>
+              <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-base sm:text-lg">
+                <Users className="text-[color:var(--color-accent)] flex-shrink-0" size={22} />
+                <span>Communauté locale de conducteurs et d'hôtes</span>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default function AccessPage() {
                         name="nom"
                         type="text"
                         placeholder="Nom complet"
-                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-sm sm:text-base"
+                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
                       />
                     </div>
 
@@ -163,7 +163,7 @@ export default function AccessPage() {
                         name="email"
                         type="email"
                         placeholder="Adresse email"
-                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-sm sm:text-base"
+                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
                       />
                       <Mail size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[color:var(--color-accent)]" />
                     </div>
@@ -175,7 +175,7 @@ export default function AccessPage() {
                         type="tel"
                         placeholder="Téléphone"
                         pattern="[0-9\s\+]+"
-                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-sm sm:text-base"
+                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
                       />
                       <Phone size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[color:var(--color-accent)]" />
                     </div>
@@ -186,7 +186,7 @@ export default function AccessPage() {
                         name="code_postal"
                         type="text"
                         placeholder="Code postal"
-                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-sm sm:text-base"
+                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
                       />
                       <MapPin size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[color:var(--color-accent)]" />
                     </div>
@@ -198,7 +198,7 @@ export default function AccessPage() {
                           name="info_borne"
                           type="text"
                           placeholder="Type de borne / Puissance"
-                          className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-accent)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-sm sm:text-base"
+                          className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-accent)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
                         />
                         <Zap size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[color:var(--color-accent)]" />
                       </div>
@@ -208,7 +208,7 @@ export default function AccessPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)]/95 text-[color:var(--color-accent-contrast)] font-black py-4 sm:py-5 rounded-xl transition-all flex items-center justify-center gap-2 sm:gap-3 border-2 border-[color:var(--color-accent)] active:scale-95 text-sm sm:text-base disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full bg-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)]/95 text-[color:var(--color-accent-contrast)] font-black py-4 sm:py-5 rounded-xl transition-all flex items-center justify-center gap-2 sm:gap-3 border-2 border-[color:var(--color-accent)] active:scale-95 text-base sm:text-lg disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {loading ? (
                       <>
