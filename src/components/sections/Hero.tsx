@@ -64,7 +64,7 @@ export default function HeroWithNavbar() {
                   alt="StreetCharge Logo" 
                   width={600}
                   height={200}
-                  className="h-20 sm:h-24 md:h-28 lg:h-32 w-auto transition-transform group-hover:scale-105 filter brightness-150 contrast-125"
+                  className="h-28 sm:h-32 md:h-36 lg:h-40 w-auto transition-transform group-hover:scale-105 filter brightness-150 contrast-125"
                   priority
                 />
               </div>
@@ -115,7 +115,7 @@ export default function HeroWithNavbar() {
 
           {/* TEXTE */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[1.05] mb-5">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] mb-5">
               La recharge <br />
               <span className="text-[color:var(--color-accent)]">entre particuliers</span>
             </h1>
