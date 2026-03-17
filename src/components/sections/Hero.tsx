@@ -24,11 +24,19 @@ export default function HeroWithNavbar() {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <Image
           src="/loto2.webp"
-          alt="Background"
+          alt="Voiture électrique en charge"
           fill
           priority
           quality={75}
-          className="object-cover object-center contrast-110 scale-110 pointer-events-none"
+          className="hidden md:block object-cover pointer-events-none"
+        />
+        <Image
+          src="/loto3.png"
+          alt="Voiture électrique en charge"
+          fill
+          priority
+          quality={75}
+          className="md:hidden object-cover pointer-events-none"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black lg:bg-gradient-to-r lg:from-black/70 lg:via-black/30 lg:to-transparent" />
       </div>

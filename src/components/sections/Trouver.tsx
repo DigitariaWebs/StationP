@@ -114,20 +114,20 @@ export default function TrouverSection() {
             {/* COMMENT ÇA MARCHE */}
             <div className="grid grid-cols-3 gap-3">
               <div className="bg-white border border-zinc-200 p-4 rounded-xl flex flex-col items-center text-center">
-                <div className="w-10 h-10 bg-zinc-100 rounded-lg flex items-center justify-center mb-2">
-                  <span className="font-black text-[#A3E635]">1</span>
+                <div className="w-10 h-10 relative mb-2">
+                  <Image src="/icon11.png" alt="Inscription" fill className="object-contain" />
                 </div>
                 <p className="text-xs font-bold uppercase">Inscrivez-vous</p>
               </div>
               <div className="bg-white border border-zinc-200 p-4 rounded-xl flex flex-col items-center text-center">
-                <div className="w-10 h-10 bg-zinc-100 rounded-lg flex items-center justify-center mb-2">
-                  <span className="font-black text-[#A3E635]">2</span>
+                <div className="w-10 h-10 relative mb-2">
+                  <Image src="/icon22.png" alt="Trouver" fill className="object-contain" />
                 </div>
                 <p className="text-xs font-bold uppercase">Trouvez une borne</p>
               </div>
               <div className="bg-white border border-zinc-200 p-4 rounded-xl flex flex-col items-center text-center">
-                <div className="w-10 h-10 bg-zinc-100 rounded-lg flex items-center justify-center mb-2">
-                  <span className="font-black text-[#A3E635]">3</span>
+                <div className="w-10 h-10 relative mb-2">
+                  <Image src="/icon33.png" alt="Recharge" fill className="object-contain" />
                 </div>
                 <p className="text-xs font-bold uppercase">Rechargez</p>
               </div>

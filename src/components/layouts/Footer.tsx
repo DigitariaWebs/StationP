@@ -72,10 +72,6 @@ export default function Footer() {
             <p className="text-zinc-500 text-sm mb-4 italic">
               ✦ Une question ? Un appel suffit pour vous connecter.
             </p>
-            <div className="bg-zinc-50 border border-zinc-100 p-4 rounded-2xl w-full">
-               <p className="text-xs font-black uppercase text-zinc-400 mb-1">Email Support</p>
-               <p className="text-sm font-bold text-zinc-900">hello@streetcharge.be</p>
-            </div>
           </div>
         </div>
 

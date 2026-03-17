@@ -38,12 +38,14 @@ export function ThemeProvider({
   });
 
   useEffect(() => {
+    // Apply theme to document
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
     document.documentElement.dataset.theme = theme;
-    if (document.body) {
-      document.body.dataset.theme = theme;
-    }
+    document.body.classList.remove('light', 'dark');
+    document.body.classList.add(theme);
+    document.body.style.backgroundColor = theme === 'dark' ? '#141822' : '#ffffff';
+    document.body.style.color = theme === 'dark' ? '#f5f5f4' : '#0b1c13';
     window.localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
