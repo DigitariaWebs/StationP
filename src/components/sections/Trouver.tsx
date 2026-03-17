@@ -36,31 +36,31 @@ export default function TrouverSection() {
   };
 
   return (
-    <section id="trouveruneborne" className="bg-white text-zinc-900 relative w-full overflow-hidden py-10 sm:py-14">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+    <section id="trouveruneborne" className="bg-white text-zinc-900 relative w-full overflow-hidden py-8 sm:py-14">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 w-full">
         
         {/* EN-TÊTE */}
-        <div className="mb-8 text-center sm:text-left">
-          <h2 className="text-2xl sm:text-3xl font-black tracking-tighter uppercase italic leading-[1] mb-3">
+        <div className="mb-5 sm:mb-8 text-center sm:text-left">
+          <h2 className="text-xl sm:text-3xl font-black tracking-tighter uppercase italic leading-[1] mb-2">
             Rejoignez une <span className="text-[#A3E635] not-italic">communauté locale</span> de conducteurs
           </h2>
-          <p className="text-sm sm:text-base text-zinc-500 max-w-2xl font-medium">
+          <p className="text-xs sm:text-base text-zinc-500 max-w-2xl font-medium">
             Partagez vos bornes de recharge entre voisins et rechargez à moindre coût près de chez vous.
           </p>
         </div>
 
         {/* CONTENU PRINCIPAL EN 2 COLONNES */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-8">
           
           {/* COLONNE GAUCHE: CONSTAT + SOLUTION + PROCESS */}
-          <div className="lg:col-span-7 space-y-5">
+          <div className="lg:col-span-7 space-y-4">
             
             {/* CONSTAT */}
-            <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-5 sm:p-6">
+            <div className="bg-zinc-50 border border-zinc-200 rounded-2xl p-3 sm:p-6">
               <h3 className="text-base sm:text-lg font-black uppercase tracking-widest mb-3 text-zinc-400">
                 Constat
               </h3>
-              <ul className="space-y-2 text-sm text-zinc-600 font-medium">
+              <ul className="space-y-2 text-xs sm:text-sm text-zinc-600 font-medium">
                 <li className="flex items-start gap-2">
                   <span className="text-[#A3E635] font-black">•</span>
                   <span>Augmentation rapide des véhicules électriques</span>
@@ -77,7 +77,7 @@ export default function TrouverSection() {
             </div>
 
             {/* SOLUTION */}
-            <div className="bg-[#A3E635] rounded-2xl p-5 sm:p-6 text-black flex flex-col sm:flex-row gap-4 items-center overflow-hidden">
+            <div className="bg-[#A3E635] rounded-2xl p-3 sm:p-6 text-black flex flex-col sm:flex-row gap-3 sm:gap-4 items-center overflow-hidden">
               <div className="flex-1 w-full">
                 <h3 className="text-lg sm:text-xl font-black uppercase tracking-widest mb-3 flex items-center gap-2">
                   <Zap size={20} className="fill-black" /> Solution
@@ -101,7 +101,7 @@ export default function TrouverSection() {
                 </ul>
               </div>
 
-              <div className="block w-full sm:w-1/3 relative rounded-xl overflow-hidden border-2 border-white h-32 sm:h-40 shrink-0">
+              <div className="block w-full sm:w-1/3 relative rounded-xl overflow-hidden border-2 border-white h-20 sm:h-40 shrink-0">
                 <Image 
                   src="/1.png" 
                   alt="Borne recharge" 
@@ -112,24 +112,24 @@ export default function TrouverSection() {
             </div>
 
             {/* COMMENT ÇA MARCHE */}
-            <div className="grid grid-cols-3 gap-3">
-              <div className="bg-white border border-zinc-200 p-4 rounded-xl flex flex-col items-center text-center">
-                <div className="w-10 h-10 relative mb-2">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
+              <div className="bg-white border border-zinc-200 p-3 sm:p-4 rounded-xl flex flex-col items-center text-center">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 relative mb-1 sm:mb-2">
                   <Image src="/icon11.png" alt="Inscription" fill className="object-contain" />
                 </div>
-                <p className="text-xs font-bold uppercase">Inscrivez-vous</p>
+                <p className="text-[10px] sm:text-xs font-bold uppercase">Inscrivez-vous</p>
               </div>
-              <div className="bg-white border border-zinc-200 p-4 rounded-xl flex flex-col items-center text-center">
-                <div className="w-10 h-10 relative mb-2">
+              <div className="bg-white border border-zinc-200 p-3 sm:p-4 rounded-xl flex flex-col items-center text-center">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 relative mb-1 sm:mb-2">
                   <Image src="/icon22.png" alt="Trouver" fill className="object-contain" />
                 </div>
-                <p className="text-xs font-bold uppercase">Trouvez une borne</p>
+                <p className="text-[10px] sm:text-xs font-bold uppercase">Trouvez une borne</p>
               </div>
-              <div className="bg-white border border-zinc-200 p-4 rounded-xl flex flex-col items-center text-center">
-                <div className="w-10 h-10 relative mb-2">
+              <div className="bg-white border border-zinc-200 p-3 sm:p-4 rounded-xl flex flex-col items-center text-center">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 relative mb-1 sm:mb-2">
                   <Image src="/icon33.png" alt="Recharge" fill className="object-contain" />
                 </div>
-                <p className="text-xs font-bold uppercase">Rechargez</p>
+                <p className="text-[10px] sm:text-xs font-bold uppercase">Rechargez</p>
               </div>
             </div>
 
@@ -137,7 +137,7 @@ export default function TrouverSection() {
 
           {/* COLONNE DROITE: FORMULAIRE */}
           <div className="lg:col-span-5" id="inscription">
-            <div className="bg-white border border-zinc-200 p-5 sm:p-6 rounded-2xl shadow-lg sticky top-20">
+            <div className="bg-white border border-zinc-200 p-3 sm:p-6 rounded-2xl shadow-lg sticky top-20">
               
               {submitted ? (
                 <div className="py-8 text-center">

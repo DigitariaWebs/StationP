@@ -35,7 +35,7 @@ export default function HeroWithNavbar() {
           alt="Voiture électrique en charge"
           fill
           priority
-          quality={75}
+          quality={90}
           className="md:hidden object-cover pointer-events-none"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black lg:bg-gradient-to-r lg:from-black/70 lg:via-black/30 lg:to-transparent" />
@@ -50,7 +50,7 @@ export default function HeroWithNavbar() {
                 alt="StreetCharge Logo" 
                 width={220} 
                 height={70}
-                className="w-40 sm:w-48 h-auto brightness-0 invert" 
+                className="w-44 sm:w-48 h-auto brightness-0 invert" 
                 priority
               />
             </Link>
