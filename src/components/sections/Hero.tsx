@@ -1,107 +1,78 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ThemeToggle from '@/components/ThemeToggle';
-import { Menu, X, Zap, CheckCircle2 } from 'lucide-react';
-import { useTheme } from '@/components/ThemeProvider';
+import { Menu, X, ArrowRight } from 'lucide-react';
 
 export default function HeroWithNavbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [rotation, setRotation] = useState({ x: 0, y: 0 });
-  const { theme } = useTheme();
-
-  useEffect(() => {
-    if (window.innerWidth < 1024) return;
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-      const rotateY = ((clientX / innerWidth) - 0.5) * 15;
-      const rotateX = ((clientY / innerHeight) - 0.5) * -10;
-      setRotation({ x: rotateX, y: rotateY });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   const goToForm = () => {
-    const section = document.getElementById('howitworks');
+    const section = document.getElementById('inscription');
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      section.scrollIntoView({ behavior: 'smooth' });
       setIsMenuOpen(false);
-      return;
     }
-    window.location.hash = '#howitworks';
-    setIsMenuOpen(false);
   };
 
   return (
-    <section className="relative w-full h-screen bg-[color:var(--color-background)] flex flex-col">
-
+    <section className="relative z-20 flex h-[100dvh] w-full flex-col bg-black">
+      
+      {/* --- ARRIÈRE-PLAN --- */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Image
+          src="/loto2.webp"
+          alt="Background"
+          fill
+          priority
+          quality={75}
+          className="object-cover object-center contrast-110 scale-110 pointer-events-none"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-black lg:bg-gradient-to-r lg:from-black/70 lg:via-black/30 lg:to-transparent" />
+      </div>
       {/* NAVBAR */}
       <header className="relative z-50 w-full shrink-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center h-20 sm:h-24">
-
-            {/* LOGO */}
-            <Link href="/" className="flex items-center group relative">
-              <div className="relative">
-                {theme === 'dark' && (
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-[-0.5rem] rounded-full opacity-90 blur-[40px]"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(0,245,160,.45), transparent 60%)',
-                      mixBlendMode: 'screen',
-                    }}
-                  />
-                )}
-                <Image 
-                  src="/w1.png" 
-                  alt="StreetCharge Logo" 
-                  width={600}
-                  height={200}
-                  className="h-32 sm:h-36 md:h-40 lg:h-44 w-auto transition-transform group-hover:scale-105 filter brightness-150 contrast-125"
-                  priority
-                />
-              </div>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-center h-16 sm:h-24">
+            <Link href="/" className="flex items-center">
+              <Image 
+                src="/w1.png" 
+                alt="StreetCharge Logo" 
+                width={220} 
+                height={70}
+                className="w-40 sm:w-48 h-auto brightness-0 invert" 
+                priority
+              />
             </Link>
 
-            {/* DESKTOP NAV */}
-            <nav className="hidden lg:flex items-center gap-10 text-[color:var(--color-foreground)]/80">
-              {[
-                { label: 'Accueil', href: '#accueil' },
-                { label: 'Communauté', href: '#trouveruneborne' },
-                { label: 'Inscription', href: '#howitworks' },
-              ].map((item) => (
-                <Link 
-                  key={item.label}
-                  href={`/${item.href}`}
-                  className="text-sm font-bold uppercase tracking-widest hover:text-[color:var(--color-accent)] transition-colors"
-                >
-                  {item.label}
-                </Link>
-              ))}
+            <nav className="hidden lg:flex items-center gap-8 text-white font-bold uppercase tracking-widest text-[10px]">
+              <Link href="#" className="hover:text-[#A3E635] transition-colors">
+                Accueil
+              </Link>
+              <Link href="#trouveruneborne" className="hover:text-[#A3E635] transition-colors">
+                Communauté
+              </Link>
+              <Link href="#inscription" className="hover:text-[#A3E635] transition-colors">
+                Inscription
+              </Link>
             </nav>
 
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-5">
               <ThemeToggle />
               <button
                 type="button"
                 onClick={goToForm}
-                className="bg-[color:var(--color-accent)] hover:bg-[color:var(--color-accent-hover)] text-[color:var(--color-accent-contrast)] text-sm font-bold py-3 px-8 rounded-full transition-all uppercase"
+                className="bg-[#A3E635] hover:bg-[#bef264] text-black text-[10px] font-black py-3 px-6 rounded-full transition-all uppercase tracking-widest"
               >
                 Je rejoins
               </button>
             </div>
 
-            {/* MOBILE */}
             <div className="lg:hidden flex items-center gap-3">
               <ThemeToggle />
-              <button onClick={() => setIsMenuOpen(true)} className="text-[color:var(--color-foreground)]">
+              <button onClick={() => setIsMenuOpen(true)} className="text-white p-2">
                 <Menu size={28} />
               </button>
             </div>
@@ -109,88 +80,59 @@ export default function HeroWithNavbar() {
         </div>
       </header>
 
-      {/* HERO */}
-      <div id="accueil" className="flex-1 flex items-center py-4 sm:py-6 lg:py-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-
-          {/* TEXTE */}
-          <div className="order-2 lg:order-1 text-center lg:text-left">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[1.05] mb-5">
+      {/* HERO CONTENT */}
+      <div className="relative z-10 flex-1 flex items-center pb-8 sm:pb-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 w-full">
+          <div className="max-w-3xl text-center lg:text-left text-white mx-auto lg:mx-0">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black leading-[1.1] mb-4 sm:mb-6 tracking-tighter uppercase italic drop-shadow-2xl">
               La recharge <br />
-              <span className="text-[color:var(--color-accent)]">entre particuliers</span>
+              <span className="text-[#A3E635] not-italic">entre</span> <br />
+              particuliers
             </h1>
 
-            <p className="text-lg sm:text-xl lg:text-2xl text-[color:var(--color-muted)] mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
-              Rejoignez une communauté locale de conducteurs de véhicules électriques qui partagent leurs bornes de recharge,
-              pour recharger près de chez vous à moindre coût.
+            <p className="text-xs sm:text-sm text-white/80 mb-2 max-w-sm mx-auto lg:mx-0 font-medium">
+              Rejoignez une communauté locale de conducteurs de véhicules électriques qui partagent leurs bornes de recharge.
             </p>
 
-            <div className="hidden md:grid mb-8 grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-3 text-sm sm:text-base max-w-2xl mx-auto lg:mx-0">
-              <div className="flex items-start gap-2 p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
-                <CheckCircle2 size={16} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
-                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-sm">Réseau local entre conducteurs et hôtes</p>
-              </div>
-              <div className="flex items-start gap-2 p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
-                <CheckCircle2 size={16} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
-                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-sm">Inscriptions ouvertes pour la phase pilote</p>
-              </div>
-              <div className="col-span-2 sm:col-span-1 flex items-start gap-2 p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-[color:var(--color-surface)] border border-[color:var(--color-border)]">
-                <CheckCircle2 size={16} className="text-[color:var(--color-accent)] mt-0.5 shrink-0" />
-                <p className="font-semibold text-[color:var(--color-muted)] leading-tight text-sm">Objectif : valider le service avec la communauté</p>
-              </div>
+            {/* Points clés */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-6 sm:mb-8 text-xs text-white/70 font-medium">
+              <span className="flex items-center gap-1"><span className="text-[#A3E635]">✓</span> Rechargez près de chez vous</span>
+              <span className="flex items-center gap-1"><span className="text-[#A3E635]">✓</span> À moindre coût</span>
+              <span className="flex items-center gap-1"><span className="text-[#A3E635]">✓</span> Entre voisins</span>
             </div>
 
-   
-          </div>
-
-          {/* IMAGE 3D */}
-          <div className="relative order-1 lg:order-2 flex justify-center items-center h-[240px] sm:h-[300px] lg:h-[420px] perspective-[1500px]">
-            <div 
-              className="relative w-full h-full transition-transform duration-300 ease-out"
-              style={{
-                transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
-                transformStyle: 'preserve-3d',
-              }}
-            >
-              <Image
-                src="/i.png"
-                alt="StreetCharge 3D Scene"
-                fill
-                className="object-contain"
-                priority
-              />
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3">
+              <button 
+                onClick={goToForm}
+                className="group bg-white text-black px-6 py-3 sm:px-7 sm:py-3.5 rounded-full font-black flex items-center justify-center gap-2 sm:gap-3 hover:bg-[#A3E635] transition-all shadow-xl uppercase tracking-widest text-xs"
+              >
+                Je rejoins <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+              <Link 
+                href="#trouveruneborne"
+                className="group bg-transparent border-2 border-white text-white px-6 py-3 sm:px-7 sm:py-3.5 rounded-full font-black flex items-center justify-center gap-2 sm:gap-3 hover:bg-white hover:text-black transition-all uppercase tracking-widest text-xs"
+              >
+                En savoir plus
+              </Link>
             </div>
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[60%] h-4 bg-black/40 blur-2xl rounded-full -z-10" />
           </div>
         </div>
       </div>
 
-      {/* MENU MOBILE FULLSCREEN */}
+      {/* MENU MOBILE */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-[color:var(--color-background)] flex flex-col p-8">
-          <div className="flex justify-between items-center mb-12">
-            <Image src="/w1.png" alt="logo" width={350} height={120} />
-            <button onClick={() => setIsMenuOpen(false)}>
-              <X size={32} />
-            </button>
+        <div className="fixed inset-0 z-[100] bg-zinc-950 flex flex-col p-6 sm:p-8">
+          <div className="flex justify-between items-center mb-8 sm:mb-12">
+            <Image src="/w1.png" alt="logo" width={120} height={40} className="brightness-0 invert w-24 sm:w-28" />
+            <button onClick={() => setIsMenuOpen(false)} className="text-white p-1"><X size={28} /></button>
           </div>
-
-          <nav className="flex flex-col gap-8 text-3xl font-black uppercase tracking-tight">
-            <Link href="/#accueil" onClick={() => setIsMenuOpen(false)}>Accueil</Link>
-            <Link href="/#trouveruneborne" onClick={() => setIsMenuOpen(false)}>Communauté</Link>
-            <Link href="/#howitworks" onClick={() => setIsMenuOpen(false)}>Inscription</Link>
+          <nav className="flex flex-col gap-5 sm:gap-6 text-xl sm:text-2xl font-black uppercase italic text-white">
+            <Link href="#" onClick={() => setIsMenuOpen(false)}>Accueil</Link>
+            <Link href="#trouveruneborne" onClick={() => setIsMenuOpen(false)}>Communauté</Link>
+            <Link href="#inscription" onClick={() => setIsMenuOpen(false)}>Inscription</Link>
           </nav>
-
-          <button
-            type="button"
-            onClick={goToForm}
-            className="mt-auto bg-[color:var(--color-accent)] text-[color:var(--color-accent-contrast)] py-4 rounded-full font-black text-center uppercase tracking-widest"
-          >
-            Je rejoins
-          </button>
         </div>
       )}
-
     </section>
   );
 }

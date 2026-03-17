@@ -25,10 +25,7 @@ export default function AccessPage() {
 
     const formData = new FormData(e.currentTarget);
     formData.append('type_utilisateur', userType === 'driver' ? 'Conducteur' : 'Propriétaire (Hôte)');
-    formData.append('_subject', `Nouveau contact StreetCharge : ${userType}`);
-    formData.append('_template', 'table');
-    formData.append('_captcha', 'false');
-
+    
     try {
       const response = await fetch('https://formsubmit.co/ajax/elhoudaifi.soufian@gmail.com', {
         method: 'POST',
@@ -38,10 +35,10 @@ export default function AccessPage() {
       if (response.ok) {
         setSubmitted(true);
       } else {
-        alert('Une erreur est survenue. Merci de réessayer.');
+        alert('Une erreur est survenue.');
       }
     } catch (error) {
-      console.error('Erreur d\'envoi:', error);
+      console.error(error);
       alert('Erreur de connexion.');
     } finally {
       setLoading(false);
@@ -50,85 +47,64 @@ export default function AccessPage() {
 
   return (
     <main
-      id="howitworks"
-      className="scroll-mt-24 bg-[color:var(--color-background)] text-[color:var(--color-foreground)] px-4 sm:px-6 lg:px-8 py-10 sm:py-12 md:py-14 overflow-hidden relative"
+      id="inscription"
+      className="scroll-mt-24 bg-white text-zinc-900 px-4 sm:px-6 py-12 sm:py-16 overflow-hidden relative"
     >
-      {/* SVG décoratif */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-20">
-        <svg width="100%" height="100%" viewBox="0 0 1440 1000" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M-100 0 C 400 300, 900 600, 1600 900" stroke="rgba(0,245,160,0.35)" strokeWidth="1.5" strokeDasharray="5 5" />
-          <path d="M-100 100 C 350 400, 850 650, 1600 1000" stroke="rgba(0,245,160,0.35)" strokeWidth="1" strokeDasharray="5 5" />
-        </svg>
-      </div>
+      {/* Background Decoratif subtil */}
+      <div className="absolute top-0 right-0 w-1/2 h-full bg-[#A3E635]/5 blur-[120px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 lg:gap-16 items-start lg:items-center">
-          <div className="lg:col-span-6 space-y-6 sm:space-y-8 text-center lg:text-left">
-            <span className="inline-flex items-center gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-bold text-[color:var(--color-muted)] bg-[color:var(--color-surface)] border border-[color:var(--color-border)] shadow">
-              <Sparkles size={14} className="text-[color:var(--color-accent)]" /> Rejoignez l'aventure
-            </span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* TEXTE GAUCHE */}
+          <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-black uppercase tracking-widest text-zinc-500 bg-zinc-100 border border-zinc-200">
+              <Sparkles size={12} className="text-[#A3E635]" /> Rejoignez l'aventure
+            </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-tight lg:leading-[1.1] tracking-tight text-[color:var(--color-foreground)]">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-black leading-[1] tracking-tighter uppercase italic">
               {userType === 'driver' ? (
-                (
-                  <>
-                    Besoin de <br className="hidden sm:block" />
-                    <span className="text-[color:var(--color-accent)]">recharger ?</span>
-                  </>
-                )
+                <>Besoin de <br /> <span className="text-[#A3E635] not-italic">recharger ?</span></>
               ) : (
-                (
-                  <>
-                    Une borne <br className="hidden sm:block" />
-                    <span className="text-[color:var(--color-accent)]">à partager ?</span>
-                  </>
-                )
+                <>Une borne <br /> <span className="text-[#A3E635] not-italic">à partager ?</span></>
               )}
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-[color:var(--color-muted)] leading-relaxed max-w-xl mx-auto lg:mx-0">
+            <p className="text-sm md:text-base text-zinc-500 font-medium max-w-xl mx-auto lg:mx-0">
               {userType === 'driver'
-                ? 'Trouvez une borne près de chez vous et rechargez en toute simplicité.'
-                : 'Mettez votre borne à disposition et générez des revenus.'}
+                ? 'Trouvez une borne privée près de chez vous et rechargez en toute simplicité au meilleur prix.'
+                : 'Mettez votre borne à disposition de la communauté et générez des revenus passifs chaque mois.'}
             </p>
 
-            <div className="flex flex-col gap-3 sm:gap-4 pt-2 sm:pt-4 items-center lg:items-start">
-              <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-base sm:text-lg">
-                <CheckCircle2 className="text-[color:var(--color-accent)] flex-shrink-0" size={22} />
-                <span>Bornes privées certifiées</span>
-              </div>
-              <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-base sm:text-lg">
-                <Shield className="text-[color:var(--color-accent)] flex-shrink-0" size={22} />
-                <span>Mise en relation sécurisée</span>
-              </div>
-              <div className="flex items-center gap-3 text-[color:var(--color-foreground)] font-bold text-base sm:text-lg">
-                <Users className="text-[color:var(--color-accent)] flex-shrink-0" size={22} />
-                <span>Communauté locale de conducteurs et d'hôtes</span>
-              </div>
+            <div className="flex flex-col gap-3 pt-2 items-center lg:items-start">
+              <FeatureItem icon={<CheckCircle2 className="text-[#A3E635]" size={18} />} text="Bornes privées certifiées" />
+              <FeatureItem icon={<Shield className="text-[#A3E635]" size={18} />} text="Mise en relation sécurisée" />
+              <FeatureItem icon={<Users className="text-[#A3E635]" size={18} />} text="Communauté locale active" />
             </div>
           </div>
 
+          {/* FORMULAIRE DROITE */}
           <div className="lg:col-span-6">
-            <div className="bg-[color:var(--color-surface)] border border-[color:var(--color-border)] p-6 sm:p-8 md:p-10 rounded-3xl sm:rounded-[2.5rem] shadow-lg">
+            <div className="bg-white border border-zinc-200 p-6 sm:p-8 rounded-2xl shadow-xl shadow-zinc-200/50 relative">
+              
               {submitted ? (
-                <div className="py-8 sm:py-12 text-center animate-in fade-in zoom-in duration-500">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white border-2 border-white rounded-2xl flex items-center justify-center mx-auto mb-4 sm:mb-6 rotate-3">
-                    <CheckCircle2 size={30} className="sm:w-10 sm:h-10 text-black" />
+                <div className="py-8 text-center animate-in fade-in zoom-in duration-300">
+                  <div className="w-16 h-16 bg-[#A3E635] rounded-2xl flex items-center justify-center mx-auto mb-4 rotate-6 shadow-lg shadow-[#A3E635]/30">
+                    <CheckCircle2 size={32} className="text-black" />
                   </div>
-                  <h3 className="text-2xl sm:text-3xl font-black mb-2 text-[color:var(--color-foreground)]">INSCRIPTION REÇUE !</h3>
-                  <p className="text-sm sm:text-base font-bold mb-6 text-[color:var(--color-muted)]">Merci de votre intérêt !</p>
-                  <p className="text-xs text-[color:var(--color-muted)]">Un email de confirmation vous sera envoyé.</p>
+                  <h3 className="text-xl font-black mb-2 uppercase italic tracking-tighter">C'est envoyé !</h3>
+                  <p className="text-zinc-500 font-bold uppercase tracking-widest text-xs mb-1">Merci de votre intérêt.</p>
+                  <p className="text-xs text-zinc-400">On vous recontacte très vite par email.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
-                  <div className="flex p-1 bg-[color:var(--color-surface-muted)] rounded-xl border border-[color:var(--color-border)]">
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  {/* Toggle User Type */}
+                  <div className="flex p-1 bg-zinc-100 rounded-xl border border-zinc-200">
                     <button
                       type="button"
                       onClick={() => setUserType('driver')}
-                      className={`flex-1 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-black transition-all ${
-                        userType === 'driver'
-                          ? 'bg-[color:var(--color-accent)] text-[color:var(--color-accent-contrast)]'
-                          : 'text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]'
+                      className={`flex-1 py-2 rounded-lg text-xs font-black transition-all ${
+                        userType === 'driver' ? 'bg-white text-black shadow-sm' : 'text-zinc-400 hover:text-zinc-900'
                       }`}
                     >
                       CONDUCTEUR
@@ -136,99 +112,68 @@ export default function AccessPage() {
                     <button
                       type="button"
                       onClick={() => setUserType('host')}
-                      className={`flex-1 py-2 sm:py-3 rounded-lg text-xs sm:text-sm font-black transition-all ${
-                        userType === 'host'
-                          ? 'bg-[color:var(--color-accent)] text-[color:var(--color-accent-contrast)]'
-                          : 'text-[color:var(--color-muted)] hover:text-[color:var(--color-foreground)]'
+                      className={`flex-1 py-2 rounded-lg text-xs font-black transition-all ${
+                        userType === 'host' ? 'bg-white text-black shadow-sm' : 'text-zinc-400 hover:text-zinc-900'
                       }`}
                     >
                       PROPRIÉTAIRE
                     </button>
                   </div>
 
-                  <div className="space-y-3 sm:space-y-4">
-                    <div className="relative">
-                      <input
-                        required
-                        name="nom"
-                        type="text"
-                        placeholder="Nom complet"
-                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
-                      />
-                    </div>
-
-                    <div className="relative">
-                      <input
-                        required
-                        name="email"
-                        type="email"
-                        placeholder="Adresse email"
-                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
-                      />
-                      <Mail size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[color:var(--color-accent)]" />
-                    </div>
-
-                    <div className="relative">
-                      <input
-                        required
-                        name="telephone"
-                        type="tel"
-                        placeholder="Téléphone"
-                        pattern="[0-9\s\+]+"
-                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
-                      />
-                      <Phone size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[color:var(--color-accent)]" />
-                    </div>
-
-                    <div className="relative">
-                      <input
-                        required
-                        name="code_postal"
-                        type="text"
-                        placeholder="Code postal"
-                        className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-border)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
-                      />
-                      <MapPin size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[color:var(--color-accent)]" />
-                    </div>
-
-                    {userType === 'host' && (
-                      <div className="relative animate-in slide-in-from-top-2 duration-300">
-                        <input
-                          required
-                          name="info_borne"
-                          type="text"
-                          placeholder="Type de borne / Puissance"
-                          className="w-full bg-[color:var(--color-surface-muted)] border border-[color:var(--color-accent)] rounded-xl px-4 sm:px-5 py-3 sm:py-4 outline-none focus:border-[color:var(--color-accent)] transition text-[color:var(--color-foreground)] font-bold text-base sm:text-lg"
-                        />
-                        <Zap size={16} className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 text-[color:var(--color-accent)]" />
-                      </div>
-                    )}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <InputField name="nom" placeholder="Nom complet" required />
+                    <InputField name="telephone" placeholder="Téléphone" type="tel" required icon={<Phone size={14} />} />
                   </div>
+
+                  <InputField name="email" placeholder="Adresse email" type="email" required icon={<Mail size={14} />} />
+                  <InputField name="code_postal" placeholder="Code postal (ex: 1000)" required icon={<MapPin size={14} />} />
+
+                  {userType === 'host' && (
+                    <div className="animate-in slide-in-from-top-2 duration-200">
+                      <InputField name="info_borne" placeholder="Puissance de la borne (kW)" required icon={<Zap size={14} />} />
+                    </div>
+                  )}
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-[color:var(--color-accent)] hover:bg-[color:var(--color-accent)]/95 text-[color:var(--color-accent-contrast)] font-black py-4 sm:py-5 rounded-xl transition-all flex items-center justify-center gap-2 sm:gap-3 border-2 border-[color:var(--color-accent)] active:scale-95 text-base sm:text-lg disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="w-full bg-[#A3E635] hover:bg-black hover:text-white text-black font-black py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 active:scale-95 shadow-lg hover:shadow-none disabled:opacity-50"
                   >
                     {loading ? (
-                      <>
-                        <Loader2 className="animate-spin" /> ENVOI EN COURS...
-                      </>
+                      <><Loader2 className="animate-spin" /> ENVOI...</>
                     ) : (
-                      <>
-                        {userType === 'driver' ? 'REJOINDRE LA COMMUNAUTÉ' : 'PROPOSER MA BORNE'}{' '}
-                        <ArrowRight size={18} className="sm:w-5 sm:h-5" />
-                      </>
+                      <>{userType === 'driver' ? 'REJOINDRE LE RÉSEAU' : 'PROPOSER MA BORNE'} <ArrowRight size={16} /></>
                     )}
                   </button>
-
-                
                 </form>
               )}
             </div>
           </div>
+
         </div>
       </div>
     </main>
+  );
+}
+
+// Sous-composants pour garder le code propre
+function FeatureItem({ icon, text }: { icon: React.ReactNode; text: string }) {
+  return (
+    <div className="flex items-center gap-3 text-zinc-900 font-bold text-sm">
+      <div className="flex-shrink-0">{icon}</div>
+      <span>{text}</span>
+    </div>
+  );
+}
+
+function InputField({ icon, ...props }: any) {
+  return (
+    <div className="relative group">
+      <input
+        {...props}
+        className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3 outline-none focus:border-[#A3E635] focus:bg-white transition-all text-zinc-900 font-bold text-sm placeholder:text-zinc-300"
+      />
+      {icon && <div className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-300 group-focus-within:text-[#A3E635] transition-colors">{icon}</div>}
+    </div>
   );
 }
