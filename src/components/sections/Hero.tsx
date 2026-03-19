@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import ThemeToggle from '@/components/ThemeToggle';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
 export default function HeroWithNavbar() {
@@ -35,7 +34,7 @@ export default function HeroWithNavbar() {
           alt="Voiture électrique en charge"
           fill
           priority
-          quality={90}
+          quality={100}
           className="md:hidden object-cover pointer-events-none"
         />
         {/* Overlay plus marqué en bas sur mobile pour faire ressortir le texte */}
@@ -64,7 +63,6 @@ export default function HeroWithNavbar() {
             </nav>
 
             <div className="hidden lg:flex items-center gap-5">
-              <ThemeToggle />
               <button
                 type="button"
                 onClick={goToForm}
@@ -75,7 +73,6 @@ export default function HeroWithNavbar() {
             </div>
 
             <div className="lg:hidden flex items-center gap-2">
-              <ThemeToggle />
               <button onClick={() => setIsMenuOpen(true)} className="text-white p-2">
                 <Menu size={26} />
               </button>
