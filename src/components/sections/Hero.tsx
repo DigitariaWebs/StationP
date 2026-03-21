@@ -1,190 +1,105 @@
-'use client';
+"use client";
+import React, { useEffect, useRef } from "react";
+import Image from "next/image";
+import gsap from "gsap";
 
-import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Menu, X, Check } from 'lucide-react';
+export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLUListElement>(null);
 
-export default function HeroWithNavbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
 
-  const goToForm = () => {
-    const section = document.getElementById('inscription');
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
-  };
+      tl.from(textRef.current, { opacity: 0, x: -30 })
+        .from(listRef.current ? Array.from(listRef.current.children) : [], 
+          { opacity: 0, y: 20, stagger: 0.1 }, 
+          "-=0.5"
+        )
+        .from(imageRef.current, { opacity: 0, y: 30, duration: 1.2 }, "-=0.8");
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section className="relative min-h-screen w-full bg-white overflow-hidden">
+    <section ref={containerRef} className="relative min-h-[85vh] flex items-center bg-[#F9FAF9] overflow-hidden px-6 lg:px-20 pt-32 pb-20 font-sans">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        
+        {/* TEXTE */}
+        <div ref={textRef} className="z-10 text-center lg:text-left">
+          <h1 className="text-4xl lg:text-5xl font-bold text-zinc-900 leading-[1.2] tracking-tight">
+            Rechargez votre voiture. <br className="hidden lg:block" />
+            <span className="text-[#4A7C44]">Rejoignez votre communauté.</span>
+          </h1>
+          
+          <p className="mt-6 text-lg text-zinc-600 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
+            Le premier réseau bruxellois de partage de bornes entre particuliers. Simple, local et 100% humain.
+          </p>
 
-      {/* ───────── BACKGROUND IMAGE (FIX ZOOM) ───────── */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute right-0 top-0 h-full w-full md:w-[55%]">
-
-          <Image
-            src="/loto2.webp"
-            alt="Voiture électrique"
-            fill
-            priority
-            className="object-contain md:object-cover object-right"
-          />
-
-          <Image
-            src="/loto3.png"
-            alt="Voiture électrique"
-            fill
-            priority
-            className="object-contain md:hidden"
-          />
-
-          {/* overlay plus soft */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-transparent md:via-white/40" />
-        </div>
-      </div>
-
-      {/* ───────── GLOW ───────── */}
-      <div className="absolute bottom-20 right-10 md:right-20 w-64 h-64 bg-[#7A9D54]/20 blur-3xl rounded-full" />
-
-      {/* ───────── NAVBAR ───────── */}
-      <header className="relative z-50 w-full">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
-
-            <Link href="/">
-              <Image
-                src="/w1.png"
-                alt="logo"
-                width={180}
-                height={60}
-                className="w-32 sm:w-40 lg:w-48 brightness-0"
-              />
-            </Link>
-
-            <nav className="hidden lg:flex gap-8 text-sm font-bold uppercase tracking-widest text-gray-800">
-              <Link href="#">Accueil</Link>
-              <Link href="#trouveruneborne">Communauté</Link>
-              <Link href="#inscription">Inscription</Link>
-            </nav>
-
-            <button
-              onClick={goToForm}
-              className="hidden lg:block bg-[#7A9D54] text-white px-6 py-3 rounded-full font-bold"
-            >
-              Je rejoins
+          <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
+            <button className="bg-[#4A7C44] hover:bg-zinc-900 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg hover:scale-105 active:scale-95 text-sm">
+              Rejoindre la communauté
             </button>
-
-            <button onClick={() => setIsMenuOpen(true)} className="lg:hidden">
-              <Menu size={28} />
+            <button className="border-2 border-[#4A7C44] text-[#4A7C44] px-8 py-4 rounded-full font-bold hover:bg-[#4A7C44]/5 transition-all text-sm">
+              Proposer ma borne
             </button>
-
           </div>
-        </div>
-      </header>
 
-      {/* ───────── HERO CONTENT (FIX SPACING + SIZE) ───────── */}
-      <div className="relative z-10 flex items-center min-h-[85vh]">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-
-          <div className="max-w-2xl">
-
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight uppercase mb-6">
-              Rechargez <br />
-              votre voiture <br />
-              <span className="text-[#7A9D54]">chez vos voisins</span>
-            </h1>
-
-            <p className="text-gray-600 text-sm sm:text-base md:text-lg mb-8 max-w-xl">
-              Trouvez une borne près de chez vous. Simple, économique et entre particuliers.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 mb-10">
-              <button
-                onClick={goToForm}
-                className="bg-[#7A9D54] text-white px-6 py-4 rounded-full font-bold"
-              >
-                Trouver une borne
-              </button>
-
-              <Link
-                href="#inscription"
-                className="border border-gray-300 px-6 py-4 rounded-full font-bold text-gray-800"
-              >
-                Devenir hôte
-              </Link>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              {['Près de chez vous', 'À moindre coût', 'Entre voisins'].map((item) => (
-                <div key={item} className="flex items-center gap-2 text-gray-700 font-semibold">
-                  <Check size={18} className="text-[#7A9D54]" />
-                  {item}
+          <ul ref={listRef} className="mt-12 space-y-4 inline-block text-left">
+            {["Recharge à prix local", "Réseau d'entraide", "Près de chez vous"].map((item, i) => (
+              <li key={i} className="flex items-center gap-3 text-zinc-900 font-semibold">
+                <div className="bg-[#4A7C44] p-1 rounded-full">
+                  <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
-              ))}
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* SECTION IMAGE & CARTE */}
+        <div ref={imageRef} className="relative w-full">
+          {/* Image Principale */}
+          <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-[4/3] w-full z-10 border-4 border-white">
+            <Image 
+              src="/b.png" 
+              alt="Recharge StreetCharge"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+          
+          {/* La Carte : "À côté" sur Mobile / "Flottante décalée" sur Desktop */}
+          <div className="
+            relative mt-6 mx-auto            /* Mobile : Sous l'image, centré */
+            lg:absolute lg:mt-0 lg:-bottom-12 lg:-right-12 /* Desktop : Flottant en dehors du cadre */
+            w-full max-w-[280px] h-40 
+            bg-white rounded-3xl p-2 shadow-2xl border-4 border-white z-20
+            transition-transform duration-500 hover:scale-105
+          ">
+            <div className="w-full h-full bg-zinc-100 rounded-2xl overflow-hidden relative">
+              <img 
+                src="/img3.png" 
+                alt="Bornes à Bruxelles"
+                className="w-full h-full object-cover grayscale opacity-80"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-[#4A7C44]/20 to-transparent" />
+              <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-[#4A7C44] rounded-full border-2 border-white shadow-lg -translate-x-1/2 -translate-y-1/2">
+                <div className="absolute inset-0 bg-[#4A7C44] rounded-full animate-ping opacity-75"></div>
+              </div>
+              <div className="absolute bottom-2 left-3">
+              </div>
             </div>
-
           </div>
         </div>
-      </div>
-
-      {/* ───────── WAVES (plus discrètes + pas écrasantes) ───────── */}
-      <div className="absolute bottom-0 left-0 w-full pointer-events-none z-20">
-
-        <svg viewBox="0 0 1440 320" className="w-full h-36 md:h-48">
-          <path
-            fill="#7A9D54"
-            fillOpacity="0.12"
-            d="M0,160 C300,240 1100,80 1440,160 L1440,320 L0,320 Z"
-          />
-        </svg>
-
-        <svg viewBox="0 0 1440 320" className="absolute bottom-0 w-full h-36 md:h-48">
-          <path
-            d="M0,180 C300,250 1100,90 1440,180"
-            stroke="#7A9D54"
-            strokeWidth="2"
-            fill="none"
-            opacity="0.5"
-          />
-          <path
-            d="M0,200 C300,270 1100,110 1440,200"
-            stroke="#7A9D54"
-            strokeWidth="1.5"
-            fill="none"
-            opacity="0.35"
-          />
-        </svg>
 
       </div>
-
-      {/* ───────── MOBILE MENU ───────── */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 bg-white z-[100] flex flex-col p-6">
-
-          <div className="flex justify-between mb-10">
-            <Image src="/w1.png" alt="logo" width={120} height={40} />
-            <button onClick={() => setIsMenuOpen(false)}>
-              <X size={28} />
-            </button>
-          </div>
-
-          <nav className="flex flex-col gap-6 text-2xl font-bold">
-            <Link href="#">Accueil</Link>
-            <Link href="#trouveruneborne">Communauté</Link>
-            <Link href="#inscription">Inscription</Link>
-          </nav>
-
-          <button
-            onClick={goToForm}
-            className="mt-auto bg-[#7A9D54] text-white py-4 rounded-xl font-bold"
-          >
-            Je rejoins
-          </button>
-
-        </div>
-      )}
-
     </section>
   );
 }
