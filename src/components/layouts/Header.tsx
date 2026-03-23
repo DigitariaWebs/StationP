@@ -8,7 +8,6 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Gestion du scroll pour l'effet de sticky header
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -19,20 +18,24 @@ export default function Header() {
 
   const navLinks = [
     { name: "Comment ça marche", href: "#comment-ca-marche" },
-    { name: "Trouver une borne", href: "#trouver" },
-    { name: "Devenir Hôte", href: "#inscription" },
+    { name: "FAQ", href: "#faq" },
   ];
+
+  const scrollToForm = () => {
+    setIsOpen(false);
+    document.getElementById("inscription")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? "bg-white/80 backdrop-blur-md shadow-sm py-3" 
+        scrolled
+          ? "bg-white/80 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-20 flex justify-between items-center">
-        
+
         {/* LOGO */}
         <Link href="/" className="relative z-50">
           <Image
@@ -56,8 +59,11 @@ export default function Header() {
               {link.name}
             </Link>
           ))}
-          <button className="bg-[#4A7C44] text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-zinc-900 transition-all shadow-md hover:scale-105 active:scale-95">
-            Connexion
+          <button
+            onClick={scrollToForm}
+            className="bg-[#4A7C44] text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-zinc-900 transition-all shadow-md hover:scale-105 active:scale-95"
+          >
+            S'inscrire
           </button>
         </nav>
 
@@ -86,8 +92,11 @@ export default function Header() {
                 {link.name}
               </Link>
             ))}
-            <button className="mt-4 bg-[#4A7C44] text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg">
-              Connexion
+            <button
+              onClick={scrollToForm}
+              className="mt-4 bg-[#4A7C44] text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-zinc-900 transition-all"
+            >
+              S'inscrire
             </button>
           </nav>
         </div>

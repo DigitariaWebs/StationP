@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -10,74 +10,63 @@ export default function FAQ() {
     {
       question: "Comment ça fonctionne exactement ?",
       answer:
-        "StreetCharge met en relation des propriétaires de bornes privées avec des conducteurs cherchant à recharger. Vous vous inscrivez, nous facilitons la mise en relation selon votre quartier et vos disponibilités.",
+        "StreetCharge met en relation des propriétaires de bornes privées avec des conducteurs cherchant à recharger près de chez eux. Vous vous inscrivez, nous facilitons la mise en relation selon votre quartier.",
     },
     {
-      question: "Est-ce vraiment gratuit ?",
+      question: "Est-ce que c'est gratuit ?",
       answer:
-        "L'inscription est gratuite et sans engagement. Nous sommes en phase de lancement pour tester le service et construire la meilleure solution possible.",
-    },
-    {
-      question: "Quels communes sont concernés ?",
-      answer:
-        "Nous commençons dans certaines communes de Bruxelles et de la périphérie. Si vous êtes intéressés, inscrivez-vous ! Nous élargirons selon la demande.",
+        "L'inscription est totalement gratuite et sans engagement. Nous sommes en phase de lancement et cherchons à construire la communauté avant d'ouvrir le service.",
     },
     {
       question: "Que se passe-t-il après mon inscription ?",
       answer:
-        "Nous prenons contact avec vous pour comprendre vos besoins et, si possible, vous mettre en relation avec des voisins intéressés.",
+        "Nous vous recontactons pour comprendre vos besoins et vous mettre en relation avec des voisins intéressés dès que le service est disponible dans votre quartier.",
     },
     {
-      question: "Puis-je vraiment partager ma borne privée ?",
+      question: "Quelles communes sont concernées ?",
       answer:
-        "Oui, c'est le principe ! Si vous avez une borne chez vous et qu'elle est parfois inutilisée, vous pouvez la partager avec vos voisins.",
+        "Nous démarrons à Bruxelles et dans les communes de la périphérie. Plus il y a d'inscrits dans une zone, plus vite nous pouvons lancer le service.",
     },
   ];
 
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
-
   return (
-    <section
-      id="faq"
-      className="bg-[color:var(--color-background)] text-[color:var(--color-foreground)] px-4 sm:px-6 lg:px-8 py-16 sm:py-20"
-    >
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="flex justify-center mb-4">
-            <HelpCircle size={40} className="text-[color:var(--color-accent)]" />
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-            Foire aux <span className="text-[color:var(--color-accent)]">questions</span>
+    <section id="faq" className="bg-white px-6 lg:px-8 py-12 sm:py-16">
+      <div className="max-w-3xl mx-auto">
+
+        <div className="text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900">
+            Questions fréquentes
           </h2>
-          <p className="text-lg text-[color:var(--color-muted)]">
-            Tout ce que vous devez savoir sur StreetCharge
+          <p className="mt-2 text-zinc-500 text-base">
+            Vous avez d'autres questions ? Écrivez-nous à{" "}
+            <a href="mailto:hello@streetcharge.be" className="text-[#4A7C44] font-semibold hover:underline">
+              hello@streetcharge.be
+            </a>
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border border-[color:var(--color-border)] rounded-xl overflow-hidden bg-[color:var(--color-surface)] shadow-sm"
+              className="border border-zinc-100 rounded-2xl overflow-hidden bg-[#F9FAF9]"
             >
               <button
-                onClick={() => toggleFAQ(index)}
-                className="w-full flex justify-between items-center p-6 text-left hover:bg-[color:var(--color-surface-muted)] transition-colors"
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                className="w-full flex justify-between items-center px-6 py-5 text-left hover:bg-zinc-50 transition-colors"
               >
-                <span className="font-semibold text-lg text-[color:var(--color-foreground)]">
+                <span className="font-semibold text-base text-zinc-900 pr-4">
                   {faq.question}
                 </span>
                 {openIndex === index ? (
-                  <ChevronUp size={20} className="text-[color:var(--color-accent)] flex-shrink-0" />
+                  <ChevronUp size={18} className="text-[#4A7C44] shrink-0" />
                 ) : (
-                  <ChevronDown size={20} className="text-[color:var(--color-accent)] flex-shrink-0" />
+                  <ChevronDown size={18} className="text-[#4A7C44] shrink-0" />
                 )}
               </button>
 
               {openIndex === index && (
-                <div className="px-6 pb-6 text-[color:var(--color-muted)] animate-in slide-in-from-top-2 duration-300">
+                <div className="px-6 pb-5 text-zinc-500 text-sm leading-relaxed animate-in slide-in-from-top-2 duration-200">
                   {faq.answer}
                 </div>
               )}
@@ -85,17 +74,6 @@ export default function FAQ() {
           ))}
         </div>
 
-        <div className="mt-10 text-center">
-          <p className="text-[color:var(--color-muted)]">
-            Vous avez d'autres questions ?{' '}
-            <a
-              href="#howitworks"
-              className="text-[color:var(--color-accent)] hover:underline font-semibold"
-            >
-              Contactez-nous
-            </a>
-          </p>
-        </div>
       </div>
     </section>
   );
