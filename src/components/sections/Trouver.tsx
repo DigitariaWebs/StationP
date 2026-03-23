@@ -2,15 +2,31 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { TrendingUp, MapPin, Leaf } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 const stats = [
-  { value: "En hausse", label: "De plus en plus de conducteurs passent à l’électrique" },
-  { value: "Peu", label: "Trouver une borne publique près de chez soi reste difficile" },
-  { value: "Local", label: "Recharger à domicile revient souvent moins cher" },
+  {
+    icon: TrendingUp,
+    tag: "Tendance",
+    value: "En hausse",
+    label: "De plus en plus de conducteurs passent à l’électrique chaque année.",
+  },
+  {
+    icon: MapPin,
+    tag: "Le problème",
+    value: "Trop peu",
+    label: "Trouver une borne publique près de chez soi reste difficile.",
+  },
+  {
+    icon: Leaf,
+    tag: "La solution",
+    value: "Local",
+    label: "Recharger chez un particulier coûte souvent bien moins cher.",
+  },
 ];
 
 const steps = [
@@ -61,16 +77,40 @@ export default function Trouver() {
   return (
     <>
       {/* ─── BANDE STATS SOMBRE ─── */}
-      <section className="bg-[#1a3a1f] py-12 px-6 lg:px-20">
-        <div ref={statsRef} className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-0 sm:divide-x sm:divide-white/10">
-          {stats.map((s, i) => (
-            <div key={i} className="text-center sm:px-10 first:pl-0 last:pr-0">
-              <div className="text-4xl lg:text-5xl font-black text-white mb-2">{s.value}</div>
-              <p className="text-white/50 text-xs leading-relaxed uppercase tracking-wide whitespace-pre-line">
-                {s.label}
-              </p>
-            </div>
-          ))}
+      <section className="bg-[#1a3a1f] py-14 px-6 lg:px-20">
+        <div
+          ref={statsRef}
+          className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden"
+        >
+          {stats.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <div
+                key={i}
+                className="bg-[#1a3a1f] hover:bg-white/5 transition-colors duration-300 px-8 py-8 flex flex-col gap-4"
+              >
+                {/* Tag + icône */}
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#4A7C44] bg-[#4A7C44]/10 px-3 py-1 rounded-full">
+                    {s.tag}
+                  </span>
+                  <div className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center">
+                    <Icon size={16} className="text-white/40" />
+                  </div>
+                </div>
+
+                {/* Valeur */}
+                <div className="text-3xl lg:text-4xl font-black text-white leading-none">
+                  {s.value}
+                </div>
+
+                {/* Description */}
+                <p className="text-white/45 text-sm leading-relaxed border-t border-white/8 pt-4">
+                  {s.label}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </section>
 

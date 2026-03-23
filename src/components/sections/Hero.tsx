@@ -5,12 +5,12 @@ import Image from "next/image";
 const slides = [
   {
     type: "image" as const,
-    src: "/1.png", // Ta photo locale 1
+    src: "/v3.png", // Ta photo locale 1
     alt: "Recharge électrique",
   },
   {
     type: "image" as const,
-    src: "/loto.webp", // Ta photo locale 2
+    src: "/v2.png", // Ta photo locale 2
     alt: "Station de recharge",
   },
   {
@@ -56,10 +56,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative flex flex-col lg:flex-row bg-white overflow-hidden min-h-[90vh]">
+    <section className="relative flex flex-col lg:flex-row bg-white overflow-hidden">
 
       {/* ─── GAUCHE : Contenu ─── */}
-      <div className="relative z-10 flex flex-col justify-center px-6 lg:px-16 xl:px-24 pt-24 pb-12 lg:py-0 w-full lg:w-[55%]">
+      <div className="relative z-10 flex flex-col justify-center px-6 lg:px-16 xl:px-24 pt-24 pb-10 lg:pt-28 lg:pb-14 w-full lg:w-[55%]">
 
         {/* Titre : Taille réduite (text-3xl à 5xl) pour ne pas écraser la navbar */}
         <h1 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-zinc-900 leading-tight tracking-tight mb-5">
@@ -104,7 +104,7 @@ export default function Hero() {
 
       {/* ─── DROITE : Slider ─── */}
       <div
-        className="relative w-full h-72 sm:h-96 lg:h-auto lg:w-[45%] overflow-hidden bg-zinc-100"
+        className="relative w-full h-64 sm:h-80 lg:h-auto lg:self-stretch lg:min-h-120 lg:w-[45%] overflow-hidden bg-zinc-100"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >

@@ -52,7 +52,7 @@ export default function Header() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-bold text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
+              className="text-sm font-bold text-zinc-900 hover:text-zinc-900 transition-colors tracking-wide"
             >
               {link.name}
             </Link>
