@@ -1,136 +1,102 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Instagram, Linkedin } from 'lucide-react';
-import Image from 'next/image';
+import type { ReactNode } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer
-      id="footer"
-      className="bg-white text-zinc-900 border-t border-zinc-100 pt-20 pb-10"
-    >
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Grid Principal */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
-          {/* Brand - Logo & Description */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6">
-            <Link href="/" className="group">
-              <Image 
-                src="/w1.png" 
-                alt="StreetCharge Logo" 
-                width={180} 
-                height={50} 
-                className="w-40 h-auto transition-transform group-hover:scale-105"
+    <footer id="footer" className="bg-[#1a3a1f] text-white pt-14 pb-8 px-6 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Ligne principale */}
+        <div className="flex flex-col lg:flex-row justify-between gap-12 mb-12 pb-12 border-b border-white/10">
+
+          {/* Brand */}
+          <div className="max-w-xs">
+            <Link href="/">
+              <Image
+                src="/w1.png"
+                alt="StreetCharge"
+                width={160}
+                height={44}
+                className="w-36 h-auto brightness-0 invert mb-5"
                 priority
               />
             </Link>
-            <p className="text-zinc-500 text-sm leading-relaxed max-w-xs font-medium">
-              Le premier réseau de mise en relation humaine pour la recharge électrique entre particuliers à Bruxelles. Simple, local et durable.
+            <p className="text-white/50 text-sm leading-relaxed mb-5">
+              Le premier réseau bruxellois de partage de bornes entre particuliers. Simple, local et humain.
             </p>
-            {/* Social Icons */}
-            <div className="flex gap-3 justify-center md:justify-start">
-              <SocialLink href="#" icon={<Instagram size={18} />} />
-              <SocialLink href="#" icon={<Linkedin size={18} />} />
+            <div className="flex gap-2">
+              <SocialIcon href="#" icon={<Instagram size={16} />} />
+              <SocialIcon href="#" icon={<Linkedin size={16} />} />
             </div>
           </div>
 
-          {/* Navigation - Découvrir */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h4 className="font-bold text-zinc-900 mb-6 text-xs uppercase tracking-[0.2em]">
-              Découvrir
-            </h4>
-            <ul className="space-y-4">
-              <FooterLink href="/#howitworks">Rejoindre la communauté</FooterLink>
-              <FooterLink href="/#trouveruneborne">Trouver une borne</FooterLink>
-              <FooterLink href="/devenir-hote">Devenir Hôte</FooterLink>
-            </ul>
-          </div>
-
-          {/* Navigation - Support */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h4 className="font-bold text-zinc-900 mb-6 text-xs uppercase tracking-[0.2em]">
-              Assistance
-            </h4>
-            <ul className="space-y-4">
-              <FooterLink href="/contact">Nous contacter</FooterLink>
-              <FooterLink href="/faq">Questions fréquentes</FooterLink>
-              <FooterLink href="/aide">Centre d'aide</FooterLink>
-            </ul>
-          </div>
-
-          {/* Contact Rapide */}
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h4 className="font-bold text-[#4A7C44] mb-6 text-xs uppercase tracking-[0.2em]">
-              Restons connectés
-            </h4>
-            <p className="text-zinc-500 text-sm mb-4 leading-relaxed font-medium">
-              Une question ? Notre équipe bruxelloise est là pour vous accompagner dans votre transition.
-            </p>
-            <Link href="mailto:hello@streetcharge.be" className="text-zinc-900 font-bold hover:text-[#4A7C44] transition-colors">
-              hello@streetcharge.be
-            </Link>
+          {/* Liens */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:gap-16">
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4">Navigation</h4>
+              <ul className="space-y-3">
+                <FooterLink href="#comment-ca-marche">Comment ça marche</FooterLink>
+                <FooterLink href="#inscription">S'inscrire</FooterLink>
+                <FooterLink href="#faq">FAQ</FooterLink>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4">Légal</h4>
+              <ul className="space-y-3">
+                <FooterLink href="/legal">Mentions légales</FooterLink>
+                <FooterLink href="/confidentialite">Confidentialité</FooterLink>
+                <FooterLink href="/cookies">Cookies</FooterLink>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-4">Contact</h4>
+              <a
+                href="mailto:hello@streetcharge.be"
+                className="text-sm text-white/70 hover:text-white transition-colors font-medium"
+              >
+                hello@streetcharge.be
+              </a>
+              <p className="text-white/30 text-xs mt-3 leading-relaxed">
+                Notre équipe est basée à Bruxelles.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Barre du bas (Mentions) */}
-        <div className="pt-8 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
-          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4">
-            <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-              © {currentYear} STREETCHARGE. TOUS DROITS RÉSERVÉS.
-            </p>
-            <span className="hidden md:inline text-zinc-200">|</span>
-            <p className="text-[10px] font-bold text-[#4A7C44] uppercase tracking-widest">
-              Mise en relation 100% humaine
-            </p>
-          </div>
-          
-          <div className="flex flex-wrap justify-center gap-6">
-            <LegalLink href="/legal">Mentions Légales</LegalLink>
-            <LegalLink href="/confidentialite">Confidentialité</LegalLink>
-            <LegalLink href="/cookies">Cookies</LegalLink>
-          </div>
+        {/* Bas de page */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-white/30 font-medium uppercase tracking-widest">
+          <span>© {currentYear} StreetCharge — Tous droits réservés</span>
+          <span className="text-[#4A7C44] font-bold">Mise en relation 100% humaine</span>
         </div>
+
       </div>
     </footer>
   );
 }
 
-// Composants internes harmonisés
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+function FooterLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <li>
-      <Link 
-        href={href} 
-        className="text-zinc-500 hover:text-[#4A7C44] font-semibold text-sm transition-all duration-300"
-      >
+      <Link href={href} className="text-sm text-white/60 hover:text-white transition-colors font-medium">
         {children}
       </Link>
     </li>
   );
 }
 
-function SocialLink({ href, icon }: { href: string; icon: React.ReactNode }) {
+function SocialIcon({ href, icon }: { href: string; icon: ReactNode }) {
   return (
-    <Link 
-      href={href} 
-      className="w-10 h-10 rounded-full bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-400 hover:bg-[#4A7C44] hover:text-white hover:border-[#4A7C44] transition-all duration-300"
+    <Link
+      href={href}
+      className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 hover:bg-white/10 hover:text-white transition-all"
     >
       {icon}
-    </Link>
-  );
-}
-
-function LegalLink({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <Link 
-      href={href} 
-      className="text-[10px] font-bold text-zinc-400 hover:text-zinc-900 uppercase tracking-widest transition-colors"
-    >
-      {children}
     </Link>
   );
 }

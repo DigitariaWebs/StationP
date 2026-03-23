@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
@@ -9,38 +9,36 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: "Comment ça marche", href: "#comment-ca-marche" },
-    { name: "FAQ", href: "#faq" },
-  ];
 
   const scrollToForm = () => {
     setIsOpen(false);
     document.getElementById("inscription")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const navLinks = [
+    { name: "Comment ça marche", href: "#comment-ca-marche" },
+    { name: "FAQ", href: "#faq" },
+  ];
+
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/80 backdrop-blur-md shadow-sm py-3"
+          ? "bg-white/90 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-20 flex justify-between items-center">
 
-        {/* LOGO */}
+        {/* Logo */}
         <Link href="/" className="relative z-50">
           <Image
             src="/w1.png"
-            alt="StreetCharge Logo"
+            alt="StreetCharge"
             width={150}
             height={40}
             className="w-32 lg:w-40 h-auto"
@@ -48,13 +46,13 @@ export default function Header() {
           />
         </Link>
 
-        {/* DESKTOP NAV */}
+        {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-bold text-zinc-900 hover:text-[#4A7C44] transition-colors tracking-wide"
+              className="text-sm font-bold text-zinc-600 hover:text-zinc-900 transition-colors tracking-wide"
             >
               {link.name}
             </Link>
@@ -67,15 +65,16 @@ export default function Header() {
           </button>
         </nav>
 
-        {/* MOBILE MENU BUTTON */}
+        {/* Burger mobile */}
         <button
           className="lg:hidden relative z-50 p-2 text-zinc-900"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Menu"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={26} /> : <Menu size={26} />}
         </button>
 
-        {/* MOBILE NAV OVERLAY */}
+        {/* Mobile overlay */}
         <div
           className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center transition-transform duration-500 lg:hidden ${
             isOpen ? "translate-x-0" : "translate-x-full"
@@ -87,7 +86,7 @@ export default function Header() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-2xl font-bold text-zinc-900 hover:text-[#4A7C44]"
+                className="text-2xl font-black text-zinc-900 hover:text-[#4A7C44] transition-colors"
               >
                 {link.name}
               </Link>

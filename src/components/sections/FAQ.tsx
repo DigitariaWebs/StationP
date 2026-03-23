@@ -1,74 +1,75 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
+
+const faqs = [
+  {
+    question: "Comment ça fonctionne exactement ?",
+    answer:
+      "StreetCharge met en relation des propriétaires de bornes privées avec des conducteurs qui cherchent à recharger près de chez eux. Vous vous inscrivez, nous facilitons la mise en relation selon votre quartier et vos disponibilités.",
+  },
+  {
+    question: "Est-ce que c'est gratuit ?",
+    answer:
+      "L'inscription est totalement gratuite et sans engagement. Nous sommes en phase de lancement et nous cherchons à construire la communauté avant d'ouvrir le service.",
+  },
+  {
+    question: "Que se passe-t-il après mon inscription ?",
+    answer:
+      "Nous vous recontactons pour comprendre vos besoins et vous mettre en relation avec des voisins intéressés dès que le service est disponible dans votre quartier.",
+  },
+  {
+    question: "Quelles communes sont concernées ?",
+    answer:
+      "Nous démarrons à Bruxelles et dans les communes de la périphérie. Plus il y a d'inscrits dans une zone, plus vite nous pouvons lancer le service.",
+  },
+];
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
-  const faqs = [
-    {
-      question: "Comment ça fonctionne exactement ?",
-      answer:
-        "StreetCharge met en relation des propriétaires de bornes privées avec des conducteurs cherchant à recharger près de chez eux. Vous vous inscrivez, nous facilitons la mise en relation selon votre quartier.",
-    },
-    {
-      question: "Est-ce que c'est gratuit ?",
-      answer:
-        "L'inscription est totalement gratuite et sans engagement. Nous sommes en phase de lancement et cherchons à construire la communauté avant d'ouvrir le service.",
-    },
-    {
-      question: "Que se passe-t-il après mon inscription ?",
-      answer:
-        "Nous vous recontactons pour comprendre vos besoins et vous mettre en relation avec des voisins intéressés dès que le service est disponible dans votre quartier.",
-    },
-    {
-      question: "Quelles communes sont concernées ?",
-      answer:
-        "Nous démarrons à Bruxelles et dans les communes de la périphérie. Plus il y a d'inscrits dans une zone, plus vite nous pouvons lancer le service.",
-    },
-  ];
-
   return (
-    <section id="faq" className="bg-white px-6 lg:px-8 py-12 sm:py-16">
+    <section id="faq" className="py-14 px-6 lg:px-20 bg-white border-t border-zinc-100">
       <div className="max-w-3xl mx-auto">
 
-        <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900">
-            Questions fréquentes
-          </h2>
-          <p className="mt-2 text-zinc-500 text-base">
-            Vous avez d'autres questions ? Écrivez-nous à{" "}
-            <a href="mailto:hello@streetcharge.be" className="text-[#4A7C44] font-semibold hover:underline">
-              hello@streetcharge.be
-            </a>
-          </p>
+        {/* En-tête */}
+        <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
+          <div>
+            <span className="text-[#4A7C44] font-bold tracking-widest uppercase text-[10px] block mb-2">
+              Questions fréquentes
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-zinc-900 leading-tight">
+              Tout ce que vous voulez savoir
+            </h2>
+          </div>
+         
         </div>
 
-        <div className="space-y-3">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="border border-zinc-100 rounded-2xl overflow-hidden bg-[#F9FAF9]"
-            >
+        {/* Accordion */}
+        <div className="divide-y divide-zinc-100">
+          {faqs.map((faq, i) => (
+            <div key={i}>
               <button
-                onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                className="w-full flex justify-between items-center px-6 py-5 text-left hover:bg-zinc-50 transition-colors"
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full flex items-start justify-between py-5 text-left gap-4 group"
               >
-                <span className="font-semibold text-base text-zinc-900 pr-4">
+                <span className="font-bold text-zinc-900 text-base group-hover:text-[#4A7C44] transition-colors">
                   {faq.question}
                 </span>
-                {openIndex === index ? (
-                  <ChevronUp size={18} className="text-[#4A7C44] shrink-0" />
-                ) : (
-                  <ChevronDown size={18} className="text-[#4A7C44] shrink-0" />
-                )}
+                <span className="shrink-0 w-6 h-6 rounded-full bg-zinc-100 group-hover:bg-[#4A7C44]/10 flex items-center justify-center transition-colors mt-0.5">
+                  {openIndex === i ? (
+                    <Minus size={13} className="text-[#4A7C44]" />
+                  ) : (
+                    <Plus size={13} className="text-zinc-500 group-hover:text-[#4A7C44] transition-colors" />
+                  )}
+                </span>
               </button>
 
-              {openIndex === index && (
-                <div className="px-6 pb-5 text-zinc-500 text-sm leading-relaxed animate-in slide-in-from-top-2 duration-200">
+              {openIndex === i && (
+                <p className="pb-5 text-zinc-500 text-sm leading-relaxed animate-in slide-in-from-top-2 duration-200">
                   {faq.answer}
-                </div>
+                </p>
               )}
             </div>
           ))}

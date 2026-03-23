@@ -14,13 +14,13 @@ export default function InscriptionSection() {
   const [userType, setUserType] = useState("driver");
 
   const sectionRef = useRef(null);
-  const formRef = useRef(null);
+  const cardRef = useRef(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from(formRef.current, {
+      gsap.from(cardRef.current, {
         opacity: 0,
-        y: 30,
+        y: 40,
         duration: 1,
         ease: "power3.out",
         scrollTrigger: {
@@ -53,51 +53,85 @@ export default function InscriptionSection() {
   };
 
   return (
-    <section ref={sectionRef} id="inscription" className="py-14 px-6 lg:px-20 bg-[#F9FAF9]">
+    <section ref={sectionRef} id="inscription" className="py-16 px-6 lg:px-20 bg-[#f4f9f4]">
       <div className="max-w-5xl mx-auto">
 
-        <div ref={formRef} className="bg-white rounded-[2.5rem] p-8 lg:p-14 shadow-sm border border-zinc-100 relative overflow-hidden">
+        {/* En-tête de section */}
+        <div className="text-center mb-12">
+          <span className="inline-block text-[#4A7C44] font-bold tracking-widest uppercase text-[10px] mb-4">
+            Rejoindre le projet
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 leading-tight">
+            Rejoignez les premiers.
+          </h2>
+          <p className="mt-3 text-zinc-500 text-base max-w-md mx-auto leading-relaxed">
+            Inscrivez-vous gratuitement pour accéder en avant-première au réseau local dès le lancement à Bruxelles.
+          </p>
+        </div>
 
-          <div className="absolute top-0 right-0 w-56 h-56 bg-[#4A7C44]/5 rounded-full -mr-28 -mt-28 blur-3xl" />
+        {/* Card principale */}
+        <div ref={cardRef} className="bg-white rounded-4xl overflow-hidden shadow-sm border border-zinc-100">
 
           {submitted ? (
-            <div className="py-10 text-center">
+            <div className="py-16 text-center px-8">
               <div className="w-16 h-16 bg-[#4A7C44] rounded-3xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-[#4A7C44]/20">
                 <CheckCircle2 size={32} className="text-white" />
               </div>
-              <h3 className="text-3xl font-bold mb-3 text-zinc-900">C'est envoyé !</h3>
-              <p className="text-zinc-500 text-lg max-w-md mx-auto">
-                Merci pour votre intérêt. Vous faites partie des premiers. On vous recontacte très vite avec les prochaines étapes.
+              <h3 className="text-2xl font-black text-zinc-900 mb-3">C'est envoyé !</h3>
+              <p className="text-zinc-500 text-base max-w-sm mx-auto leading-relaxed">
+                Bienvenue dans la communauté. Vous faites partie des premiers. On vous recontacte très vite.
               </p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-5">
 
-              {/* Texte à gauche */}
-              <div>
-                <span className="text-[#4A7C44] font-bold tracking-widest uppercase text-xs">Rejoindre le projet</span>
-                <h2 className="text-3xl font-bold text-zinc-900 leading-tight mt-3 mb-4">
-                  Accédez en avant-première au réseau local.
-                </h2>
-                <p className="text-zinc-500 text-base mb-7 leading-relaxed">
-                  Inscrivez-vous maintenant pour être parmi les premiers à rejoindre la communauté StreetCharge à Bruxelles. C'est gratuit, sans engagement.
-                </p>
-
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 text-zinc-700 font-medium text-sm">
-                    <Shield size={18} className="text-[#4A7C44] shrink-0" /> Inscription gratuite et sans engagement
+              {/* Panneau gauche vert */}
+              <div className="lg:col-span-2 bg-[#4A7C44] p-8 lg:p-10 flex flex-col justify-between">
+                <div>
+                  <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center mb-6">
+                    <Zap size={20} className="text-white" />
                   </div>
-                  <div className="flex items-center gap-3 text-zinc-700 font-medium text-sm">
-                    <Zap size={18} className="text-[#4A7C44] shrink-0" /> Accès prioritaire au lancement
+                  <h3 className="text-2xl font-black text-white mb-4 leading-tight">
+                    Accès prioritaire au lancement
+                  </h3>
+                  <p className="text-white/70 text-sm leading-relaxed mb-8">
+                    En vous inscrivant maintenant, vous êtes parmi les premiers à rejoindre StreetCharge et à bénéficier du réseau local dès son ouverture.
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-white/80 text-sm font-medium">Inscription gratuite et sans engagement</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-white/80 text-sm font-medium">Mise en relation avec vos voisins</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <span className="text-white/80 text-sm font-medium">Recharge à moindre coût, localement</span>
                   </div>
                 </div>
               </div>
 
-              {/* Formulaire à droite */}
-              <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
+              {/* Panneau droite : formulaire */}
+              <div className="lg:col-span-3 p-8 lg:p-10">
 
-                {/* Toggle Conducteur / Propriétaire */}
-                <div className="flex p-1.5 bg-zinc-100 rounded-2xl mb-5">
+                {/* Toggle */}
+                <div className="flex p-1.5 bg-zinc-100 rounded-2xl mb-6">
                   <button
                     type="button"
                     onClick={() => setUserType("driver")}
@@ -105,7 +139,7 @@ export default function InscriptionSection() {
                       userType === "driver" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500 hover:text-zinc-700"
                     }`}
                   >
-                    <User size={15} /> Conducteur
+                    <User size={15} /> Je cherche à recharger
                   </button>
                   <button
                     type="button"
@@ -114,65 +148,73 @@ export default function InscriptionSection() {
                       userType === "host" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500 hover:text-zinc-700"
                     }`}
                   >
-                    <Zap size={15} /> Propriétaire
+                    <Zap size={15} /> J'ai une borne
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <form onSubmit={handleSubmit} className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <input
+                      name="nom"
+                      placeholder="Nom complet"
+                      required
+                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                    />
+                    <input
+                      name="telephone"
+                      placeholder="Téléphone"
+                      type="tel"
+                      required
+                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                    />
+                  </div>
+
                   <input
-                    name="nom"
-                    placeholder="Nom complet"
+                    name="email"
+                    placeholder="Adresse email"
+                    type="email"
                     required
-                    className="w-full bg-zinc-50 border border-zinc-200 rounded-2xl px-5 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
                   />
+
                   <input
-                    name="telephone"
-                    placeholder="Téléphone"
-                    type="tel"
+                    name="code_postal"
+                    placeholder="Code postal (ex : 1000)"
                     required
-                    className="w-full bg-zinc-50 border border-zinc-200 rounded-2xl px-5 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
                   />
-                </div>
 
-                <input
-                  name="email"
-                  placeholder="Adresse email"
-                  type="email"
-                  required
-                  className="w-full bg-zinc-50 border border-zinc-200 rounded-2xl px-5 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
-                />
-
-                <input
-                  name="code_postal"
-                  placeholder="Code postal (ex: 1000)"
-                  required
-                  className="w-full bg-zinc-50 border border-zinc-200 rounded-2xl px-5 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
-                />
-
-                {userType === "host" && (
-                  <input
-                    name="info_borne"
-                    placeholder="Type de borne (ex: 11kW, 22kW...)"
-                    className="w-full bg-zinc-50 border border-zinc-200 rounded-2xl px-5 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
-                  />
-                )}
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full bg-[#4A7C44] hover:bg-zinc-900 text-white font-bold py-4 rounded-2xl transition-all flex items-center justify-center gap-3 shadow-lg shadow-[#4A7C44]/10 active:scale-[0.98] disabled:opacity-50"
-                >
-                  {loading ? (
-                    <><Loader2 className="animate-spin" size={18} /> Envoi en cours...</>
-                  ) : (
-                    <>{userType === "driver" ? "Rejoindre la communauté" : "Proposer ma borne"} <ArrowRight size={18} /></>
+                  {userType === "host" && (
+                    <input
+                      name="info_borne"
+                      placeholder="Type de borne (ex : 11kW, 22kW...)"
+                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                    />
                   )}
-                </button>
 
-                <p className="text-center text-xs text-zinc-400 mt-2">
-                  En vous inscrivant, vous acceptez d'être recontacté pour le lancement du projet.
-                </p>
-              </form>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-[#4A7C44] hover:bg-zinc-900 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#4A7C44]/10 active:scale-[0.98] disabled:opacity-50 mt-2"
+                  >
+                    {loading ? (
+                      <><Loader2 className="animate-spin" size={16} /> Envoi en cours...</>
+                    ) : (
+                      <>{userType === "driver" ? "Rejoindre la communauté" : "Proposer ma borne"} <ArrowRight size={16} /></>
+                    )}
+                  </button>
+
+                  <p className="text-center text-[11px] text-zinc-400 pt-1">
+                    En vous inscrivant, vous acceptez d'être recontacté pour le lancement.
+                  </p>
+                </form>
+
+                {/* Shield reassurance */}
+                <div className="flex items-center justify-center gap-2 mt-5 text-zinc-400">
+                  <Shield size={13} />
+                  <span className="text-[11px] font-medium">Vos données ne sont jamais partagées avec des tiers.</span>
+                </div>
+              </div>
             </div>
           )}
         </div>

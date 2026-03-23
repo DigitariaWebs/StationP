@@ -1,120 +1,168 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
-import gsap from "gsap";
+
+const slides = [
+  {
+    type: "image" as const,
+    src: "/1.png", // Ta photo locale 1
+    alt: "Recharge électrique",
+  },
+  {
+    type: "image" as const,
+    src: "/loto.webp", // Ta photo locale 2
+    alt: "Station de recharge",
+  },
+  {
+    type: "image" as const,
+    // Lien Unsplash Vérifié : Gros plan câble
+    src: "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1400&auto=format&fit=crop",
+    alt: "Borne de recharge",
+  },
+  {
+    type: "image" as const,
+    // Lien Unsplash Vérifié : Borne moderne
+    src: "/w.png",
+    alt: "Installation électrique",
+  }
+];
 
 export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const listRef = useRef<HTMLUListElement>(null);
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  const prev = () => {
+    setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  };
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
-
-      tl.from(textRef.current, { opacity: 0, x: -30 })
-        .from(listRef.current ? Array.from(listRef.current.children) : [],
-          { opacity: 0, y: 20, stagger: 0.1 },
-          "-=0.5"
-        )
-        .from(imageRef.current, { opacity: 0, y: 30, duration: 1.2 }, "-=0.8");
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+    if (paused) {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      return;
+    }
+    intervalRef.current = setInterval(next, 4000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [paused, next]);
 
   const scrollToForm = () => {
     document.getElementById("inscription")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section ref={containerRef} className="relative flex items-center bg-[#F9FAF9] overflow-hidden px-6 lg:px-20 pt-28 pb-14 font-sans">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+    <section className="relative flex flex-col lg:flex-row bg-white overflow-hidden min-h-[90vh]">
 
-        {/* TEXTE */}
-        <div ref={textRef} className="z-10 text-center lg:text-left">
+      {/* ─── GAUCHE : Contenu ─── */}
+      <div className="relative z-10 flex flex-col justify-center px-6 lg:px-16 xl:px-24 pt-24 pb-12 lg:py-0 w-full lg:w-[55%]">
 
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#4A7C44]/10 text-[#4A7C44] text-xs font-bold mb-6 uppercase tracking-wider">
-            Lancement à Bruxelles
-          </div>
+        {/* Titre : Taille réduite (text-3xl à 5xl) pour ne pas écraser la navbar */}
+        <h1 className="text-3xl sm:text-4xl xl:text-5xl font-extrabold text-zinc-900 leading-tight tracking-tight mb-5">
+          La recharge,<br />
+          <span className="text-[#4A7C44]">entre voisins.</span>
+        </h1>
 
-          <h1 className="text-4xl lg:text-5xl font-bold text-zinc-900 leading-[1.2] tracking-tight">
-            Rechargez près de chez vous,{" "}
-            <span className="text-[#4A7C44]">grâce à vos voisins.</span>
-          </h1>
+        {/* Sous-titre */}
+        <p className="text-sm lg:text-base text-zinc-500 max-w-md leading-relaxed mb-8">
+          StreetCharge connecte les conducteurs de véhicules électriques avec des particuliers qui partagent leur borne — à Bruxelles, près de chez vous.
+        </p>
 
-          <p className="mt-5 text-lg text-zinc-600 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-            StreetCharge connecte les conducteurs de véhicules électriques avec des particuliers qui partagent leur borne. Une solution locale, humaine et pratique.
-          </p>
-
-          <div className="mt-7 flex flex-wrap justify-center lg:justify-start gap-4">
-            <button
-              onClick={scrollToForm}
-              className="bg-[#4A7C44] hover:bg-zinc-900 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg hover:scale-105 active:scale-95 text-sm"
-            >
-              Rejoindre la communauté
-            </button>
-            <button
-              onClick={scrollToForm}
-              className="border-2 border-[#4A7C44] text-[#4A7C44] px-8 py-4 rounded-full font-bold hover:bg-[#4A7C44]/5 transition-all text-sm"
-            >
-              Proposer ma borne
-            </button>
-          </div>
-
-          <ul ref={listRef} className="mt-10 space-y-3 inline-block text-left">
-            {[
-              "Recharge à moindre coût",
-              "Réseau de particuliers locaux",
-              "Simple, sans application pour l'instant",
-            ].map((item, i) => (
-              <li key={i} className="flex items-center gap-3 text-zinc-700 font-semibold text-sm">
-                <div className="bg-[#4A7C44] p-1 rounded-full shrink-0">
-                  <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                {item}
-              </li>
-            ))}
-          </ul>
+        {/* CTAs */}
+        <div className="flex flex-wrap gap-3 mb-10">
+          <button
+            onClick={scrollToForm}
+            className="bg-[#4A7C44] text-white px-6 py-3 rounded-full font-bold text-xs hover:bg-zinc-900 transition-all shadow-md hover:scale-105 active:scale-95"
+          >
+            Rejoindre la communauté
+          </button>
+          <button
+            onClick={scrollToForm}
+            className="border-2 border-zinc-100 text-zinc-700 px-6 py-3 rounded-full font-bold text-xs hover:border-[#4A7C44] hover:text-[#4A7C44] transition-all"
+          >
+            Proposer ma borne →
+          </button>
         </div>
 
-        {/* IMAGE */}
-        <div ref={imageRef} className="relative w-full">
-          <div className="relative rounded-[2.5rem] overflow-hidden shadow-2xl aspect-4/3 w-full z-10 border-4 border-white">
+        {/* Barre de confiance */}
+        <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-400 font-semibold border-t border-zinc-100 pt-6">
+          {["Inscription gratuite", "Sans engagement", "100 % local"].map((item, i) => (
+            <React.Fragment key={i}>
+              <span className="flex items-center gap-2">
+                <span className="w-1 h-1 bg-[#4A7C44] rounded-full" />
+                {item}
+              </span>
+              {i < 2 && <span className="w-px h-3 bg-zinc-200 hidden sm:block" />}
+            </React.Fragment>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── DROITE : Slider ─── */}
+      <div
+        className="relative w-full h-72 sm:h-96 lg:h-auto lg:w-[45%] overflow-hidden bg-zinc-100"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        {/* Coin découpé desktop */}
+        <div
+          className="absolute top-0 left-0 w-16 h-full bg-white z-10 hidden lg:block"
+          style={{ clipPath: "polygon(0 0, 100% 0, 0 100%)" }}
+        />
+
+        {/* Slides */}
+        {slides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              index === current ? "opacity-100 z-1" : "opacity-0 z-0"
+            }`}
+          >
             <Image
-              src="/b.png"
-              alt="Recharge StreetCharge"
+              src={slide.src}
+              alt={slide.alt}
               fill
               className="object-cover"
-              priority
+              priority={index === 0}
             />
+            <div className="absolute inset-0 bg-black/10" />
           </div>
+        ))}
 
-          {/* Carte flottante */}
-          <div className="
-            relative mt-5 mx-auto
-            lg:absolute lg:mt-0 lg:-bottom-10 lg:-right-10
-            w-full max-w-65 h-36
-            bg-white rounded-3xl p-2 shadow-2xl border-4 border-white z-20
-            transition-transform duration-500 hover:scale-105
-          ">
-            <div className="w-full h-full bg-zinc-100 rounded-2xl overflow-hidden relative">
-              <img
-                src="/img3.png"
-                alt="Bornes à Bruxelles"
-                className="w-full h-full object-cover grayscale opacity-80"
-              />
-              <div className="absolute inset-0 bg-linear-to-tr from-[#4A7C44]/20 to-transparent" />
-              <div className="absolute top-1/2 left-1/2 w-4 h-4 bg-[#4A7C44] rounded-full border-2 border-white shadow-lg -translate-x-1/2 -translate-y-1/2">
-                <div className="absolute inset-0 bg-[#4A7C44] rounded-full animate-ping opacity-75"></div>
-              </div>
-            </div>
-          </div>
+        {/* Dots */}
+        <div className="absolute bottom-6 left-0 right-0 flex items-center justify-center gap-2 z-20">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className={`transition-all duration-300 rounded-full ${
+                i === current ? "w-5 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/40"
+              }`}
+            />
+          ))}
         </div>
 
+        {/* Navigation */}
+        <button
+          onClick={prev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-[#4A7C44] transition-all z-20"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={next}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-[#4A7C44] transition-all z-20"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
     </section>
   );
