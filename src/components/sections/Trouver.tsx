@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-import { TrendingUp, MapPin, Leaf } from "lucide-react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -10,20 +10,17 @@ if (typeof window !== "undefined") {
 
 const stats = [
   {
-    icon: TrendingUp,
-    tag: "Tendance",
+    tag: "",
     value: "En hausse",
     label: "De plus en plus de conducteurs passent à l’électrique chaque année.",
   },
   {
-    icon: MapPin,
-    tag: "Le problème",
+    tag: "",
     value: "Trop peu",
     label: "Trouver une borne publique près de chez soi reste difficile.",
   },
   {
-    icon: Leaf,
-    tag: "La solution",
+    tag: "",
     value: "Local",
     label: "Recharger chez un particulier coûte souvent bien moins cher.",
   },
@@ -76,41 +73,39 @@ export default function Trouver() {
 
   return (
     <>
-      {/* ─── BANDE STATS SOMBRE ─── */}
-      <section className="bg-[#1a3a1f] py-14 px-6 lg:px-20">
+      {/* ─── BANDE STATS avec back.png en arrière-plan ─── */}
+      <section className="relative py-14 px-6 lg:px-20 overflow-hidden bg-[#152417]">
+
+        <Image
+          src="/back.png"
+          alt=""
+          fill
+          unoptimized
+          className="object-cover scale-108 object-[4%_center]"
+          priority
+        />
+        <div className="absolute inset-0 bg-black/5" />
+
         <div
           ref={statsRef}
-          className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden"
+          className="relative z-10 max-w-7xl mx-auto grid grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden"
         >
-          {stats.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <div
-                key={i}
-                className="bg-[#1a3a1f] hover:bg-white/5 transition-colors duration-300 px-8 py-8 flex flex-col gap-4"
-              >
-                {/* Tag + icône */}
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#4A7C44] bg-[#4A7C44]/10 px-3 py-1 rounded-full">
-                    {s.tag}
-                  </span>
-                  <div className="w-9 h-9 rounded-full bg-white/5 flex items-center justify-center">
-                    <Icon size={16} className="text-white/40" />
-                  </div>
-                </div>
-
-                {/* Valeur */}
-                <div className="text-3xl lg:text-4xl font-black text-white leading-none">
-                  {s.value}
-                </div>
-
-                {/* Description */}
-                <p className="text-white/45 text-sm leading-relaxed border-t border-white/8 pt-4">
-                  {s.label}
-                </p>
+          {stats.map((s, i) => (
+            <div
+              key={i}
+              className="hover:bg-white/5 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
+            >
+              {/* Valeur */}
+              <div className="text-base sm:text-2xl lg:text-4xl font-black text-white leading-none">
+                {s.value}
               </div>
-            );
-          })}
+
+              {/* Description */}
+              <p className="text-white/75 text-[10px] sm:text-xs lg:text-sm leading-relaxed border-t border-white/10 pt-2">
+                {s.label}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 
