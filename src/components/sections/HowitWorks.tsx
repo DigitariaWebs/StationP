@@ -12,9 +12,28 @@ export default function InscriptionSection() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userType, setUserType] = useState("driver");
+  const isHost = userType === "host";
 
   const sectionRef = useRef(null);
   const cardRef = useRef(null);
+
+  const sideTitle = isHost ? "Votre borne peut vous rapporter localement" : "Accès prioritaire au lancement";
+  const sideDescription = isHost
+    ? "Votre borne reste souvent inutilisée ? StreetCharge vous aide à l'ouvrir à des conducteurs proches, simplement et selon vos règles."
+    : "En vous inscrivant maintenant, vous êtes parmi les premiers à rejoindre StreetCharge et à bénéficier du réseau local dès son ouverture.";
+
+  const sideBenefits = isHost
+    ? [
+        "La borne de recharge est inituliser 80% du temps",
+        "Accueillez des conducteurs près de chez vous",
+        "Générez un revenu complémentaire",
+        "Rentabiliser votre borne de recharge en genérant un revenu passif",
+      ]
+    : [
+        "Inscription gratuite et sans engagement",
+        "Mise en relation avec vos voisins",
+        "Recharge à moindre coût, localement",
+      ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -92,38 +111,24 @@ export default function InscriptionSection() {
                     <Zap size={20} className="text-white" />
                   </div>
                   <h3 className="text-2xl font-black text-white mb-4 leading-tight">
-                    Accès prioritaire au lancement
+                    {sideTitle}
                   </h3>
                   <p className="text-white/70 text-sm leading-relaxed mb-8">
-                    En vous inscrivant maintenant, vous êtes parmi les premiers à rejoindre StreetCharge et à bénéficier du réseau local dès son ouverture.
+                    {sideDescription}
                   </p>
                 </div>
 
                 <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                      </svg>
+                  {sideBenefits.map((benefit) => (
+                    <div key={benefit} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0 mt-0.5">
+                        <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <span className="text-white/80 text-sm font-medium">{benefit}</span>
                     </div>
-                    <span className="text-white/80 text-sm font-medium">Inscription gratuite et sans engagement</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-white/80 text-sm font-medium">Mise en relation avec vos voisins</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-white/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <span className="text-white/80 text-sm font-medium">Recharge à moindre coût, localement</span>
-                  </div>
+                  ))}
                 </div>
               </div>
 
@@ -131,11 +136,11 @@ export default function InscriptionSection() {
               <div className="lg:col-span-3 p-8 lg:p-10">
 
                 {/* Toggle */}
-                <div className="flex p-1.5 bg-zinc-100 rounded-2xl mb-6">
+                <div className="flex flex-col sm:flex-row p-1.5 gap-1.5 sm:gap-0 bg-zinc-100 rounded-2xl mb-6">
                   <button
                     type="button"
                     onClick={() => setUserType("driver")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${
+                    className={`flex-1 flex items-center justify-start sm:justify-center gap-2 px-3 sm:px-0 py-3 rounded-xl text-[13px] sm:text-sm font-bold transition-all ${
                       userType === "driver" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500 hover:text-zinc-700"
                     }`}
                   >
@@ -144,13 +149,19 @@ export default function InscriptionSection() {
                   <button
                     type="button"
                     onClick={() => setUserType("host")}
-                    className={`flex-1 flex items-center justify-center gap-2 py-3 rounded-xl text-sm font-bold transition-all ${
+                    className={`flex-1 flex items-center justify-start sm:justify-center gap-2 px-3 sm:px-0 py-3 rounded-xl text-[13px] sm:text-sm font-bold transition-all ${
                       userType === "host" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500 hover:text-zinc-700"
                     }`}
                   >
                     <Zap size={15} /> J'ai une borne
                   </button>
                 </div>
+
+                <p className="text-xs text-zinc-500 mb-4 leading-relaxed">
+                  {isHost
+                    ? "Partagez votre borne selon vos disponibilités, accueillez des conducteurs proches et générez un revenu complémentaire local."
+                    : "Trouvez une solution de recharge locale près de chez vous, simplement et sans engagement."}
+                </p>
 
                 <form onSubmit={handleSubmit} className="space-y-3">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -200,7 +211,7 @@ export default function InscriptionSection() {
                     {loading ? (
                       <><Loader2 className="animate-spin" size={16} /> Envoi en cours...</>
                     ) : (
-                      <>{userType === "driver" ? "Rejoindre la communauté" : "Proposer ma borne"} <ArrowRight size={16} /></>
+                      <>{userType === "driver" ? "Rejoindre la communauté" : "Commencer à rentabiliser ma borne"} <ArrowRight size={16} /></>
                     )}
                   </button>
 

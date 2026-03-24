@@ -9,97 +9,161 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Bloque le scroll body quand le menu est ouvert
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
+  const close = () => setIsOpen(false);
+
   const scrollToForm = () => {
-    setIsOpen(false);
-    document.getElementById("inscription")?.scrollIntoView({ behavior: "smooth" });
+    close();
+    setTimeout(() => {
+      document.getElementById("inscription")?.scrollIntoView({ behavior: "smooth" });
+    }, isOpen ? 300 : 0);
   };
 
   const navLinks = [
-    { name: "Comment ça marche", href: "#comment-ca-marche" },
-    { name: "FAQ", href: "#faq" },
+    { label: "Comment ça marche", href: "#comment-ca-marche" },
+    { label: "FAQ", href: "#faq" },
   ];
 
   return (
-    <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-md shadow-sm py-3"
-          : "bg-transparent py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-20 flex justify-between items-center">
-
-        {/* Logo */}
-        <Link href="/" className="relative z-50">
-          <Image
-            src="/w1.png"
-            alt="StreetCharge"
-            width={150}
-            height={40}
-            className="w-32 lg:w-40 h-auto"
-            priority
-          />
-        </Link>
-
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-10">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              href={link.href}
-              className="text-sm font-bold text-zinc-900 hover:text-zinc-900 transition-colors tracking-wide"
-            >
-              {link.name}
-            </Link>
-          ))}
-          <button
-            onClick={scrollToForm}
-            className="bg-[#4A7C44] text-white px-6 py-2.5 rounded-full font-bold text-sm hover:bg-zinc-900 transition-all shadow-md hover:scale-105 active:scale-95"
-          >
-            S'inscrire
-          </button>
-        </nav>
-
-        {/* Burger mobile */}
-        <button
-          className="lg:hidden relative z-50 p-2 text-zinc-900"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Menu"
-        >
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
-
-        {/* Mobile overlay */}
+    <>
+      {/* ─── NAVBAR FLOTTANTE ─── */}
+      <header className="fixed top-0 left-0 right-0 z-50 px-0 pt-4 lg:pt-5">
+        {/* Hauteur fixe h-[68px] — le logo ne peut jamais gonfler la navbar */}
         <div
-          className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-center transition-transform duration-500 lg:hidden ${
-            isOpen ? "translate-x-0" : "translate-x-full"
+          className={`w-full h-16 min-h-16 max-h-16 flex items-center justify-between rounded-2xl pl-1 pr-4 lg:pr-6 transition-all duration-300 overflow-hidden ${
+            scrolled
+              ? "bg-white/95 backdrop-blur-md shadow-xl border border-zinc-100"
+              : "bg-white lg:bg-white/10 lg:backdrop-blur-md border border-zinc-100 lg:border-white/25 shadow-sm lg:shadow-none"
           }`}
         >
-          <nav className="flex flex-col items-center gap-8">
-            {navLinks.map((link) => (
+          {/* Logo : contraint à max-h-[52px] — jamais plus grand que la navbar */}
+          <Link href="/" className="shrink-0 flex items-center h-full">
+            <span className="relative block h-16 w-52 lg:w-56 overflow-hidden">
+            <Image
+              src="/w1.png"
+              alt="StreetCharge"
+              fill
+              sizes="(min-width: 1024px) 624px, 208px"
+              className="object-cover object-left scale-80 transition-all duration-300"
+              priority
+            />
+            </span>
+          </Link>
+
+          {/* Desktop nav */}
+          <nav className="hidden lg:flex items-center gap-8">
+            {navLinks.map(({ label, href }) => (
               <Link
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-2xl font-black text-zinc-900 hover:text-[#4A7C44] transition-colors"
+                key={href}
+                href={href}
+                className={`text-sm font-semibold transition-colors ${
+                  scrolled
+                    ? "text-zinc-600 hover:text-[#4A7C44]"
+                    : "text-white/85 hover:text-white"
+                }`}
               >
-                {link.name}
+                {label}
               </Link>
             ))}
             <button
               onClick={scrollToForm}
-              className="mt-4 bg-[#4A7C44] text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:bg-zinc-900 transition-all"
+              className={`px-5 py-2 rounded-full font-bold text-sm transition-all duration-200 hover:scale-105 active:scale-95 shadow-md ${
+                scrolled
+                  ? "bg-[#4A7C44] text-white hover:bg-[#3a6235] shadow-[#4A7C44]/20"
+                  : "bg-white text-[#4A7C44] hover:bg-white/90"
+              }`}
             >
               S'inscrire
             </button>
           </nav>
+
+          {/* Burger mobile — toujours visible (fond blanc sur mobile) */}
+          <button
+            onClick={() => setIsOpen((v) => !v)}
+            aria-label="Ouvrir le menu"
+            className="lg:hidden p-2 rounded-xl bg-zinc-100 text-zinc-800 hover:bg-zinc-200 transition-colors"
+          >
+            <Menu size={24} />
+          </button>
+        </div>
+      </header>
+
+      
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menu navigation"
+        className={`fixed inset-0 z-[60] flex flex-col bg-white transition-all duration-300 ease-out lg:hidden ${
+          isOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-3 pointer-events-none"
+        }`}
+      >
+       
+        <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-100">
+          <div className="relative h-16 w-36 overflow-hidden">
+            <Image
+              src="/w1.png"
+              alt="StreetCharge"
+              fill
+              sizes="104px"
+              className="object-cover object-left scale-125"
+            />
+          </div>
+          <button
+            onClick={close}
+            aria-label="Fermer le menu"
+            className="w-9 h-9 flex items-center justify-center rounded-xl bg-zinc-100 text-zinc-700 hover:bg-zinc-200 transition-colors"
+          >
+            <X size={20} />
+          </button>
+        </div>
+
+        
+        <nav className="flex-1 flex flex-col justify-center px-8 gap-1">
+          {navLinks.map(({ label, href }) => (
+            <Link
+              key={href}
+              href={href}
+              onClick={close}
+              className="text-2xl font-black text-zinc-900 hover:text-[#4A7C44] py-5 border-b border-zinc-100 transition-colors"
+            >
+              {label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* CTA bas de page */}
+        <div className="px-6 pb-10 pt-6 space-y-3">
+          <button
+            onClick={scrollToForm}
+            className="w-full bg-[#4A7C44] text-white py-4 rounded-2xl font-bold text-base hover:bg-[#3a6235] transition-all shadow-lg active:scale-95"
+          >
+            S'inscrire gratuitement
+          </button>
+          <p className="text-center text-xs text-zinc-400 font-medium">
+            Sans engagement · 100% gratuit
+          </p>
         </div>
       </div>
-    </header>
+
+      {/* Backdrop derrière le menu */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-[55] bg-black/30 lg:hidden"
+          onClick={close}
+        />
+      )}
+    </>
   );
 }
