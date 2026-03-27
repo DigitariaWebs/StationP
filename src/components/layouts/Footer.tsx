@@ -9,7 +9,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="footer" className="bg-[#1a3a1f] text-white pt-14 pb-8 px-6 lg:px-20">
+    <footer id="footer" className="bg-[#1a3a1f] text-white pt-10 lg:pt-14 pb-6 lg:pb-8 px-6 lg:px-20">
       <div className="max-w-7xl mx-auto">
 
         {/* Ligne principale */}
@@ -28,7 +28,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-white/95 text-sm font-semibold leading-relaxed mb-5">
-              Le premier réseau bruxellois de partage de bornes entre particuliers. Simple, local et humain.
+              Le premier réseau de partage de bornes entre particuliers. Simple, local et humain.
             </p>
             <div className="flex gap-2">
               <SocialIcon href="#" icon={<Instagram size={16} />} />
@@ -57,7 +57,7 @@ export default function Footer() {
             <div>
               <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/85 mb-4">Contact</h4>
               <p className="text-white/95 text-sm font-semibold leading-relaxed">
-                Notre équipe est basée à Bruxelles et répond à toutes vos questions.
+                Notre équipe répond à toutes vos questions.
               </p>
             </div>
           </div>

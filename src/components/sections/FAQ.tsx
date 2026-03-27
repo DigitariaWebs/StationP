@@ -22,7 +22,7 @@ const faqs = [
   {
     question: "Quelles communes sont concernées ?",
     answer:
-      "Nous démarrons à Bruxelles et dans les communes de la périphérie. Plus il y a d'inscrits dans une zone, plus vite nous pouvons lancer le service.",
+      "Plus il y a d'inscrits dans une zone, plus vite nous pouvons lancer le service. Le réseau s'étend progressivement en fonction de la demande.",
   },
 ];
 
@@ -30,7 +30,7 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section id="faq" className="py-14 px-6 lg:px-20 bg-white border-t border-zinc-100">
+    <section id="faq" className="py-8 lg:py-14 px-6 lg:px-20 bg-white border-t border-zinc-100">
       <div className="max-w-3xl mx-auto">
 
         {/* En-tête */}

@@ -72,7 +72,7 @@ export default function InscriptionSection() {
   };
 
   return (
-    <section ref={sectionRef} id="inscription" className="py-16 px-6 lg:px-20 bg-[#f4f9f4]">
+    <section ref={sectionRef} id="inscription" className="py-10 lg:py-16 px-6 lg:px-20 bg-[#f4f9f4]">
       <div className="max-w-5xl mx-auto">
 
         {/* En-tête de section */}
@@ -84,7 +84,7 @@ export default function InscriptionSection() {
             Rejoignez les premiers.
           </h2>
           <p className="mt-3 text-zinc-500 text-base max-w-md mx-auto leading-relaxed">
-            Inscrivez-vous gratuitement pour accéder en avant-première au réseau local dès le lancement à Bruxelles.
+            Inscrivez-vous gratuitement pour accéder en avant-première au réseau local dès le lancement.
           </p>
         </div>
 
