@@ -75,9 +75,9 @@ export default function Trouver() {
     <>
       {/* ─── ACCROCHE ─── */}
       <section className="py-6 lg:py-10 px-6 lg:px-20 bg-white">
-        <p className="text-center text-lg lg:text-xl font-bold text-zinc-700 max-w-2xl mx-auto leading-relaxed">
+        <h2 className="text-center text-2xl lg:text-3xl font-black text-zinc-900 max-w-2xl mx-auto leading-tight">
           Des bornes vides dans votre rue. Des voitures qui cherchent à charger. <span className="text-[#4A7C44]">Nous les connectons.</span>
-        </p>
+        </h2>
       </section>
 
       {/* ─── BANDE STATS avec back.png en arrière-plan ─── */}
