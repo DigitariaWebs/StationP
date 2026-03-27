@@ -39,23 +39,13 @@ export default function Proprietaire() {
             </button>
           </div>
 
-          {/* ─── DROITE : 3 photos égales ─── */}
-          <div className="flex-1 grid grid-cols-3 gap-2.5">
-            {[
-              { src: "/pro1.png", alt: "Borne inutilisée" },
-              { src: "/pro2.png", alt: "Revenu complémentaire" },
-              { src: "/pro3.png", alt: "Conducteurs locaux" },
-            ].map((img) => (
-              <div key={img.src} className="relative aspect-3/4 rounded-2xl overflow-hidden bg-[#0f2614]">
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  fill
-                  unoptimized
-                  className="object-cover"
-                />
-              </div>
-            ))}
+          {/* ─── DROITE : Image unique ─── */}
+          <div className="flex-1 rounded-2xl overflow-hidden bg-[#0f2614]">
+            <img
+              src="/d.png"
+              alt="Propriétaire de borne"
+              className="w-full h-64 sm:h-80 lg:h-full object-cover"
+            />
           </div>
         </div>
       </div>
