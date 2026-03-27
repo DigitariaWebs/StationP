@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Instagram, Linkedin } from 'lucide-react';
-import Image from 'next/image';
+
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -16,18 +16,8 @@ export default function Footer() {
         {/* Grid Principal */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
-          {/* Brand - Logo & Description */}
+          {/* Brand - Description */}
           <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6">
-            <Link href="/" className="group">
-              <Image 
-                src="/w1.png" 
-                alt="StreetCharge Logo" 
-                width={180} 
-                height={50} 
-                className="w-40 h-auto transition-transform group-hover:scale-105"
-                priority
-              />
-            </Link>
             <p className="text-zinc-500 text-sm leading-relaxed max-w-xs font-medium">
               Le premier réseau de mise en relation humaine pour la recharge électrique entre particuliers à Bruxelles. Simple, local et durable.
             </p>
@@ -67,11 +57,12 @@ export default function Footer() {
             <h4 className="font-bold text-[#4A7C44] mb-6 text-xs uppercase tracking-[0.2em]">
               Restons connectés
             </h4>
-            <p className="text-zinc-500 text-sm mb-4 leading-relaxed font-medium">
-              Une question ? Notre équipe bruxelloise est là pour vous accompagner dans votre transition.
-            </p>
-            <Link href="mailto:hello@streetcharge.be" className="text-zinc-900 font-bold hover:text-[#4A7C44] transition-colors">
-              hello@streetcharge.be
+            <Link href="/" className="group">
+              <img
+                src="/w1.png"
+                alt="StreetCharge Logo"
+                className="w-52 h-auto transition-transform group-hover:scale-105"
+              />
             </Link>
           </div>
         </div>
