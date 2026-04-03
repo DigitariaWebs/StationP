@@ -103,10 +103,10 @@ export default function Trouver() {
               key={i}
               className="h-full hover:bg-white/5 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
             >
-              <div className="text-sm sm:text-2xl lg:text-4xl font-black text-white leading-none whitespace-nowrap">
+              <div className="text-[13px] sm:text-2xl lg:text-4xl font-black text-white leading-none whitespace-nowrap drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                 {s.value}
               </div>
-              <p className="mt-auto text-white/75 text-[10px] sm:text-xs lg:text-sm leading-relaxed border-t border-white/10 pt-2">
+              <p className="mt-auto text-white/90 text-[10px] sm:text-xs lg:text-sm leading-relaxed border-t border-white/15 pt-2.5">
                 {s.label}
               </p>
             </div>
@@ -176,10 +176,10 @@ export default function Trouver() {
               key={i}
               className="hover:bg-white/5 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
             >
-              <div className="text-base sm:text-2xl lg:text-4xl font-black text-white leading-none">
+              <div className="text-[13px] sm:text-2xl lg:text-4xl font-black text-white leading-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                 {s.value}
               </div>
-              <p className="text-white/75 text-[10px] sm:text-xs lg:text-sm leading-relaxed border-t border-white/10 pt-2">
+              <p className="text-white/90 text-[10px] sm:text-xs lg:text-sm leading-relaxed border-t border-white/15 pt-2.5">
                 {s.label}
               </p>
             </div>
