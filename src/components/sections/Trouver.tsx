@@ -106,7 +106,7 @@ export default function Trouver() {
               <div className="text-[13px] sm:text-2xl lg:text-4xl font-black text-white leading-none whitespace-nowrap drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                 {s.value}
               </div>
-              <p className="mt-auto text-white/90 text-[10px] sm:text-xs lg:text-sm leading-relaxed border-t border-white/15 pt-2.5">
+              <p className="mt-auto text-white/90 text-[10px] sm:text-xs lg:text-sm font-semibold leading-relaxed border-t border-white/15 pt-2.5">
                 {s.label}
               </p>
             </div>
@@ -179,7 +179,7 @@ export default function Trouver() {
               <div className="text-[13px] sm:text-2xl lg:text-4xl font-black text-white leading-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                 {s.value}
               </div>
-              <p className="text-white/90 text-[10px] sm:text-xs lg:text-sm leading-relaxed border-t border-white/15 pt-2.5">
+              <p className="text-white/90 text-[10px] sm:text-xs lg:text-sm font-semibold leading-relaxed border-t border-white/15 pt-2.5">
                 {s.label}
               </p>
             </div>
