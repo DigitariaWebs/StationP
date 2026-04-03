@@ -51,13 +51,13 @@ export default function Hero() {
 
       {/* ─── DROITE : Image ─── */}
       <div className="relative w-full h-72 sm:h-96 lg:w-[48%] lg:h-auto overflow-hidden bg-zinc-100">
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 hidden lg:block pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-white to-transparent z-10 hidden lg:block pointer-events-none" />
         <Image
           src="/d2.png"
           alt="Recharge électrique"
           fill
           unoptimized
-          className="object-cover"
+          className="object-cover object-[65%_center] lg:object-[85%_center]"
           priority
         />
       </div>
