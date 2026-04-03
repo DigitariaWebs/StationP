@@ -76,7 +76,8 @@ export default function Trouver() {
       {/* ─── ACCROCHE ─── */}
       <section className="py-6 lg:py-10 px-6 lg:px-20 bg-white">
         <h2 className="text-center text-2xl lg:text-3xl font-black text-zinc-900 max-w-2xl mx-auto leading-tight">
-          Des bornes vides dans votre rue. Des voitures qui cherchent à charger. <span className="text-[#4A7C44]">Nous les connectons.</span>
+           Des bornes vides dans votre rue. Besoin de recharger ? 
+ <span className="text-[#4A7C44]">Nous vous connectons !</span>
         </h2>
       </section>
 
@@ -100,12 +101,12 @@ export default function Trouver() {
           {stats.map((s, i) => (
             <div
               key={i}
-              className="hover:bg-white/5 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
+              className="h-full hover:bg-white/5 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
             >
-              <div className="text-base sm:text-2xl lg:text-4xl font-black text-white leading-none">
+              <div className="text-sm sm:text-2xl lg:text-4xl font-black text-white leading-none whitespace-nowrap">
                 {s.value}
               </div>
-              <p className="text-white/75 text-[10px] sm:text-xs lg:text-sm leading-relaxed border-t border-white/10 pt-2">
+              <p className="mt-auto text-white/75 text-[10px] sm:text-xs lg:text-sm leading-relaxed border-t border-white/10 pt-2">
                 {s.label}
               </p>
             </div>
@@ -132,13 +133,6 @@ export default function Trouver() {
                 <p className="text-zinc-500 text-sm leading-relaxed">
                   Pendant ce temps, des milliers de bornes privées ne sont pas utilisées. Une opportunité énorme… encore invisible.
                 </p>
-              </div>
-              <div className="mt-5 lg:mt-8 flex gap-3 flex-wrap">
-                {["Voitures en hausse", "Bornes insuffisantes", "Prix élevés"].map((tag) => (
-                  <span key={tag} className="text-xs font-bold text-zinc-500 bg-white border border-zinc-200 rounded-full px-3 py-1.5">
-                    {tag}
-                  </span>
-                ))}
               </div>
             </div>
 

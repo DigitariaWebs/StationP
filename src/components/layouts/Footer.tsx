@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -30,28 +29,16 @@ export default function Footer() {
             <p className="text-white/95 text-sm font-semibold leading-relaxed mb-5">
               Le premier réseau de partage de bornes entre particuliers. Simple, local et humain.
             </p>
-            <div className="flex gap-2">
-              <SocialIcon href="#" icon={<Instagram size={16} />} />
-              <SocialIcon href="#" icon={<Linkedin size={16} />} />
-            </div>
           </div>
 
           {/* Liens */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 lg:gap-16">
+          <div className="grid grid-cols-2 gap-8 lg:gap-16">
             <div>
               <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/85 mb-4">Navigation</h4>
               <ul className="space-y-3">
                 <FooterLink href="#comment-ca-marche">Comment ça marche</FooterLink>
                 <FooterLink href="#inscription">S'inscrire</FooterLink>
                 <FooterLink href="#faq">FAQ</FooterLink>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/85 mb-4">Légal</h4>
-              <ul className="space-y-3">
-                <FooterLink href="/legal">Mentions légales</FooterLink>
-                <FooterLink href="/confidentialite">Confidentialité</FooterLink>
-                <FooterLink href="/cookies">Cookies</FooterLink>
               </ul>
             </div>
             <div>
@@ -81,16 +68,5 @@ function FooterLink({ href, children }: { href: string; children: ReactNode }) {
         {children}
       </Link>
     </li>
-  );
-}
-
-function SocialIcon({ href, icon }: { href: string; icon: ReactNode }) {
-  return (
-    <Link
-      href={href}
-      className="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-white/85 hover:bg-white/10 hover:text-white transition-all"
-    >
-      {icon}
-    </Link>
   );
 }
