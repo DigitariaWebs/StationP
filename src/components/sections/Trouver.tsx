@@ -101,13 +101,13 @@ export default function Trouver() {
           {stats.map((s, i) => (
             <div
               key={i}
-              className="h-full hover:bg-white/5 transition-colors duration-300 px-2 py-4 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
+              className="h-full hover:bg-white/5 transition-colors duration-300 px-2 py-4 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3 min-h-40 sm:min-h-48"
             >
               <div className="text-sm sm:text-2xl lg:text-4xl font-black text-white leading-none text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                 {s.value}
               </div>
               <p
-                className={`text-white text-[10px] sm:text-sm lg:text-base font-semibold leading-relaxed border-t border-white/25 pt-2.5 min-h-19 sm:min-h-0 sm:text-center ${
+                className={`text-white text-[10px] sm:text-sm lg:text-base font-semibold leading-relaxed border-t border-white/25 pt-2.5 min-h-19 sm:min-h-0 sm:text-center bg-black/50 px-2 py-2 rounded-lg drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)] ${
                   i === 0 ? "text-left -ml-3" : i === 2 ? "text-right pr-1" : "text-center"
                 }`}
               >
@@ -178,7 +178,7 @@ export default function Trouver() {
           ].map((s, i) => (
             <div
               key={i}
-              className="hover:bg-white/5 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
+              className="hover:bg-white/5 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3 min-h-40 sm:min-h-48"
             >
               <div className="text-lg sm:text-2xl lg:text-4xl font-black text-white leading-none text-center sm:text-left drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                 {s.value}
