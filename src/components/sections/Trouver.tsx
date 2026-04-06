@@ -77,7 +77,7 @@ export default function Trouver() {
       <section className="py-6 lg:py-10 px-6 lg:px-20 bg-white">
         <h2 className="text-center text-2xl lg:text-3xl font-black text-zinc-900 max-w-2xl mx-auto leading-tight">
            Des bornes vides dans votre rue. Besoin de recharger ? 
- <span className="text-[#4A7C44]">Nous vous connectons !</span>
+ <span className="text-[#4A7C44]">  Nous vous connectons !</span>
         </h2>
       </section>
 
@@ -101,12 +101,12 @@ export default function Trouver() {
           {stats.map((s, i) => (
             <div
               key={i}
-              className="h-full hover:bg-white/5 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
+              className="h-full hover:bg-white/5 transition-colors duration-300 px-2 py-4 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
             >
-              <div className="text-[13px] sm:text-2xl lg:text-4xl font-black text-white leading-none whitespace-nowrap drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
+              <div className="text-sm sm:text-2xl lg:text-4xl font-black text-white leading-none text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                 {s.value}
               </div>
-              <p className="mt-auto text-white/90 text-[10px] sm:text-xs lg:text-sm font-semibold leading-relaxed border-t border-white/15 pt-2.5">
+              <p className="mt-auto text-white text-[10px] sm:text-sm lg:text-base font-semibold leading-relaxed border-t border-white/25 pt-2.5 text-center">
                 {s.label}
               </p>
             </div>
@@ -166,7 +166,7 @@ export default function Trouver() {
         />
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden">
+        <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden">
           {[
             { value: "Recharge locale", label: "Trouvez une borne à quelques rues de chez vous." },
             { value: "Gagnez de l'argent", label: "Monétisez votre borne quand elle est inutilisée." },
@@ -176,10 +176,10 @@ export default function Trouver() {
               key={i}
               className="hover:bg-white/5 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3"
             >
-              <div className="text-[13px] sm:text-2xl lg:text-4xl font-black text-white leading-none drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
+              <div className="text-lg sm:text-2xl lg:text-4xl font-black text-white leading-none text-center sm:text-left drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                 {s.value}
               </div>
-              <p className="text-white/90 text-[10px] sm:text-xs lg:text-sm font-semibold leading-relaxed border-t border-white/15 pt-2.5">
+              <p className="text-white text-xs sm:text-sm lg:text-base font-semibold leading-relaxed border-t border-white/25 pt-2.5 text-center sm:text-left">
                 {s.label}
               </p>
             </div>

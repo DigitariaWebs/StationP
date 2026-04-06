@@ -48,13 +48,13 @@ export default function Header() {
         >
           {/* Logo : contraint à max-h-[52px] — jamais plus grand que la navbar */}
           <Link href="/" className="shrink-0 flex items-center h-full">
-            <span className="relative block h-16 w-52 lg:w-56 overflow-hidden">
+            <span className="relative block h-16 w-60 lg:w-64 overflow-hidden">
             <Image
               src="/w1.png"
               alt="StreetCharge"
               fill
-              sizes="(min-width: 1024px) 624px, 208px"
-              className="object-cover object-left scale-80 transition-all duration-300"
+              sizes="(min-width: 1024px) 256px, 240px"
+              className="object-cover object-left scale-95 transition-all duration-300"
               priority
             />
             </span>
@@ -111,12 +111,12 @@ export default function Header() {
       >
        
         <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-100">
-          <div className="relative h-16 w-36 overflow-hidden">
+          <div className="relative h-16 w-44 overflow-hidden">
             <Image
               src="/w1.png"
               alt="StreetCharge"
               fill
-              sizes="104px"
+              sizes="176px"
               className="object-cover object-left scale-125"
             />
           </div>
