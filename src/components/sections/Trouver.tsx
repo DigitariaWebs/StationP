@@ -106,7 +106,11 @@ export default function Trouver() {
               <div className="text-sm sm:text-2xl lg:text-4xl font-black text-white leading-none text-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)]">
                 {s.value}
               </div>
-              <p className="mt-auto text-white text-[10px] sm:text-sm lg:text-base font-semibold leading-relaxed border-t border-white/25 pt-2.5 text-center">
+              <p
+                className={`text-white text-[10px] sm:text-sm lg:text-base font-semibold leading-relaxed border-t border-white/25 pt-2.5 min-h-19 sm:min-h-0 sm:text-center ${
+                  i === 0 ? "text-left -ml-3" : i === 2 ? "text-right pr-1" : "text-center"
+                }`}
+              >
                 {s.label}
               </p>
             </div>
