@@ -2,53 +2,29 @@
 
 import { useState } from "react";
 import { Plus, Minus } from "lucide-react";
-
-const faqs = [
-  {
-    question: "Comment ça fonctionne exactement ?",
-    answer:
-      "StreetCharge met en relation des propriétaires de bornes privées avec des conducteurs qui cherchent à recharger près de chez eux. Vous vous inscrivez, nous facilitons la mise en relation selon votre quartier et vos disponibilités.",
-  },
-  {
-    question: "Est-ce que c'est gratuit ?",
-    answer:
-      "L'inscription est totalement gratuite et sans engagement. Nous sommes en phase de lancement et nous cherchons à construire la communauté avant d'ouvrir le service.",
-  },
-  {
-    question: "Que se passe-t-il après mon inscription ?",
-    answer:
-      "Nous vous recontactons pour comprendre vos besoins et vous mettre en relation avec des voisins intéressés dès que le service est disponible dans votre quartier.",
-  },
-  {
-    question: "Quelles communes sont concernées ?",
-    answer:
-      "Plus il y a d'inscrits dans une zone, plus vite nous pouvons lancer le service. Le réseau s'étend progressivement en fonction de la demande.",
-  },
-];
+import { useTranslation } from "@/i18n/LanguageProvider";
 
 export default function FAQ() {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <section id="faq" className="py-8 lg:py-14 px-6 lg:px-20 bg-white border-t border-zinc-100">
       <div className="max-w-3xl mx-auto">
 
-        {/* En-tête */}
         <div className="flex items-end justify-between mb-10 gap-6 flex-wrap">
           <div>
             <span className="text-[#4A7C44] font-bold tracking-widest uppercase text-[10px] block mb-2">
-              Questions fréquentes
+              {t.faq.tag}
             </span>
             <h2 className="text-2xl sm:text-3xl font-black text-zinc-900 leading-tight">
-              Tout ce que vous voulez savoir
+              {t.faq.title}
             </h2>
           </div>
-         
         </div>
 
-        {/* Accordion */}
         <div className="divide-y divide-zinc-100">
-          {faqs.map((faq, i) => (
+          {t.faq.items.map((faq, i) => (
             <div key={i}>
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}

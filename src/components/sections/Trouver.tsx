@@ -3,48 +3,14 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useTranslation } from "@/i18n/LanguageProvider";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-const stats = [
-  {
-    tag: "",
-    value: "En hausse",
-    label: "De plus en plus de voitures électriques sur nos routes chaque année.",
-  },
-  {
-    tag: "",
-    value: "Trop peu",
-    label: "Trop peu de bornes disponibles et à proximité.",
-  },
-  {
-    tag: "",
-    value: "Cher",
-    label: "La recharge peut coûter cher sur les bornes publiques.",
-  },
-];
-
-const steps = [
-  {
-    num: "01",
-    title: "Inscrivez-vous",
-    desc: "Rejoignez la communauté en quelques clics, que vous soyez conducteur ou propriétaire d'une borne.",
-  },
-  {
-    num: "02",
-    title: "Soyez mis en relation",
-    desc: "Nous vous connectons avec les bornes disponibles dans votre quartier dès le lancement.",
-  },
-  {
-    num: "03",
-    title: "Rechargez",
-    desc: "Rechargez votre véhicule à prix local, chez un particulier près de chez vous.",
-  },
-];
-
 export default function Trouver() {
+  const { t } = useTranslation();
   const statsRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const stepsRef = useRef<HTMLDivElement>(null);
@@ -76,8 +42,8 @@ export default function Trouver() {
       {/* ─── ACCROCHE ─── */}
       <section className="py-6 lg:py-10 px-6 lg:px-20 bg-white">
         <h2 className="text-center text-2xl lg:text-3xl font-black text-zinc-900 max-w-2xl mx-auto leading-tight">
-           Des bornes vides dans votre rue. Besoin de recharger ? 
- <span className="text-[#4A7C44]">  Nous vous connectons !</span>
+          {t.trouver.accrocheLine1}
+          <span className="text-[#4A7C44]">{t.trouver.accrocheHighlight}</span>
         </h2>
       </section>
 
@@ -98,7 +64,7 @@ export default function Trouver() {
           ref={statsRef}
           className="relative z-10 max-w-7xl mx-auto grid grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden"
         >
-          {stats.map((s, i) => (
+          {t.trouver.stats.map((s, i) => (
             <div
               key={i}
               className="h-full hover:bg-black/60 transition-colors duration-300 px-2 py-4 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3 min-h-40 sm:min-h-48 bg-black/50"
@@ -118,35 +84,32 @@ export default function Trouver() {
       <section id="trouver" className="pt-10 lg:pt-16 pb-6 lg:pb-8 px-6 lg:px-20 bg-white">
         <div className="max-w-7xl mx-auto">
 
-          {/* Constat + Solution */}
           <div ref={contentRef} className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-8 mb-6 lg:mb-8 items-stretch">
 
-            {/* Constat */}
             <div className="bg-[#f4f9f4] rounded-3xl p-6 lg:p-10 flex flex-col justify-between">
               <div>
                 <span className="text-[#4A7C44] font-bold tracking-widest uppercase text-[10px] block mb-4">
-                  Le constat
+                  {t.trouver.constatTag}
                 </span>
                 <h2 className="text-2xl lg:text-3xl font-black text-zinc-900 leading-tight mb-4">
-                  Aujourd'hui, recharger reste compliqué.
+                  {t.trouver.constatTitle}
                 </h2>
                 <p className="text-zinc-500 text-sm leading-relaxed">
-                  Pendant ce temps, des milliers de bornes privées ne sont pas utilisées. Une opportunité énorme… encore invisible.
+                  {t.trouver.constatDesc}
                 </p>
               </div>
             </div>
 
-            {/* Solution */}
             <div className="bg-[#4A7C44] rounded-3xl p-6 lg:p-10 flex flex-col justify-between text-white">
               <div>
                 <span className="text-white/60 font-bold tracking-widest uppercase text-[10px] block mb-4">
-                  La solution
+                  {t.trouver.solutionTag}
                 </span>
                 <h2 className="text-2xl lg:text-3xl font-black leading-tight mb-4">
-                  StreetCharge débloque ce potentiel.
+                  {t.trouver.solutionTitle}
                 </h2>
                 <p className="text-white/75 text-sm leading-relaxed">
-                  Nous permettons aux particuliers de partager leur borne et aux conducteurs de recharger près de chez eux. Simple, humain et local.
+                  {t.trouver.solutionDesc}
                 </p>
               </div>
             </div>
@@ -167,11 +130,7 @@ export default function Trouver() {
         <div className="absolute inset-0 bg-black/50" />
 
         <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-px bg-white/5 rounded-2xl overflow-hidden">
-          {[
-            { value: "Recharge locale", label: "Trouvez une borne à quelques rues de chez vous." },
-            { value: "Gagnez de l'argent", label: "Monétisez votre borne quand elle est inutilisée." },
-            { value: "Simple & humain", label: "Une solution entre voisins, progressive et fiable." },
-          ].map((s, i) => (
+          {t.trouver.blocks.map((s, i) => (
             <div
               key={i}
               className="hover:bg-black/60 transition-colors duration-300 px-4 py-6 sm:px-6 sm:py-7 lg:px-8 lg:py-8 flex flex-col gap-2 sm:gap-3 min-h-40 sm:min-h-48 bg-black/50"
@@ -191,15 +150,14 @@ export default function Trouver() {
       <section className="py-10 lg:py-16 px-6 lg:px-20 bg-white">
         <div className="max-w-7xl mx-auto">
 
-          {/* Comment ça marche */}
           <div id="comment-ca-marche">
             <div className="flex items-center gap-4 mb-6 lg:mb-10">
-              <span className="text-[#4A7C44] font-bold tracking-widest uppercase text-[10px]">Comment ça marche</span>
+              <span className="text-[#4A7C44] font-bold tracking-widest uppercase text-[10px]">{t.trouver.howTag}</span>
               <div className="flex-1 h-px bg-zinc-100" />
             </div>
 
             <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {steps.map((step, i) => (
+              {t.trouver.steps.map((step, i) => (
                 <div key={i} className="bg-[#f4f9f4] rounded-3xl p-6 lg:p-8 hover:bg-[#edf5ed] transition-colors duration-300">
                   <div className="flex items-center gap-3 mb-4 lg:mb-6">
                     <div className="w-8 h-8 rounded-full bg-[#4A7C44] flex items-center justify-center shrink-0">

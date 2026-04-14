@@ -3,12 +3,14 @@ import React, { useEffect, useRef, useState, type FormEvent } from "react";
 import { ArrowRight, CheckCircle2, Shield, Loader2, Zap, User } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useTranslation } from "@/i18n/LanguageProvider";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function InscriptionSection() {
+  const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userType, setUserType] = useState("driver");
@@ -17,23 +19,9 @@ export default function InscriptionSection() {
   const sectionRef = useRef(null);
   const cardRef = useRef(null);
 
-  const sideTitle = isHost ? "Votre borne peut vous rapporter localement" : "Accès prioritaire au lancement";
-  const sideDescription = isHost
-    ? "Votre borne reste souvent inutilisée ? StreetCharge vous aide à l'ouvrir à des conducteurs proches, simplement et selon vos règles."
-    : "En vous inscrivant maintenant, vous êtes parmi les premiers à rejoindre StreetCharge et à bénéficier du réseau local dès son ouverture.";
-
-  const sideBenefits = isHost
-    ? [
-        "La borne de recharge est inituliser 80% du temps",
-        "Accueillez des conducteurs près de chez vous",
-        "Générez un revenu complémentaire",
-        "Rentabiliser votre borne de recharge en genérant un revenu passif",
-      ]
-    : [
-        "Inscription gratuite et sans engagement",
-        "Mise en relation avec vos voisins",
-        "Recharge à moindre coût, localement",
-      ];
+  const sideTitle = isHost ? t.inscription.sideTitleHost : t.inscription.sideTitleDriver;
+  const sideDescription = isHost ? t.inscription.sideDescHost : t.inscription.sideDescDriver;
+  const sideBenefits = isHost ? t.inscription.benefitsHost : t.inscription.benefitsDriver;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -55,7 +43,10 @@ export default function InscriptionSection() {
     e.preventDefault();
     setLoading(true);
     const formData = new FormData(e.currentTarget);
-    formData.append("type_utilisateur", userType === "driver" ? "Conducteur" : "Propriétaire (Hôte)");
+    formData.append(
+      "type_utilisateur",
+      userType === "driver" ? t.inscription.typeDriver : t.inscription.typeHost
+    );
 
     try {
       const response = await fetch("https://formsubmit.co/ajax/elhoudaifi.soufian@gmail.com", {
@@ -63,9 +54,9 @@ export default function InscriptionSection() {
         body: formData,
       });
       if (response.ok) setSubmitted(true);
-      else alert("Une erreur est survenue.");
+      else alert(t.inscription.errorGeneric);
     } catch {
-      alert("Erreur de connexion.");
+      alert(t.inscription.errorConnection);
     } finally {
       setLoading(false);
     }
@@ -75,20 +66,18 @@ export default function InscriptionSection() {
     <section ref={sectionRef} id="inscription" className="py-10 lg:py-16 px-6 lg:px-20 bg-[#f4f9f4]">
       <div className="max-w-5xl mx-auto">
 
-        {/* En-tête de section */}
         <div className="text-center mb-12">
           <span className="inline-block text-[#4A7C44] font-bold tracking-widest uppercase text-[10px] mb-4">
-            Rejoindre le projet
+            {t.inscription.tag}
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 leading-tight">
-            Rejoignez les premiers.
+            {t.inscription.title}
           </h2>
           <p className="mt-3 text-zinc-500 text-base max-w-md mx-auto leading-relaxed">
-            Inscrivez-vous gratuitement pour accéder en avant-première au réseau local dès le lancement.
+            {t.inscription.intro}
           </p>
         </div>
 
-        {/* Card principale */}
         <div ref={cardRef} className="bg-white rounded-4xl overflow-hidden shadow-sm border border-zinc-100">
 
           {submitted ? (
@@ -96,9 +85,9 @@ export default function InscriptionSection() {
               <div className="w-16 h-16 bg-[#4A7C44] rounded-3xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-[#4A7C44]/20">
                 <CheckCircle2 size={32} className="text-white" />
               </div>
-              <h3 className="text-2xl font-black text-zinc-900 mb-3">C'est envoyé !</h3>
+              <h3 className="text-2xl font-black text-zinc-900 mb-3">{t.inscription.successTitle}</h3>
               <p className="text-zinc-500 text-base max-w-sm mx-auto leading-relaxed">
-                Bienvenue dans la communauté. Vous faites partie des premiers. On vous recontacte très vite.
+                {t.inscription.successDesc}
               </p>
             </div>
           ) : (
@@ -135,7 +124,6 @@ export default function InscriptionSection() {
               {/* Panneau droite : formulaire */}
               <div className="lg:col-span-3 p-8 lg:p-10">
 
-                {/* Toggle */}
                 <div className="flex flex-col sm:flex-row p-1.5 gap-1.5 sm:gap-0 bg-zinc-100 rounded-2xl mb-6">
                   <button
                     type="button"
@@ -144,7 +132,7 @@ export default function InscriptionSection() {
                       userType === "driver" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500 hover:text-zinc-700"
                     }`}
                   >
-                    <User size={15} /> Je cherche à recharger
+                    <User size={15} /> {t.inscription.toggleDriver}
                   </button>
                   <button
                     type="button"
@@ -153,27 +141,25 @@ export default function InscriptionSection() {
                       userType === "host" ? "bg-white text-zinc-900 shadow-sm" : "text-zinc-500 hover:text-zinc-700"
                     }`}
                   >
-                    <Zap size={15} /> J'ai une borne
+                    <Zap size={15} /> {t.inscription.toggleHost}
                   </button>
                 </div>
 
                 <p className="text-xs text-zinc-500 mb-4 leading-relaxed">
-                  {isHost
-                    ? "Partagez votre borne selon vos disponibilités, accueillez des conducteurs proches et générez un revenu complémentaire local."
-                    : "Trouvez une solution de recharge locale près de chez vous, simplement et sans engagement."}
+                  {isHost ? t.inscription.descHost : t.inscription.descDriver}
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-3">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <input
                       name="nom"
-                      placeholder="Nom complet"
+                      placeholder={t.inscription.placeholders.name}
                       required
                       className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
                     />
                     <input
                       name="telephone"
-                      placeholder="Téléphone"
+                      placeholder={t.inscription.placeholders.phone}
                       type="tel"
                       required
                       className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
@@ -182,7 +168,7 @@ export default function InscriptionSection() {
 
                   <input
                     name="email"
-                    placeholder="Adresse email"
+                    placeholder={t.inscription.placeholders.email}
                     type="email"
                     required
                     className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
@@ -190,7 +176,7 @@ export default function InscriptionSection() {
 
                   <input
                     name="code_postal"
-                    placeholder="Code postal (ex : 1000)"
+                    placeholder={t.inscription.placeholders.postal}
                     required
                     className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
                   />
@@ -198,7 +184,7 @@ export default function InscriptionSection() {
                   {userType === "host" && (
                     <input
                       name="info_borne"
-                      placeholder="Type de borne (ex : 11kW, 22kW...)"
+                      placeholder={t.inscription.placeholders.terminal}
                       className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
                     />
                   )}
@@ -209,21 +195,20 @@ export default function InscriptionSection() {
                     className="w-full bg-[#4A7C44] hover:bg-zinc-900 text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-[#4A7C44]/10 active:scale-[0.98] disabled:opacity-50 mt-2"
                   >
                     {loading ? (
-                      <><Loader2 className="animate-spin" size={16} /> Envoi en cours...</>
+                      <><Loader2 className="animate-spin" size={16} /> {t.inscription.sending}</>
                     ) : (
-                      <>{userType === "driver" ? "Rejoindre la communauté" : "Commencer à rentabiliser ma borne"} <ArrowRight size={16} /></>
+                      <>{userType === "driver" ? t.inscription.submitDriver : t.inscription.submitHost} <ArrowRight size={16} /></>
                     )}
                   </button>
 
                   <p className="text-center text-[11px] text-zinc-400 pt-1">
-                    En vous inscrivant, vous acceptez d'être recontacté pour le lancement.
+                    {t.inscription.consent}
                   </p>
                 </form>
 
-                {/* Shield reassurance */}
                 <div className="flex items-center justify-center gap-2 mt-5 text-zinc-400">
                   <Shield size={13} />
-                  <span className="text-[11px] font-medium">Vos données ne sont jamais partagées avec des tiers.</span>
+                  <span className="text-[11px] font-medium">{t.inscription.privacy}</span>
                 </div>
               </div>
             </div>

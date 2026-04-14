@@ -3,9 +3,11 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslation } from "@/i18n/LanguageProvider";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { t } = useTranslation();
 
   return (
     <footer id="footer" className="bg-[#1a3a1f] text-white pt-10 lg:pt-14 pb-6 lg:pb-8 px-6 lg:px-20">
@@ -27,24 +29,24 @@ export default function Footer() {
               />
             </Link>
             <p className="text-white/95 text-sm font-semibold leading-relaxed mb-5">
-              Le premier réseau de partage de bornes entre particuliers. Simple, local et humain.
+              {t.footer.tagline}
             </p>
           </div>
 
           {/* Liens */}
           <div className="grid grid-cols-2 gap-8 lg:gap-16">
             <div>
-              <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/85 mb-4">Navigation</h4>
+              <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/85 mb-4">{t.footer.navTitle}</h4>
               <ul className="space-y-3">
-                <FooterLink href="#comment-ca-marche">Comment ça marche</FooterLink>
-                <FooterLink href="#inscription">S'inscrire</FooterLink>
-                <FooterLink href="#faq">FAQ</FooterLink>
+                <FooterLink href="#comment-ca-marche">{t.footer.navHow}</FooterLink>
+                <FooterLink href="#inscription">{t.footer.navSignup}</FooterLink>
+                <FooterLink href="#faq">{t.footer.navFaq}</FooterLink>
               </ul>
             </div>
             <div>
-              <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/85 mb-4">Contact</h4>
+              <h4 className="text-[10px] font-extrabold uppercase tracking-widest text-white/85 mb-4">{t.footer.contactTitle}</h4>
               <p className="text-white/95 text-sm font-semibold leading-relaxed">
-                Notre équipe répond à toutes vos questions.
+                {t.footer.contactDesc}
               </p>
             </div>
           </div>
@@ -52,8 +54,8 @@ export default function Footer() {
 
         {/* Bas de page */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-white/70 font-semibold uppercase tracking-widest">
-          <span className="text-white/90 font-bold">© {currentYear} StreetCharge — Tous droits réservés</span>
-          <span className="text-white font-extrabold">Mise en relation 100% humaine</span>
+          <span className="text-white/90 font-bold">© {currentYear} StreetCharge — {t.footer.rights}</span>
+          <span className="text-white font-extrabold">{t.footer.human}</span>
         </div>
 
       </div>
