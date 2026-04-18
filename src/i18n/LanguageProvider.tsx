@@ -24,7 +24,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(() => {
     if (typeof window !== "undefined") {
       const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored === "fr" || stored === "nl") return stored;
+      if (stored === "fr" || stored === "nl" || stored === "en") return stored;
     }
     return "fr";
   });
@@ -36,7 +36,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
 
   const setLocale = useCallback((l: Locale) => setLocaleState(l), []);
   const toggleLocale = useCallback(
-    () => setLocaleState((prev) => (prev === "fr" ? "nl" : "fr")),
+    () =>
+      setLocaleState((prev) =>
+        prev === "fr" ? "nl" : prev === "nl" ? "en" : "fr"
+      ),
     []
   );
 

@@ -1,4 +1,4 @@
-export type Locale = "fr" | "nl";
+export type Locale = "fr" | "nl" | "en";
 
 export type Translations = {
   header: {
@@ -433,6 +433,177 @@ export const translations: Record<Locale, Translations> = {
       contactDesc: "Ons team beantwoordt al je vragen.",
       rights: "Alle rechten voorbehouden",
       human: "100% menselijk contact",
+    },
+  },
+  en: {
+    header: {
+      nav: {
+        how: "How it works",
+        faq: "FAQ",
+      },
+      signup: "Sign up",
+      signupFree: "Sign up for free",
+      noCommitment: "No commitment · 100% free",
+      openMenu: "Open menu",
+      closeMenu: "Close menu",
+      menuDialog: "Navigation menu",
+      switchLabel: "Language",
+    },
+    hero: {
+      titleLine1: "Charge close to home.",
+      titleLine2: "Share your charger.",
+      subtitle:
+        "StreetCharge connects neighbours to make EV charging simple, affordable and local.",
+      cta: "Join the first users",
+      imageAlt: "EV charging",
+      bullets: [
+        "Charge easily close to home",
+        "Earn money with your charger",
+        "No commitment & secure",
+      ],
+    },
+    trouver: {
+      accrocheLine1: " Empty chargers on your street. Need to charge? ",
+      accrocheHighlight: "  We connect you!",
+      stats: [
+        {
+          value: "Growing",
+          label: "More and more electric cars on our roads every year.",
+        },
+        {
+          value: "Too few",
+          label: "Too few available chargers nearby.",
+        },
+        {
+          value: "Expensive",
+          label: "Charging at public stations can be costly.",
+        },
+      ],
+      constatTag: "The problem",
+      constatTitle: "Today, charging is still complicated.",
+      constatDesc:
+        "Meanwhile, thousands of private chargers sit unused. A huge opportunity… still invisible.",
+      solutionTag: "The solution",
+      solutionTitle: "StreetCharge unlocks this potential.",
+      solutionDesc:
+        "We help private owners share their charger and drivers charge close to home. Simple, human and local.",
+      blocks: [
+        { value: "Local charging", label: "Find a charger just a few streets from your home." },
+        { value: "Earn money", label: "Monetise your charger when it's not in use." },
+        { value: "Simple & human", label: "A neighbour-to-neighbour solution, gradual and reliable." },
+      ],
+      howTag: "How it works",
+      steps: [
+        {
+          num: "01",
+          title: "Sign up",
+          desc: "Join the community in a few clicks, whether you're a driver or a charger owner.",
+        },
+        {
+          num: "02",
+          title: "Get matched",
+          desc: "We connect you with available chargers in your neighbourhood as soon as we launch.",
+        },
+        {
+          num: "03",
+          title: "Charge",
+          desc: "Charge your vehicle at a local price, at a private owner's place near you.",
+        },
+      ],
+    },
+    inscription: {
+      tag: "Join the project",
+      title: "Join the first users.",
+      intro:
+        "Sign up for free to get early access to the local network as soon as we launch.",
+      successTitle: "Sent!",
+      successDesc:
+        "Welcome to the community. You're among the first. We'll get back to you very soon.",
+      sideTitleHost: "Your charger can earn you money locally",
+      sideTitleDriver: "Priority access at launch",
+      sideDescHost:
+        "Is your charger often unused? StreetCharge helps you open it up to nearby drivers, simply and on your own terms.",
+      sideDescDriver:
+        "By signing up now, you'll be among the first to join StreetCharge and benefit from the local network as soon as it opens.",
+      benefitsHost: [
+        "The charger sits unused 80% of the time",
+        "Welcome drivers near you",
+        "Generate extra income",
+        "Make your charger profitable with passive income",
+      ],
+      benefitsDriver: [
+        "Free sign-up, no commitment",
+        "Connect with your neighbours",
+        "Charge at lower cost, locally",
+      ],
+      toggleDriver: "I'm looking to charge",
+      toggleHost: "I have a charger",
+      descHost:
+        "Share your charger on your schedule, welcome nearby drivers and earn extra local income.",
+      descDriver:
+        "Find a local charging solution close to home, simply and with no commitment.",
+      placeholders: {
+        name: "Full name",
+        phone: "Phone",
+        email: "Email address",
+        postal: "Postal code (e.g. 1000)",
+        terminal: "Charger type (e.g. 11kW, 22kW...)",
+      },
+      sending: "Sending...",
+      submitDriver: "Join the community",
+      submitHost: "Start earning with my charger",
+      consent: "By signing up, you agree to be contacted for the launch.",
+      privacy: "Your data is never shared with third parties.",
+      errorGeneric: "An error occurred.",
+      errorConnection: "Connection error.",
+      typeDriver: "Driver",
+      typeHost: "Owner (Host)",
+    },
+    faq: {
+      tag: "Frequently asked questions",
+      title: "Everything you want to know",
+      items: [
+        {
+          question: "How exactly does it work?",
+          answer:
+            "StreetCharge connects private charger owners with drivers looking to charge near home. You sign up, and we facilitate the match based on your neighbourhood and availability.",
+        },
+        {
+          question: "Is it free?",
+          answer:
+            "Sign-up is completely free and with no commitment. We're in the launch phase and want to build the community before opening the service.",
+        },
+        {
+          question: "What happens after I sign up?",
+          answer:
+            "We get back to you to understand your needs and connect you with interested neighbours as soon as the service is available in your area.",
+        },
+        {
+          question: "Which areas are covered?",
+          answer:
+            "The more sign-ups in an area, the faster we can launch the service. The network grows gradually based on demand.",
+        },
+      ],
+    },
+    proprietaire: {
+      tag: "Charger owners",
+      titleLine1: "Your charger can",
+      titleLine2: "earn you money locally.",
+      desc: "Is your charger often unused? StreetCharge helps you open it up to nearby drivers, simply and on your own terms.",
+      cta: "Offer my charger",
+      imageAlt: "Charger owner",
+    },
+    footer: {
+      tagline:
+        "The first peer-to-peer charger sharing network. Simple, local and human.",
+      navTitle: "Navigation",
+      navHow: "How it works",
+      navSignup: "Sign up",
+      navFaq: "FAQ",
+      contactTitle: "Contact",
+      contactDesc: "Our team answers all your questions.",
+      rights: "All rights reserved",
+      human: "100% human matching",
     },
   },
 };

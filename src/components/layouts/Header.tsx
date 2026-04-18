@@ -68,7 +68,7 @@ export default function Header() {
         aria-label={t.header.switchLabel}
         className={base}
       >
-        {(["fr", "nl"] as Locale[]).map((l) => (
+        {(["fr", "nl", "en"] as Locale[]).map((l) => (
           <button
             key={l}
             type="button"

@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useTranslation } from "@/i18n/LanguageProvider";
 
 export default function Hero() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
+  const heroImage = locale === "fr" ? "/sof.jpeg" : "/sof2.jpeg";
 
   const scrollToForm = () => {
     document.getElementById("inscription")?.scrollIntoView({ behavior: "smooth" });
@@ -48,7 +49,7 @@ export default function Hero() {
       <div className="relative w-full h-72 sm:h-96 lg:w-[48%] lg:h-auto overflow-hidden bg-zinc-100">
         <div className="absolute inset-y-0 left-0 w-24 bg-linear-to-r from-white to-transparent z-10 hidden lg:block pointer-events-none" />
         <Image
-          src="/sof2.jpeg"
+          src={heroImage}
           alt={t.hero.imageAlt}
           fill
           unoptimized
