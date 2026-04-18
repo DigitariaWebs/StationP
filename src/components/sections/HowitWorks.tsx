@@ -155,14 +155,14 @@ export default function InscriptionSection() {
                       name="nom"
                       placeholder={t.inscription.placeholders.name}
                       required
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm text-zinc-900 placeholder:text-zinc-400 placeholder:opacity-100"
                     />
                     <input
                       name="telephone"
                       placeholder={t.inscription.placeholders.phone}
                       type="tel"
                       required
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm text-zinc-900 placeholder:text-zinc-400 placeholder:opacity-100"
                     />
                   </div>
 
@@ -171,21 +171,21 @@ export default function InscriptionSection() {
                     placeholder={t.inscription.placeholders.email}
                     type="email"
                     required
-                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm text-zinc-900 placeholder:text-zinc-400 placeholder:opacity-100"
                   />
 
                   <input
                     name="code_postal"
                     placeholder={t.inscription.placeholders.postal}
                     required
-                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                    className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm text-zinc-900 placeholder:text-zinc-400 placeholder:opacity-100"
                   />
 
                   {userType === "host" && (
                     <input
                       name="info_borne"
                       placeholder={t.inscription.placeholders.terminal}
-                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm"
+                      className="w-full bg-zinc-50 border border-zinc-200 rounded-xl px-4 py-3.5 outline-none focus:border-[#4A7C44] focus:ring-1 focus:ring-[#4A7C44] transition-all text-sm text-zinc-900 placeholder:text-zinc-400 placeholder:opacity-100"
                     />
                   )}
 
